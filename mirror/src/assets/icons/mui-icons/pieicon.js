@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, SvgIcon } from "@material-ui/core";
+import { SvgIcon } from "@material-ui/core";
 
 function PieIcon(props) {
   return (
