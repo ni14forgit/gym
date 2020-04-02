@@ -1,6 +1,6 @@
 import React from "react";
-import data from "./components/Graphs/PieGraph/data";
-import PieGraph from "./components/Graphs/PieGraph/PieGraph";
+import data from "../Graphs/PieGraph/data";
+import PieGraph from "../Graphs/PieGraph/PieGraph";
 
 function Distribution() {
   return (
