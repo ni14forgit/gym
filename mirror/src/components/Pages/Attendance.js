@@ -5,11 +5,10 @@ import CalendarGraph from "../Graphs/CalendarGraph/CalendarGraph";
 function Attendance() {
   console.log(data);
   return (
-    <div style={{ position: "relative", background='black' }}>
-      <div style={{ position: "absolute", width: "100%", height: "100%" }}>
-        <div style={{ height: "800px", fontWeight: "bold" }}>
-          <CalendarGraph data={data} />
-        </div>
+    <div className="container">
+      <div className="inner">
+        <h1 className="header-style-cool">Last 30 Days</h1>
+        <CalendarGraph data={data} />
       </div>
     </div>
   );

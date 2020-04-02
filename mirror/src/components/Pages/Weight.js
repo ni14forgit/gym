@@ -33,7 +33,10 @@ function Weight() {
   return (
     <div className="container">
       <div className="inner">
-        <h1>Last 30 Days</h1>
+        <div className="header-style">
+          <h1>Last 30 Days</h1>
+        </div>
+
         <LineGraph data={data} />
       </div>
     </div>

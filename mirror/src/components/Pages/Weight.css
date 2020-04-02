@@ -11,13 +11,16 @@
   position: absolute;
 }
 
+/* light orange #f68b27 */
+/* #2cb205 light green*/
 .inner {
   /* height: 800px; */
   font-weight: bold;
   font-size: "10px";
-  background-color: #f68b27;
+  background-color: #6e10e5;
   opacity: 0.4;
   position: absolute;
+  color: "white";
   /* height: "99vh"; */
   width: 100vw;
   height: 100%;
@@ -26,4 +29,14 @@
   bottom: 0;
   /* maxHeight: "100"; */
   overflow: "auto";
+}
+
+.header-style-cool {
+  color: white;
+  position: relative;
+  top: 100px;
+}
+
+.h1 {
+  color: "white";
 }

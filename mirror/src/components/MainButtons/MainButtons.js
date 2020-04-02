@@ -26,7 +26,9 @@ const MainButtons = () => {
                 variant="outlined"
                 color="primary"
                 size="large"
-                startIcon={<GraphIcon style={{ fontSize: 100 }} />}
+                startIcon={
+                  <GraphIcon style={{ fontSize: 100, color: "#6e10e5" }} />
+                }
               ></Button>
             </div>
             <div id="chartDiv0" className="column">
@@ -35,7 +37,9 @@ const MainButtons = () => {
                 variant="outlined"
                 color="primary"
                 size="large"
-                startIcon={<WeightIcon style={{ fontSize: 80 }} />}
+                startIcon={
+                  <WeightIcon style={{ fontSize: 80, color: "#f68b27" }} />
+                }
               ></Button>
             </div>
           </div>
@@ -46,7 +50,9 @@ const MainButtons = () => {
                 variant="outlined"
                 color="primary"
                 size="large"
-                startIcon={<PieIcon style={{ fontSize: 80 }} />}
+                startIcon={
+                  <PieIcon style={{ fontSize: 80, color: "#2cb205" }} />
+                }
               ></Button>
             </div>
             <div id="chartDiv1" className="column">
