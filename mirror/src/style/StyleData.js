@@ -24,21 +24,24 @@ const StyleData = {
     borderRadius: "2%",
     color: "white",
     fontSize: "20px",
-    outlinedPrimary: "white"
+    outlinedPrimary: "white",
   },
   loginSignUpButtonStyle: {
     width: "300px",
     height: "50px",
     borderWidth: "2px",
-    borderRadius: "2%",
+    borderRadius: "5%",
     color: "white",
     fontSize: "20px",
-    outlinedPrimary: "white"
+    outlinedPrimary: "white",
+    fontFamily: "sans-serif",
+    fontWeight: "bold",
+    top: "20px",
   },
   iconStyle: {
     width: 200,
     height: 200,
-    fontSize: "large"
+    fontSize: "large",
   },
   formStyle: {
     padding: "10px",
@@ -48,12 +51,15 @@ const StyleData = {
     alignItems: "center",
     textAlign: "center",
     flexDirection: "column",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   inputStyle: {
     width: "70%",
-    margin: "20px"
-  }
+    margin: "20px",
+  },
+  textInputStyle: {
+    color: "white",
+  },
 };
 
 export default StyleData;

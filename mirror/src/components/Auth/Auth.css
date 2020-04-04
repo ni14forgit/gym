@@ -5,6 +5,18 @@
   background: pink;
   border-radius: 20px;
   top: 40px;
+  z-index: 2;
+}
+
+.headerOverlay {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #225470;
+  z-index: 1;
+  opacity: 1;
 }
 
 .parentContainer {
@@ -13,6 +25,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  z-index: 2;
 }
 
 .keyBoardContainer {
@@ -20,4 +33,5 @@
   top: 20px;
   width: 75%;
   clear: both;
+  z-index: 2;
 }

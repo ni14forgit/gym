@@ -1,4 +1,7 @@
 import firebase from "firebase";
+
+//console.log(process.env.REACT_APP_FIREBASE_KEY);
+
 var firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
   authDomain: "gym-project-2066d.firebaseapp.com",
@@ -7,7 +10,7 @@ var firebaseConfig = {
   storageBucket: "gym-project-2066d.appspot.com",
   messagingSenderId: "894183539239",
   appId: "1:894183539239:web:ad59080a46bb0356590402",
-  measurementId: "G-3267WK7S89"
+  measurementId: "G-3267WK7S89",
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);

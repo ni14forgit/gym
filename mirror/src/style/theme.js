@@ -3,8 +3,13 @@ import { grey } from "@material-ui/core/colors";
 
 const theme = createMuiTheme({
   palette: {
-    primary: grey
-  }
+    primary: grey,
+  },
+  typography: {
+    button: {
+      textTransform: "none",
+    },
+  },
 });
 
 export default theme;
