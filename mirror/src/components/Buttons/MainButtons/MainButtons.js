@@ -6,8 +6,8 @@ import {
   PieIcon,
   GraphIcon,
   WeightIcon
-} from "../../assets/icons/icons";
-import StyleData from "../../style/StyleData";
+} from "../../../assets/icons/icons";
+import StyleData from "../../../style/StyleData";
 import { makeStyles } from "@material-ui/core/styles";
 
 const MainButtons = () => {

@@ -1,22 +1,23 @@
 import React from "react";
-//import "./App.css";
 
 import Background from "./components/Background/Background";
-import MainButtons from "./components/MainButtons/MainButtons";
+import MainButtons from "./components/Buttons/MainButtons/MainButtons";
 import BlueCover from "./components/BlueCover/BlueCover";
 
 import Weight from "./components/Pages/Weight";
 import Distribution from "./components/Pages/Distribution";
 import Attendance from "./components/Pages/Attendance";
 
+import AuthForm from "./components/Auth/Auth";
+
 function App() {
-  //const myPieGraph = PieGraph(data);
-  //{myPieGraph}
+  // <Background></Background>
+  //     <BlueCover></BlueCover>
+  //     <MainButtons></MainButtons>
+
   return (
     <div>
-      <Background></Background>
-      <BlueCover></BlueCover>
-      <MainButtons></MainButtons>
+      <AuthForm></AuthForm>
     </div>
   );
 }

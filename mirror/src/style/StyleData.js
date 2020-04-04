@@ -26,10 +26,33 @@ const StyleData = {
     fontSize: "20px",
     outlinedPrimary: "white"
   },
+  loginSignUpButtonStyle: {
+    width: "300px",
+    height: "50px",
+    borderWidth: "2px",
+    borderRadius: "2%",
+    color: "white",
+    fontSize: "20px",
+    outlinedPrimary: "white"
+  },
   iconStyle: {
     width: 200,
     height: 200,
     fontSize: "large"
+  },
+  formStyle: {
+    padding: "10px",
+    display: "flex",
+    align: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    flexDirection: "column",
+    flexWrap: "wrap"
+  },
+  inputStyle: {
+    width: "70%",
+    margin: "20px"
   }
 };
 
