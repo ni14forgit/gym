@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Background from "./components/Background/Background";
 import MainButtons from "./components/Buttons/MainButtons/MainButtons";
 import BlueCover from "./components/BlueCover/BlueCover";
+
+import MainScreen from "./components/MainScreen";
 
 import Weight from "./components/Pages/Weight";
 import Distribution from "./components/Pages/Distribution";
@@ -10,16 +12,37 @@ import Attendance from "./components/Pages/Attendance";
 
 import AuthForm from "./components/Auth/Auth";
 
-function App() {
-  // <Background></Background>
-  //     <BlueCover></BlueCover>
-  //     <MainButtons></MainButtons>
+import { Route, Link, useHistory } from "react-router-dom";
+
+import { useStore } from "./store/store";
+
+const App = () => {
+  const history = useHistory();
+
+  const [state, dispatch] = useStore();
+  // const clickLogin = () => {
+  //   // history.push("/login");
+  // };
+
+  useEffect(() => {
+    history.replace("/main");
+  }, []);
 
   return (
     <div>
-      <AuthForm></AuthForm>
+      {/* <MainScreen login={clickLogin}></MainScreen> */}
+
+      <Route path="/login">
+        <AuthForm />
+      </Route>
+
+      <Route path="/main">
+        <MainScreen />
+      </Route>
+
+      {/* <Route path="/weather" render={() => weather} /> */}
     </div>
   );
-}
+};
 
 export default App;

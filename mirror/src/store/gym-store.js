@@ -2,13 +2,20 @@ import { initStore } from "./store";
 
 const configureStore = () => {
   const actions = {
-    EXAMPLE_FUNC: (curState, increment) => {
-      const newInfo = curState.exampleInfo + increment;
-      return { exampleInfo: newInfo };
-    }
+    SET_UID_USER: (curState, uidInput) => {
+      console.log("this is uid input" + uidInput);
+      console.log("action is being dispatched");
+      return { uid: uidInput };
+    },
+    // MOVE_TO_SIGNUP: (curState, payload) => {
+    //   history.push("/login");
+    // },
+    // MOVE_TO_MAIN: (curState, payload) => {
+    //   history.push("/main");
+    // },
   };
 
-  initStore(actions, { exampleInfo: 0 });
+  initStore(actions, { uid: "" });
 };
 
 export default configureStore;

@@ -26,7 +26,7 @@ const StyleData = {
     fontSize: "20px",
     outlinedPrimary: "white",
   },
-  loginSignUpButtonStyle: {
+  AuthButtonStyle: {
     width: "300px",
     height: "50px",
     borderWidth: "2px",
@@ -59,6 +59,12 @@ const StyleData = {
   },
   textInputStyle: {
     color: "white",
+  },
+  loginMainButtonStyle: {
+    width: "200px",
+    height: "60px",
+    fontSize: "30px",
+    textAlign: "center",
   },
 };
 

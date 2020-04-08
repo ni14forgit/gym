@@ -12,18 +12,28 @@
   display: inline-block;
 }
 
-.content-overlay {
+.loginButton {
+  position: absolute;
+  z-index: 2;
+  bottom: 15%;
+  left: 43%;
+  margin-left: -100px;
 }
 
-.headerOverlay {
-  height: 100vh;
-  width: 100vw;
+.signUpButton {
   position: absolute;
-  top: 0;
-  left: 0;
-  background: #225470;
-  z-index: 1;
-  opacity: 0.65;
+  z-index: 2;
+  bottom: 15%;
+  right: 43%;
+  margin-right: -100px;
+}
+
+.logoutButton {
+  position: absolute;
+  z-index: 2;
+  bottom: 15%;
+  right: 50%;
+  margin-right: -100px;
 }
 
 .container {

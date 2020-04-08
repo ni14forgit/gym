@@ -9,6 +9,7 @@ export const useStore = () => {
 
   const dispatch = (actionIdentifier, payload) => {
     const newState = actions[actionIdentifier](globalState, payload);
+    console.log("this is new state in store.js" + newState);
     globalState = { ...globalState, ...newState };
 
     for (const listener of listeners) {
@@ -20,7 +21,7 @@ export const useStore = () => {
     listeners.push(setState);
 
     return () => {
-      listeners = listeners.filter(li => li !== setState);
+      listeners = listeners.filter((li) => li !== setState);
     };
   }, [setState]);
 
