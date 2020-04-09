@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./MainButtons.css";
 import { Button } from "@material-ui/core";
 import {
@@ -11,8 +11,11 @@ import StyleData from "../../../style/StyleData";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { useStore } from "../../../store/store";
+import firebase from "../../../store/firebase";
 
 const MainButtons = (props) => {
+  const [boldAuth, setBoldAuth] = useState(false);
+
   const history = useHistory();
   const [state, dispatch] = useStore();
 
@@ -20,9 +23,22 @@ const MainButtons = (props) => {
     history.push("/login");
   };
 
+  const toggleBold = () => {
+    setBoldAuth(true);
+    setTimeout(function () {
+      setBoldAuth(false);
+    }, 800);
+  };
+
   const clickLogout = () => {
     //history.push("/main");
-    dispatch("SET_UID_USER", "");
+    firebase
+      .auth()
+      .signOut()
+      .then(function () {
+        dispatch("SET_UID_USER", "");
+      })
+      .catch(function (error) {});
   };
 
   const useStyles = makeStyles(StyleData);
@@ -33,7 +49,11 @@ const MainButtons = (props) => {
       <div>
         <div className="loginButton">
           <Button
-            className={classes.loginMainButtonStyle}
+            className={
+              boldAuth
+                ? classes.loginMainBOLDStyle
+                : classes.loginMainButtonStyle
+            }
             variant="outlined"
             color="primary"
             size="medium"
@@ -44,7 +64,11 @@ const MainButtons = (props) => {
         </div>
         <div className="signUpButton">
           <Button
-            className={classes.loginMainButtonStyle}
+            className={
+              boldAuth
+                ? classes.loginMainBOLDStyle
+                : classes.loginMainButtonStyle
+            }
             variant="outlined"
             color="primary"
             size="medium"
@@ -88,6 +112,7 @@ const MainButtons = (props) => {
               variant="outlined"
               color="primary"
               size="large"
+              onClick={toggleBold}
               startIcon={
                 <GraphIcon style={{ fontSize: 100, color: "#6e10e5" }} />
               }

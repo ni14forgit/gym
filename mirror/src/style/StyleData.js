@@ -65,6 +65,20 @@ const StyleData = {
     height: "60px",
     fontSize: "30px",
     textAlign: "center",
+    color: "white",
+  },
+  loginMainBOLDStyle: {
+    width: "200px",
+    height: "60px",
+    fontSize: "30px",
+    textAlign: "center",
+    color: "white",
+    //border: "3px solid white",
+    background: "white",
+  },
+
+  textTitleStyle: {
+    color: "white",
   },
 };
 

@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 //import Input from "@material-ui/core/Input";
 import TextField from "@material-ui/core/TextField";
-import StyleData from "../../style/StyleData";
+import StyleData from "../../../style/StyleData";
 import { makeStyles } from "@material-ui/core/styles";
 import "./Auth.css";
-import { validationAuth } from "../../actions/AuthLogic";
+import { validationAuth } from "./AuthLogic";
 import { Button } from "@material-ui/core";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
-import firebase from "../../store/firebase";
-import { useStore } from "../../store/store";
+import firebase from "../../../store/firebase";
+import { useStore } from "../../../store/store";
 import { useHistory } from "react-router-dom";
 
 const db = firebase.firestore();
@@ -270,15 +270,10 @@ const Auth = () => {
       .then((uid) => {
         console.log("UID:" + uid);
         var user = firebase.auth().currentUser;
-        if (user) {
-          console.log("user true");
-          user.updateProfile({
-            displayName: firstName + " " + lastName,
-          });
-          dispatch("SET_UID_USER", uid);
-        } else {
-          console.log("user not found ERROR");
-        }
+        helperDispatch(user, firstName, lastName, uid).then(() =>
+          history.push("/main")
+        );
+        console.log(user.providerData);
         return;
         // .then(() => {
         //   if (user != null) {
@@ -288,12 +283,33 @@ const Auth = () => {
         //     console.log("NOOO");
         //   }
         // });
-      })
-      .then(() => {
-        history.push("/main");
-        console.log(state);
       });
   };
+
+  const helperDispatch = (user, firstname, lastname, uid) => {
+    let x;
+    if (user) {
+      console.log("user true");
+      console.log(firstname);
+      console.log(lastname);
+      x = user.updateProfile({
+        displayName: firstname + " " + lastname,
+      });
+      dispatch("SET_UID_USER", uid);
+    } else {
+      console.log("user not found ERROR");
+    }
+    return x;
+  };
+
+  // firebase.auth().onAuthStateChanged(function (user) {
+  //   if (user) {
+  //     console.log("hi");
+  //     history.push("/main");
+  //   } else {
+  //     console.log("no user on auth change");
+  //   }
+  // });
 
   return (
     <div>

@@ -10,7 +10,8 @@ import Weight from "./components/Pages/Weight";
 import Distribution from "./components/Pages/Distribution";
 import Attendance from "./components/Pages/Attendance";
 
-import AuthForm from "./components/Auth/Auth";
+import AuthForm from "./components/Auth/SignUp/Auth";
+import LoginForm from "./components/Auth/Login/Login";
 
 import { Route, Link, useHistory } from "react-router-dom";
 
@@ -32,8 +33,12 @@ const App = () => {
     <div>
       {/* <MainScreen login={clickLogin}></MainScreen> */}
 
-      <Route path="/login">
+      {/* <Route path="/login">
         <AuthForm />
+      </Route> */}
+
+      <Route path="/login">
+        <LoginForm />
       </Route>
 
       <Route path="/main">
