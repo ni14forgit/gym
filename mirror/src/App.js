@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import Background from "./components/Background/Background";
 import MainButtons from "./components/Buttons/MainButtons/MainButtons";
-import BlueCover from "./components/BlueCover/BlueCover";
 
 import MainScreen from "./components/MainScreen";
 
@@ -33,9 +32,9 @@ const App = () => {
     <div>
       {/* <MainScreen login={clickLogin}></MainScreen> */}
 
-      {/* <Route path="/login">
+      <Route path="/signup">
         <AuthForm />
-      </Route> */}
+      </Route>
 
       <Route path="/login">
         <LoginForm />

@@ -23,6 +23,10 @@ const MainButtons = (props) => {
     history.push("/login");
   };
 
+  const clickSignUp = () => {
+    history.push("/signup");
+  };
+
   const toggleBold = () => {
     setBoldAuth(true);
     setTimeout(function () {
@@ -72,6 +76,7 @@ const MainButtons = (props) => {
             variant="outlined"
             color="primary"
             size="medium"
+            onClick={clickSignUp}
           >
             Sign Up
           </Button>

@@ -73,10 +73,8 @@ const StyleData = {
     fontSize: "30px",
     textAlign: "center",
     color: "white",
-    //border: "3px solid white",
     background: "white",
   },
-
   textTitleStyle: {
     color: "white",
   },

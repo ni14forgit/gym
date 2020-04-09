@@ -24,7 +24,7 @@ const Background = () => {
 
     console.log(user.providerData);
     var firstName = user.displayName.split(" ");
-    userName = "Hi, " + firstName;
+    userName = "Hi, " + firstName[0];
     console.log(user.displayName);
   }
 

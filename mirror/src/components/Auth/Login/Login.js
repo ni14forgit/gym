@@ -8,10 +8,13 @@ import "react-simple-keyboard/build/css/index.css";
 import firebase from "../../../store/firebase";
 import { useStore } from "../../../store/store";
 import { useHistory } from "react-router-dom";
+import "./Login.css";
 
 const Login = () => {
   const useStyles = makeStyles(StyleData);
   const classes = useStyles();
+  const [state, dispatch] = useStore();
+  const history = useHistory();
 
   const temporarySetError = () => {
     setErrorMessage(true);
@@ -30,6 +33,12 @@ const Login = () => {
       .then((res) => {
         console.log("wemadeit");
         console.log(res);
+        return res.user.uid;
+      })
+      .then((uid) => {
+        dispatch("SET_UID_USER", uid);
+        history.push("/main");
+        return;
       })
       .catch(function (error) {
         // Handle Errors here.
@@ -151,7 +160,7 @@ const Login = () => {
             </Button>
           </form>
           {errorMessage ? (
-            <div className={classes.formStyle}>
+            <div className="errorMessage">
               <h1>Incorrect login, please try again.</h1>
             </div>
           ) : null}
