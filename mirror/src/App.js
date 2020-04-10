@@ -15,6 +15,7 @@ import LoginForm from "./components/Auth/Login/Login";
 import { Route, Link, useHistory } from "react-router-dom";
 
 import DistributionSurvey from "./components/Survey/DistributionSurvey";
+import WeightSurvey from "./components/Survey/WeightSurvey";
 
 import { useStore } from "./store/store";
 
@@ -28,7 +29,8 @@ const App = () => {
 
   useEffect(() => {
     //history.replace("/main");
-    history.replace("/distributionsurvey");
+    // history.replace("/distributionsurvey");
+    history.replace("/weightsurvey");
   }, []);
 
   return (
@@ -37,6 +39,10 @@ const App = () => {
 
       <Route path="/signup">
         <AuthForm />
+      </Route>
+
+      <Route path="/weightsurvey">
+        <WeightSurvey />
       </Route>
 
       <Route path="/login">
