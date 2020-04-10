@@ -1,0 +1,25 @@
+.selection {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+  left: 15%;
+  /* //bottom: 15%; */
+}
+
+.exerciseParent {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.imgDrop {
+}
+
+.titleWorkout {
+  text-align: center;
+}
+
+.doneButton {
+  position: absolute;
+  bottom: 5%;
+  right: 50%;
+}

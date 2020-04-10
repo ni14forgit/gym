@@ -14,6 +14,8 @@ import LoginForm from "./components/Auth/Login/Login";
 
 import { Route, Link, useHistory } from "react-router-dom";
 
+import DistributionSurvey from "./components/Survey/DistributionSurvey";
+
 import { useStore } from "./store/store";
 
 const App = () => {
@@ -25,7 +27,8 @@ const App = () => {
   // };
 
   useEffect(() => {
-    history.replace("/main");
+    //history.replace("/main");
+    history.replace("/distributionsurvey");
   }, []);
 
   return (
@@ -42,6 +45,10 @@ const App = () => {
 
       <Route path="/main">
         <MainScreen />
+      </Route>
+
+      <Route path="/distributionsurvey">
+        <DistributionSurvey />
       </Route>
 
       {/* <Route path="/weather" render={() => weather} /> */}
