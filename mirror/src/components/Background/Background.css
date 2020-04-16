@@ -22,12 +22,3 @@
   z-index: 1;
   opacity: 0.65;
 }
-
-.title {
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  top: 40px;
-}

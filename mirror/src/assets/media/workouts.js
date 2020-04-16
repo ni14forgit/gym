@@ -30,4 +30,4 @@ for (var i = 0; i < workouts.length; i++) {
   myOriginalSelection[workouts[i].title] = 0;
 }
 
-export { myOriginalSelection, workouts };
+export { workouts };

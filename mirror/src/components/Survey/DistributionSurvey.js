@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
-import { workouts, myOriginalSelection } from "../../assets/media/workouts";
+import { workouts } from "../../assets/media/workouts";
 import { Button } from "@material-ui/core";
 import "./DistributionSurvey.css";
 import { useStore } from "../../store/store";
@@ -19,9 +19,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
     overflow: "hidden",
     backgroundColor: theme.palette.background.paper,
-    "& img": {
-      background: "linear-gradient(to right bottom, #430089, #82ffa1)",
-    },
+    // "& img": {
+    //   background: "linear-gradient(to right bottom, #430089, #82ffa1)",
+    // },
   },
   gridList: {
     // flexWrap: "nowrap",
@@ -59,8 +59,8 @@ function BGImage(props) {
     <div
       style={{
         background: "url(" + props.bg + ")",
-        height: "25%",
-        width: "25%",
+        height: "50%",
+        width: "50%",
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
@@ -87,9 +87,30 @@ const styles = {
 };
 
 const DistributionSurvey = () => {
+  const myOriginalSelection = {
+    abs: 0,
+    cardio: 0,
+    idk: 0,
+    deadlift: 0,
+    legs: 0,
+    mandeadlift: 0,
+    pull: 0,
+    push: 0,
+    run: 0,
+    sports: 0,
+    squat: 0,
+  };
   const classes = useStyles();
   const [state, dispatch] = useStore();
   const history = useHistory();
+
+  // useEffect(() => {
+  //   myOriginalSelection = {};
+  //   for (var i = 0; i < workouts.length; i++) {
+  //     console.log(workouts[i].title);
+  //     myOriginalSelection[workouts[i].title] = 0;
+  //   }
+  // }, []);
 
   const [selection, setSelection] = useState(myOriginalSelection);
 
@@ -104,10 +125,19 @@ const DistributionSurvey = () => {
     setSelection({ ...selection, [identifier]: newVal });
   };
 
+  var user = firebase.auth().currentUser;
+  var uid_value = "error";
+
+  if (user != null) {
+    uid_value = user.uid;
+    console.log(uid_value);
+  }
+
   const sendDataNextPage = () => {
     console.log(selection);
     db.collection("users")
-      .doc(state.uid)
+      //.doc(state.uid)
+      .doc(uid_value)
       .collection("ratio")
       .add({
         date: Date(),
@@ -117,7 +147,11 @@ const DistributionSurvey = () => {
         console.log(error);
         console.log(data);
       })
-      .then(() => history.push("/weightsurvey"));
+      //.then(() => history.push("/weightsurvey"));
+      .then(() => {
+        console.log("added data to firebase");
+        history.push("/main");
+      });
   };
 
   return (
@@ -125,58 +159,57 @@ const DistributionSurvey = () => {
       <h1 className="titleWorkout">
         Tap on the workouts you accomplished today!
       </h1>
-      <div className="selection">
-        <div className={classes.root}>
-          <GridList className={classes.gridList} cols={3}>
-            {workouts.map((tile) => {
-              const myTitle = tile.title;
-              console.log(myTitle);
-              console.log(selection[myTitle]);
-              console.log(selection);
-
-              return (
-                <GridListTile
-                  key={tile.img}
-                  onClick={() => updateSelection(tile.title)}
-                >
-                  {selection[myTitle] === 1 ? (
-                    <div style={styles}>
-                      <BGImage bg={tile.img} tint="#3b79e3" />
-                    </div>
-                  ) : (
-                    <div style={styles}>
-                      <BGImage bg={tile.img} tint="" />
-                    </div>
-                  )}
-                  {/* <img
+      <div className="relativo">
+        <div className="selection">
+          <div className={classes.root}>
+            <GridList className={classes.gridList} cols={3}>
+              {workouts.map((tile) => {
+                const myTitle = tile.title;
+                // console.log(myTitle);
+                // console.log(selection[myTitle]);
+                // console.log(selection);
+                return (
+                  <GridListTile
+                    key={tile.img}
+                    onClick={() => updateSelection(tile.title)}
+                  >
+                    {selection[myTitle] === 1 ? (
+                      <div style={styles}>
+                        <BGImage bg={tile.img} tint="#3b79e3" />
+                      </div>
+                    ) : (
+                      <div style={styles}>
+                        <BGImage bg={tile.img} tint="" />
+                      </div>
+                    )}
+                    {/* <img
                   className={classes.imgDrop}
                   src={tile.img}
                   alt={tile.title}
                 />
                  */}
 
-                  <GridListTileBar
-                    title={tile.title}
-                    classes={{
-                      root: classes.titleBar,
-                      title: classes.boldTitle,
-                    }}
-                  />
-                </GridListTile>
-              );
-            })}
-          </GridList>
+                    <GridListTileBar
+                      title={tile.title}
+                      classes={{
+                        root: classes.titleBar,
+                        title: classes.boldTitle,
+                      }}
+                    />
+                  </GridListTile>
+                );
+              })}
+            </GridList>
+          </div>
         </div>
       </div>
-      <div className="doneButton">
-        <Button
-          className={classes.doneTypeStyle}
-          variant="contained"
-          onClick={sendDataNextPage}
-        >
-          Done!
-        </Button>
-      </div>
+      <Button
+        className={classes.doneTypeStyle}
+        variant="contained"
+        onClick={sendDataNextPage}
+      >
+        Done!
+      </Button>
     </div>
   );
 };

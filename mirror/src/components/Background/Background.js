@@ -8,26 +8,6 @@ import { useStore } from "../../store/store";
 import firebase from "../../store/firebase";
 
 const Background = () => {
-  //might need to use a USEEFFECT to load the user title initially? ?
-
-  var userName = "";
-  var user = firebase.auth().currentUser;
-
-  if (user != null) {
-    // user.providerData.forEach(function (profile) {
-    //   console.log("Sign-in provider: " + profile.providerId);
-    //   console.log("  Provider-specific UID: " + profile.uid);
-    //   console.log("  Name: " + profile.displayName);
-    //   console.log("  Email: " + profile.email);
-    //   console.log("  Photo URL: " + profile.photoURL);
-    // });
-
-    console.log(user.providerData);
-    var firstName = user.displayName.split(" ");
-    userName = "Hi, " + firstName[0];
-    console.log(user.displayName);
-  }
-
   const useStyles = makeStyles(StyleData);
   const classes = useStyles();
 
@@ -35,11 +15,6 @@ const Background = () => {
 
   return (
     <div>
-      <div className="title">
-        <Typography className={classes.textTitleStyle} variant="h1">
-          {userName}
-        </Typography>
-      </div>
       <div className="fullscreen-video-wrap">
         <video
           type="video/mp4"

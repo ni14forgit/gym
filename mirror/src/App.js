@@ -28,9 +28,9 @@ const App = () => {
   // };
 
   useEffect(() => {
-    //history.replace("/main");
-    // history.replace("/distributionsurvey");
-    history.replace("/weightsurvey");
+    history.replace("/main");
+    //history.replace("/distributionsurvey");
+    //history.replace("/weightsurvey");
   }, []);
 
   return (
@@ -43,6 +43,10 @@ const App = () => {
 
       <Route path="/weightsurvey">
         <WeightSurvey />
+      </Route>
+
+      <Route path="/distribution">
+        <Distribution></Distribution>
       </Route>
 
       <Route path="/login">

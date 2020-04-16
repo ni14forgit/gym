@@ -1,17 +1,19 @@
 .selection {
-  position: absolute;
-  top: 10%;
+  position: relative;
+  padding-right: 2%;
+  padding-left: 2%;
+  padding-bottom: 1%;
+  /* top: 10%;
   right: 15%;
-  left: 15%;
+  left: 15%; */
   /* //bottom: 15%; */
 }
 
 .exerciseParent {
+  /* flex-flow: column wrap; */
   display: flex;
-  flex-flow: column wrap;
-}
-
-.imgDrop {
+  flex-flow: column;
+  align-items: center;
 }
 
 .titleWorkout {
@@ -19,7 +21,7 @@
 }
 
 .doneButton {
-  position: absolute;
+  /* position: absolute;
   bottom: 5%;
-  right: 50%;
+  right: 50%; */
 }

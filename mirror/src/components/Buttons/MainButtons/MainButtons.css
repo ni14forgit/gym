@@ -12,28 +12,16 @@
   display: inline-block;
 }
 
-.loginButton {
-  position: absolute;
+.loginlogoutsignup {
+  position: relative;
   z-index: 2;
-  bottom: 15%;
-  left: 43%;
-  margin-left: -100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
-.signUpButton {
-  position: absolute;
-  z-index: 2;
-  bottom: 15%;
-  right: 43%;
-  margin-right: -100px;
-}
-
-.logoutButton {
-  position: absolute;
-  z-index: 2;
-  bottom: 15%;
-  right: 50%;
-  margin-right: -100px;
+.padder {
+  padding: 40px;
 }
 
 .container {
@@ -43,4 +31,14 @@
   align-items: center;
   text-align: center;
   min-height: 100vh;
+}
+
+.title {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 100px;
+  /* left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  top: 40px; */
 }

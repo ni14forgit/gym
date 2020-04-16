@@ -12,8 +12,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { useStore } from "../../../store/store";
 import firebase from "../../../store/firebase";
+import { Typography } from "@material-ui/core";
 
-const MainButtons = (props) => {
+const MainButtons = () => {
   const [boldAuth, setBoldAuth] = useState(false);
 
   const history = useHistory();
@@ -42,16 +43,38 @@ const MainButtons = (props) => {
       .then(function () {
         dispatch("SET_UID_USER", "");
       })
-      .catch(function (error) {});
+      .catch(function (error) {
+        console.log("logout error occurred");
+      });
   };
 
   const useStyles = makeStyles(StyleData);
   const classes = useStyles();
 
+  //might need to use a USEEFFECT to load the user title initially? ?
+
+  var userName = "";
+  var user = firebase.auth().currentUser;
+
+  if (user != null) {
+    // user.providerData.forEach(function (profile) {
+    //   console.log("Sign-in provider: " + profile.providerId);
+    //   console.log("  Provider-specific UID: " + profile.uid);
+    //   console.log("  Name: " + profile.displayName);
+    //   console.log("  Email: " + profile.email);
+    //   console.log("  Photo URL: " + profile.photoURL);
+    // });
+
+    console.log(user.providerData);
+    var firstName = user.displayName.split(" ");
+    userName = "Welcome, " + firstName[0];
+    console.log(user.displayName);
+  }
+
   const loginSignUp = () => {
     return (
-      <div>
-        <div className="loginButton">
+      <div className="loginlogoutsignup">
+        <div className="padder">
           <Button
             className={
               boldAuth
@@ -66,7 +89,7 @@ const MainButtons = (props) => {
             Login
           </Button>
         </div>
-        <div className="signUpButton">
+        <div className="padder">
           <Button
             className={
               boldAuth
@@ -88,16 +111,18 @@ const MainButtons = (props) => {
   const logOut = () => {
     return (
       <div>
-        <div className="logoutButton">
-          <Button
-            className={classes.loginMainButtonStyle}
-            variant="outlined"
-            color="primary"
-            size="medium"
-            onClick={clickLogout}
-          >
-            Logout
-          </Button>
+        <div className="loginlogoutsignup">
+          <div className="padder">
+            <Button
+              className={classes.loginMainButtonStyle}
+              variant="outlined"
+              color="primary"
+              size="medium"
+              onClick={clickLogout}
+            >
+              Logout
+            </Button>
+          </div>
         </div>
       </div>
     );
@@ -108,8 +133,12 @@ const MainButtons = (props) => {
 
   return (
     <div>
-      {authStatusButton}
       <div className="container">
+        <div className="title">
+          <Typography className={classes.textTitleStyle} variant="h1">
+            {userName}
+          </Typography>
+        </div>
         <div className="row">
           <div id="dateDiv0" className="column">
             <Button
@@ -138,6 +167,9 @@ const MainButtons = (props) => {
         <div className="row">
           <div id="dateDiv1" className="column">
             <Button
+              onClick={() => {
+                history.push("/distribution");
+              }}
               className={classes.buttonStyle}
               variant="outlined"
               color="primary"
@@ -155,6 +187,7 @@ const MainButtons = (props) => {
             ></Button>
           </div>
         </div>
+        {authStatusButton}
       </div>
     </div>
   );

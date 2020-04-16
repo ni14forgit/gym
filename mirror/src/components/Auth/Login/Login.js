@@ -37,7 +37,8 @@ const Login = () => {
       })
       .then((uid) => {
         dispatch("SET_UID_USER", uid);
-        history.push("/main");
+        //history.push("/main");
+        history.push("/distributionsurvey");
         return;
       })
       .catch(function (error) {
