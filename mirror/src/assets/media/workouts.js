@@ -1,14 +1,14 @@
-import abs from "./abs.jpg";
-import anotherman from "./anotherman.jpg";
-import cardio from "./cardio.jpg";
-import deadlift from "./deadlift.jpg";
-import legs from "./legs.jpg";
-import mandeadlift from "./mandeadlift.jpg";
-import pull from "./pull.jpg";
-import push from "./push.jpg";
-import run from "./run.jpg";
-import sports from "./sports.jpg";
-import squat from "./squat.jpg";
+import abs from "./workouts/abs.jpg";
+import anotherman from "./workouts/anotherman.jpg";
+import cardio from "./workouts/cardio.jpg";
+import deadlift from "./workouts/deadlift.jpg";
+import legs from "./workouts/legs.jpg";
+import mandeadlift from "./workouts/mandeadlift.jpg";
+import pull from "./workouts/pull.jpg";
+import push from "./workouts/push.jpg";
+import run from "./workouts/run.jpg";
+import sports from "./workouts/sports.jpg";
+import squat from "./workouts/squat.jpg";
 
 const workouts = [
   { img: abs, title: "abs" },

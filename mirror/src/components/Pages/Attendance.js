@@ -8,10 +8,9 @@ const db = firebase.firestore();
 
 function Attendance() {
   const Container = displayFinalStyle.container;
-  const DistributionOverlay = displayFinalStyle.distributionoverlay;
-  const Inner = displayFinalStyle.inner;
   const PadLeft = displayFinalStyle.padleft;
   const HeaderStyleCool = displayFinalStyle.headerstylecool;
+  const Normalize = displayFinalStyle.normalize;
 
   var user = firebase.auth().currentUser;
   var uid_value = "error";
@@ -34,7 +33,7 @@ function Attendance() {
     const dataToReturn = await db
       .collection("users")
       .doc(uid_value)
-      // .doc("firebase")
+      //.doc("firebase")
       .collection("attendance")
       .get()
       .then(function (querySnapshot) {
@@ -67,12 +66,12 @@ function Attendance() {
     <div>
       <Background></Background>
       <Container>
-        <Inner>
-          <HeaderStyleCool>
-            <h1>Year 2020</h1>
-          </HeaderStyleCool>
+        <Normalize>
           {show ? <CalendarGraph data={attendanceData} /> : null}
-        </Inner>
+        </Normalize>
+        <HeaderStyleCool>
+          <h1>Year 2020</h1>
+        </HeaderStyleCool>
       </Container>
     </div>
   );

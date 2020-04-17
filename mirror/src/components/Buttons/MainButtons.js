@@ -61,7 +61,7 @@ const MainButtons = () => {
   const buttonstyle_data = buttonstyle();
 
   const titlestyle = makeStyles(titleStyle);
-  const titlestyle_data = makeStyles(titlestyle);
+  const titlestyle_data = titlestyle();
 
   //might need to use a USEEFFECT to load the user title initially? ?
 

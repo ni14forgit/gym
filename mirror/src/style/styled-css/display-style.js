@@ -8,6 +8,7 @@ const Container = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
+  z-index: 2;
 `;
 const DistributionOverlay = styled.div`
   height: 100vh;
@@ -38,9 +39,19 @@ const PadLeft = styled.div`
   height: 100%;
   top: 15%;
 `;
+
+const Normalize = styled.div`
+  position: absolute;
+  height: "99vh";
+  width: 100vw;
+  height: 100%;
+  top: 15%;
+`;
+
 const HeaderStyleCool = styled.div`
   color: white;
   font-size: 50px;
+  align-items: center;
 `;
 
 const finalStyle = {
@@ -49,6 +60,7 @@ const finalStyle = {
   inner: { ...Inner },
   padleft: { ...PadLeft },
   headerstylecool: { ...HeaderStyleCool },
+  normalize: { ...Normalize },
 };
 
 export default finalStyle;

@@ -13,12 +13,8 @@ function Weight() {
 
   return (
     <Container>
-      <Inner>
-        <HeaderStyleCool>
-          <h1>Last 30 Days</h1>
-        </HeaderStyleCool>
-        <LineGraph data={data} />
-      </Inner>
+      <h1>Last 30 Days</h1>
+      <LineGraph data={data} />
     </Container>
   );
 }

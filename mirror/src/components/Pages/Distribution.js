@@ -61,7 +61,7 @@ function Distribution() {
     const dataToReturn = await db
       .collection("users")
       .doc(uid_value)
-      // .doc("firebase")
+      //.doc("firebase")
       .collection("ratio")
       .get()
       .then(function (querySnapshot) {
@@ -110,14 +110,10 @@ function Distribution() {
     <div>
       <Background></Background>
       <Container>
-        <Inner>
-          <PadLeft>
-            {show ? <PieGraph data={distributionData} /> : null}
-          </PadLeft>
-          <HeaderStyleCool>
-            <h1 style={{ color: "white", fontSize: "50px" }}>Last 30 Days</h1>
-          </HeaderStyleCool>
-        </Inner>
+        <PadLeft>{show ? <PieGraph data={distributionData} /> : null}</PadLeft>
+        <HeaderStyleCool>
+          <h1 style={{ color: "white", fontSize: "50px" }}>Last 30 Days</h1>
+        </HeaderStyleCool>
       </Container>
     </div>
   );

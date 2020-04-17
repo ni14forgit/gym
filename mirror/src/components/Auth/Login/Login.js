@@ -52,7 +52,7 @@ const Login = () => {
     if (Number(month) < 10) {
       month = "0" + month;
     }
-    var day = todaydate.getUTCDate();
+    var day = todaydate.getDate();
     if (Number(day) < 10) {
       day = "0" + day;
     }

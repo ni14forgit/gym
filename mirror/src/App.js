@@ -30,6 +30,8 @@ const App = () => {
     //history.replace("/attendance");
     //history.replace("/weightsurvey");
     //history.replace("/distribution");
+    //history.replace("/weight");
+    //history.replace("/signup");
   }, []);
 
   return (
@@ -38,6 +40,10 @@ const App = () => {
 
       <Route path="/signup">
         <AuthForm />
+      </Route>
+
+      <Route path="/weight">
+        <Weight />
       </Route>
 
       <Route path="/attendance">

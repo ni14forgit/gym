@@ -1,5 +1,6 @@
 import React from "react";
 import gym from "../../assets/media/gym.mp4";
+import gym2 from "../../assets/media/gym2.mp4";
 import { Typography } from "@material-ui/core";
 import { useStore } from "../../store/store";
 import firebase from "../../store/firebase";
@@ -10,17 +11,18 @@ const Background = () => {
 
   const Overlay = backgroundFinalStyle.overlay;
   const FullscreenVideoWrap = backgroundFinalStyle.fullscreenVideoWrap;
+  const VideoFull = backgroundFinalStyle.videoFull;
 
   return (
     <div>
       <FullscreenVideoWrap>
-        <video
+        <VideoFull
           type="video/mp4"
           src={gym}
           autoPlay={true}
           muted
           loop={true}
-        ></video>
+        ></VideoFull>
         <Overlay></Overlay>
       </FullscreenVideoWrap>
     </div>
