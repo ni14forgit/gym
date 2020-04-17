@@ -1,26 +1,64 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import StyleData from "../../../style/StyleData";
+import {
+  inputStyle,
+  buttonStyle,
+} from "../../../style/material-styles/totalStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 import firebase from "../../../store/firebase";
 import { useStore } from "../../../store/store";
 import { useHistory } from "react-router-dom";
+import authStyleFinal from "../../../style/styled-css/auth-style";
 import "./Login.css";
 
+const KeyBoardContainer = authStyleFinal.keyBoardContainer;
+const Overlay = authStyleFinal.overlay;
+const ParentContainer = authStyleFinal.parentContainer;
+const Container = authStyleFinal.container;
+const Error = authStyleFinal.error;
+
 const Login = () => {
-  const useStyles = makeStyles(StyleData);
-  const classes = useStyles();
+  const buttonstyle = makeStyles(buttonStyle);
+  const buttonstyle_data = buttonstyle();
+
+  const inputstyle = makeStyles(inputStyle);
+  const inputstyle_data = inputstyle();
+
   const [state, dispatch] = useStore();
   const history = useHistory();
+
+  const keyboard = useRef();
+
+  const onKeyChange = (input) => {
+    setCurrentString(input);
+  };
+
+  const db = firebase.firestore();
 
   const temporarySetError = () => {
     setErrorMessage(true);
     setTimeout(function () {
       setErrorMessage(false);
     }, 4000);
+  };
+
+  const createDate = () => {
+    const todaydate = new Date();
+    const year = todaydate.getFullYear();
+    console.log(year);
+    var month = todaydate.getMonth() + 1;
+    if (Number(month) < 10) {
+      month = "0" + month;
+    }
+    var day = todaydate.getUTCDate();
+    if (Number(day) < 10) {
+      day = "0" + day;
+    }
+    console.log(year + "-" + month + "-" + day);
+    return year + "-" + month + "-" + day;
   };
 
   const submitSignUpHandler = () => {
@@ -37,8 +75,13 @@ const Login = () => {
       })
       .then((uid) => {
         dispatch("SET_UID_USER", uid);
-        //history.push("/main");
-        history.push("/distributionsurvey");
+        db.collection("users")
+          .doc(uid)
+          .collection("attendance")
+          .add({ date: createDate(), value: 1 });
+
+        history.push("/main");
+        //history.push("/distributionsurvey");
         return;
       })
       .catch(function (error) {
@@ -76,9 +119,36 @@ const Login = () => {
   const [information, setInformation] = useState(myInformation);
   const [locator, setLocator] = useState(null);
   const [errorMessage, setErrorMessage] = useState(false);
+  const [currentString, setCurrentString] = useState("");
+
+  useEffect(() => {
+    const inputText = () => {
+      if (!locator) {
+        return;
+      }
+
+      //console.log("useeffect" + locator);
+
+      const updatedInformation = {
+        ...information,
+      };
+      const updatedElement = {
+        ...updatedInformation[locator],
+      };
+      updatedElement.value = currentString;
+
+      updatedInformation[locator] = updatedElement;
+      setInformation(updatedInformation);
+      //console.log(updatedElement.value);
+
+      // console.log(currentString);
+      // console.log(locator);
+    };
+    inputText();
+  }, [currentString]);
 
   const setLocation = (data) => {
-    // keyboard.current.setInput(information[data].value);
+    keyboard.current.setInput(information[data].value);
     setLocator(data);
   };
 
@@ -91,19 +161,6 @@ const Login = () => {
     };
 
     updatedElement.value = event.target.value;
-    //updatedInformation[inputIdentifier].value = event.target.value;
-
-    //console.log(inputIdentifier);
-    // const [helperString, validity, bothPassword] = validationAuth(
-    //   updatedInformation,
-    //   inputIdentifier
-    // );
-
-    //console.log("bothPassword" + bothPassword);
-
-    // updatedElement.valid = validity;
-    // updatedElement.displayValid = validity;
-    // updatedElement.helperText = helperString;
 
     updatedInformation[inputIdentifier] = updatedElement;
 
@@ -113,13 +170,13 @@ const Login = () => {
 
   return (
     <div>
-      <div className="headerAuthOverlay"></div>
-      <div className="parentContainer">
-        <div className="authContainer">
-          <form className={classes.formStyle} noValidate autoComplete="off">
+      <Overlay></Overlay>
+      <ParentContainer>
+        <Container>
+          <form className={inputstyle_data.form} noValidate autoComplete="off">
             <TextField
               key={email}
-              className={classes.inputStyle}
+              className={inputstyle_data.input}
               id={email}
               error={!information.email.valid}
               label={information.email.placeholder}
@@ -129,13 +186,13 @@ const Login = () => {
               onFocus={() => setLocation(email)}
               helperText={information.email.helperText}
               InputProps={{
-                className: classes.textInputStyle,
+                className: inputstyle_data.text,
               }}
             />
 
             <TextField
               key={password}
-              className={classes.inputStyle}
+              className={inputstyle_data.input}
               id={password}
               error={!information.password.valid}
               label={information.password.placeholder}
@@ -146,12 +203,12 @@ const Login = () => {
               onFocus={() => setLocation(password)}
               helperText={information.password.helperText}
               InputProps={{
-                className: classes.textInputStyle,
+                className: inputstyle_data.text,
               }}
             />
 
             <Button
-              className={classes.AuthButtonStyle}
+              className={buttonstyle_data.authpage}
               variant="outlined"
               color="primary"
               size="medium"
@@ -161,12 +218,19 @@ const Login = () => {
             </Button>
           </form>
           {errorMessage ? (
-            <div className="errorMessage">
+            <Error>
               <h1>Incorrect login, please try again.</h1>
-            </div>
+            </Error>
           ) : null}
-        </div>
-      </div>
+        </Container>
+        <KeyBoardContainer>
+          <Keyboard
+            onChange={onKeyChange}
+            inputName={"default"}
+            keyboardRef={(r) => (keyboard.current = r)}
+          />
+        </KeyBoardContainer>
+      </ParentContainer>
     </div>
   );
 };

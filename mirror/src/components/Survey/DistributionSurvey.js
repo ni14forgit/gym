@@ -19,14 +19,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
     overflow: "hidden",
     backgroundColor: theme.palette.background.paper,
-    // "& img": {
-    //   background: "linear-gradient(to right bottom, #430089, #82ffa1)",
-    // },
   },
   gridList: {
-    // flexWrap: "nowrap",
-    // background: "bottom right 15% no-repeat #46B6AC",
-    // // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: "translateZ(0)",
   },
   boldTitle: {

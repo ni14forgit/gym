@@ -1,5 +1,5 @@
-const StyleData = {
-  buttonStyle: {
+const buttonStyle = {
+  mainoption: {
     width: "600px",
     height: "200px",
     borderWidth: "3px",
@@ -8,7 +8,7 @@ const StyleData = {
     fontSize: "20px",
     outlinedPrimary: "white",
   },
-  AuthButtonStyle: {
+  authpage: {
     width: "300px",
     height: "50px",
     borderWidth: "2px",
@@ -20,36 +20,19 @@ const StyleData = {
     fontWeight: "bold",
     top: "20px",
   },
-  iconStyle: {
+  icon: {
     width: 200,
     height: 200,
     fontSize: "large",
   },
-  formStyle: {
-    padding: "10px",
-    display: "flex",
-    align: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    flexDirection: "column",
-    flexWrap: "wrap",
-  },
-  inputStyle: {
-    width: "70%",
-    margin: "20px",
-  },
-  textInputStyle: {
-    color: "white",
-  },
-  loginMainButtonStyle: {
+  auth: {
     width: "200px",
     height: "60px",
     fontSize: "30px",
     textAlign: "center",
     color: "white",
   },
-  loginMainBOLDStyle: {
+  authBold: {
     width: "200px",
     height: "60px",
     fontSize: "30px",
@@ -57,9 +40,6 @@ const StyleData = {
     color: "white",
     background: "white",
   },
-  textTitleStyle: {
-    color: "white",
-  },
 };
 
-export default StyleData;
+export default buttonStyle;

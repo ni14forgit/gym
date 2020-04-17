@@ -2,13 +2,19 @@ import React from "react";
 import { ResponsivePie } from "@nivo/pie";
 
 const theme = {
-  fontSize: "24px",
+  fontSize: "40px",
   fontWeight: 700,
   fontFamily: "Sans-Serif",
+  fontColor: "white",
+  itemTextColor: "white",
 };
 
 const MyResponsivePie = ({ data }) => {
   console.log(data);
+
+  const legendHeight = data.length;
+  // console.log(legendHeight);
+
   return (
     <ResponsivePie
       data={data}
@@ -16,8 +22,10 @@ const MyResponsivePie = ({ data }) => {
       innerRadius={0.45}
       padAngle={2}
       cornerRadius={7}
-      colors={{ scheme: "spectral" }}
+      slicesLabelsTextColor="white"
+      colors={{ scheme: "nivo" }}
       borderWidth={1}
+      enableRadialLabels={false}
       borderColor={{ from: "color", modifiers: [["darker", 0.1]] }}
       radialLabelsSkipAngle={10}
       radialLabelsTextXOffset={6}
@@ -28,30 +36,30 @@ const MyResponsivePie = ({ data }) => {
       radialLabelsLinkStrokeWidth={3}
       radialLabelsLinkColor={{ from: "color" }}
       slicesLabelsSkipAngle={10}
-      slicesLabelsTextColor="#333333"
+      //slicesLabelsTextColor="#333333"
       animate={true}
       motionStiffness={90}
       motionDamping={15}
       theme={theme}
       legends={[
         {
-          anchor: "left",
+          anchor: "top-left",
           direction: "column",
-          translateY: 30,
+          translateY: -50,
           itemWidth: 150,
-          itemHeight: -100,
-          itemTextColor: "black",
+          itemHeight: 100,
+          itemTextColor: "white",
           fontWeight: "bold !important",
-          symbolSize: 20,
+          symbolSize: 30,
           symbolShape: "circle",
-          effects: [
-            {
-              on: "hover",
-              style: {
-                itemTextColor: "#000",
-              },
-            },
-          ],
+          // effects: [
+          //   {
+          //     on: "hover",
+          //     style: {
+          //       itemTextColor: "#000",
+          //     },
+          //   },
+          // ],
         },
       ]}
     />

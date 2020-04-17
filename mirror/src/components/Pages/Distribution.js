@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import PieData from "../Graphs/PieGraph/PieData";
 import PieGraph from "../Graphs/PieGraph/PieGraph";
 import firebase from "../../store/firebase";
+import Background from "../Background/Background";
 
 const db = firebase.firestore();
 
@@ -10,6 +10,9 @@ function Distribution() {
   var uid_value = "error";
 
   const [show, setShow] = useState(false);
+  const [distributionData, setDistributionData] = useState([
+    { id: "yo", label: "yo", value: 1, color: "hsl(199, 70%, 50%)" },
+  ]);
 
   if (user != null) {
     uid_value = user.uid;
@@ -37,7 +40,7 @@ function Distribution() {
       const x = {};
       x.id = key;
       x.label = key;
-      x.value = data[key];
+      x.value = data_pie[key];
       x.color = colors[counter];
       counter += 1;
       masterList.push(x);
@@ -45,14 +48,13 @@ function Distribution() {
     console.log(masterList);
     return masterList;
   };
-  var data = {};
-  var my_final_data = [];
-  var hibisi = [];
 
   async function createData() {
+    var data = {};
     const dataToReturn = await db
       .collection("users")
       .doc(uid_value)
+      // .doc("firebase")
       .collection("ratio")
       .get()
       .then(function (querySnapshot) {
@@ -83,7 +85,6 @@ function Distribution() {
       .then((finalo) => {
         console.log("bibi");
         console.log(finalo);
-        hibisi = finalo;
         return finalo;
       })
       .catch(function (error) {
@@ -91,24 +92,23 @@ function Distribution() {
       });
     console.log(dataToReturn);
     setShow(true);
-    return dataToReturn;
+    setDistributionData(dataToReturn);
   }
 
   useEffect(() => {
-    function fetchData() {
-      const something = createData();
-      console.log(hibisi);
-    }
-    fetchData();
-    // const finalData = createData();
-    // console.log(finalData);
-  });
+    createData();
+  }, []);
 
   return (
-    <div className="container">
-      <div className="inner">
-        <h1>Last 30 Days</h1>
-        {show ? <PieGraph data={PieData(hibisi)} /> : null}>
+    <div>
+      <Background></Background>
+      <div className="containerDisplay">
+        <div className="inner">
+          <div className="padleft">
+            {show ? <PieGraph data={distributionData} /> : null}
+          </div>
+          <h1 style={{ color: "white", fontSize: "50px" }}>Last 30 Days</h1>
+        </div>
       </div>
     </div>
   );

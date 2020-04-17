@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 //import Input from "@material-ui/core/Input";
 import TextField from "@material-ui/core/TextField";
-import StyleData from "../../../style/StyleData";
+import {
+  inputStyle,
+  buttonStyle,
+} from "../../../style/material-styles/totalStyles";
 import { makeStyles } from "@material-ui/core/styles";
-import "./Auth.css";
+//import "./Auth.css";
 import { validationAuth } from "./AuthLogic";
 import { Button } from "@material-ui/core";
 import Keyboard from "react-simple-keyboard";
@@ -11,8 +14,14 @@ import "react-simple-keyboard/build/css/index.css";
 import firebase from "../../../store/firebase";
 import { useStore } from "../../../store/store";
 import { useHistory } from "react-router-dom";
+import authStyleFinal from "../../../style/styled-css/auth-style";
 
 const db = firebase.firestore();
+
+const KeyBoardContainer = authStyleFinal.keyBoardContainer;
+const Overlay = authStyleFinal.overlay;
+const ParentContainer = authStyleFinal.parentContainer;
+const Container = authStyleFinal.container;
 
 const Auth = () => {
   const myInformation = {
@@ -61,11 +70,13 @@ const Auth = () => {
   const [currentString, setCurrentString] = useState("");
   const keyboard = useRef();
 
-  const useStyles = makeStyles(StyleData);
-  const classes = useStyles();
+  const buttonstyle = makeStyles(buttonStyle);
+  const buttonstyle_data = buttonstyle();
+
+  const inputstyle = makeStyles(inputStyle);
+  const inputstyle_data = inputstyle();
 
   const onKeyChange = (input) => {
-    //console.log(input);
     setCurrentString(input);
   };
 
@@ -157,7 +168,7 @@ const Auth = () => {
     return (
       <TextField
         key={formElement.id}
-        className={classes.inputStyle}
+        className={inputstyle_data.input}
         id={formElement.id}
         error={!formElement.isValid}
         label={formElement.placeholder}
@@ -168,7 +179,7 @@ const Auth = () => {
         type={isPassword ? "password" : null}
         helperText={formElement.helperText}
         InputProps={{
-          className: classes.textInputStyle,
+          className: inputstyle_data.text,
         }}
       />
     );
@@ -313,13 +324,13 @@ const Auth = () => {
 
   return (
     <div>
-      <div className="headerAuthOverlay"></div>
-      <div className="parentContainer">
-        <div className="authContainer">
-          <form className={classes.formStyle} noValidate autoComplete="off">
+      <Overlay />
+      <ParentContainer>
+        <Container>
+          <form className={inputstyle_data.form} noValidate autoComplete="off">
             {form}
             <Button
-              className={classes.AuthButtonStyle}
+              className={buttonstyle_data.authpage}
               variant="outlined"
               color="primary"
               size="medium"
@@ -328,15 +339,15 @@ const Auth = () => {
               sign up
             </Button>
           </form>
-        </div>
-        <div className="keyBoardContainer">
+        </Container>
+        <KeyBoardContainer>
           <Keyboard
             onChange={onKeyChange}
             inputName={"default"}
             keyboardRef={(r) => (keyboard.current = r)}
           />
-        </div>
-      </div>
+        </KeyBoardContainer>
+      </ParentContainer>
     </div>
   );
 };

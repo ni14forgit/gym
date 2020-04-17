@@ -3,7 +3,7 @@ import { ResponsiveCalendar } from "@nivo/calendar";
 
 const theme = {
   textColor: "white",
-  fontSize: "24px"
+  fontSize: "24px",
 };
 
 const MyResponsiveCalendar = ({ data /* see data tab */ }) => (
@@ -15,12 +15,14 @@ const MyResponsiveCalendar = ({ data /* see data tab */ }) => (
     minValue="1"
     emptyColor="#108BE5"
     colors={["#61cdbb", "#97e3d5", "#e8c1a0", "#f47560"]}
-    margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
+    margin={{ top: -50, right: 40, bottom: 0, left: 40 }}
     direction="horizontal"
-    yearSpacing={40}
-    monthBorderColor="#6e10e5"
-    dayBorderWidth={2}
-    dayBorderColor="#6e10e5"
+    yearLegend={() => ""}
+    // yearSpacing={40}
+    monthBorderColor="white"
+    dayBorderWidth={1}
+    monthBorderWidth={3}
+    dayBorderColor="white"
     // legends={[
     //   {
     //     anchor: "bottom-right",

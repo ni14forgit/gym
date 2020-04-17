@@ -7,7 +7,10 @@ import {
   GraphIcon,
   WeightIcon,
 } from "../../../assets/icons/icons";
-import StyleData from "../../../style/StyleData";
+import {
+  buttonStyle,
+  titleStyle,
+} from "../../../style/material-styles/totalStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { useStore } from "../../../store/store";
@@ -36,7 +39,6 @@ const MainButtons = () => {
   };
 
   const clickLogout = () => {
-    //history.push("/main");
     firebase
       .auth()
       .signOut()
@@ -48,13 +50,24 @@ const MainButtons = () => {
       });
   };
 
-  const useStyles = makeStyles(StyleData);
-  const classes = useStyles();
+  const buttonstyle = makeStyles(buttonStyle);
+  const buttonstyle_data = buttonstyle();
+
+  const titlestyle = makeStyles(titleStyle);
+  const titlestyle_data = makeStyles(titlestyle);
 
   //might need to use a USEEFFECT to load the user title initially? ?
 
   var userName = "";
   var user = firebase.auth().currentUser;
+
+  const buttonPress = (path) => {
+    if (user) {
+      history.push(path);
+    } else {
+      toggleBold();
+    }
+  };
 
   if (user != null) {
     // user.providerData.forEach(function (profile) {
@@ -77,9 +90,7 @@ const MainButtons = () => {
         <div className="padder">
           <Button
             className={
-              boldAuth
-                ? classes.loginMainBOLDStyle
-                : classes.loginMainButtonStyle
+              boldAuth ? buttonstyle_data.authBold : buttonstyle_data.auth
             }
             variant="outlined"
             color="primary"
@@ -92,9 +103,7 @@ const MainButtons = () => {
         <div className="padder">
           <Button
             className={
-              boldAuth
-                ? classes.loginMainBOLDStyle
-                : classes.loginMainButtonStyle
+              boldAuth ? buttonstyle_data.authBold : buttonstyle_data.auth
             }
             variant="outlined"
             color="primary"
@@ -114,7 +123,7 @@ const MainButtons = () => {
         <div className="loginlogoutsignup">
           <div className="padder">
             <Button
-              className={classes.loginMainButtonStyle}
+              className={buttonstyle_data.auth}
               variant="outlined"
               color="primary"
               size="medium"
@@ -133,20 +142,20 @@ const MainButtons = () => {
 
   return (
     <div>
-      <div className="container">
-        <div className="title">
-          <Typography className={classes.textTitleStyle} variant="h1">
+      <div className="containerMainButtons">
+        <div className="titleMainButtons">
+          <Typography className={titlestyle_data.main} variant="h1">
             {userName}
           </Typography>
         </div>
         <div className="row">
           <div id="dateDiv0" className="column">
             <Button
-              className={classes.buttonStyle}
+              onClick={() => buttonPress("/attendance")}
+              className={buttonstyle_data.mainoption}
               variant="outlined"
               color="primary"
               size="large"
-              onClick={toggleBold}
               startIcon={
                 <GraphIcon style={{ fontSize: 100, color: "#6e10e5" }} />
               }
@@ -154,7 +163,8 @@ const MainButtons = () => {
           </div>
           <div id="chartDiv0" className="column">
             <Button
-              className={classes.buttonStyle}
+              onClick={() => buttonPress("/weight")}
+              className={buttonstyle_data.mainoption}
               variant="outlined"
               color="primary"
               size="large"
@@ -168,9 +178,9 @@ const MainButtons = () => {
           <div id="dateDiv1" className="column">
             <Button
               onClick={() => {
-                history.push("/distribution");
+                buttonPress("/distribution");
               }}
-              className={classes.buttonStyle}
+              className={buttonstyle_data.mainoption}
               variant="outlined"
               color="primary"
               size="large"
@@ -179,7 +189,7 @@ const MainButtons = () => {
           </div>
           <div id="chartDiv1" className="column">
             <Button
-              className={classes.buttonStyle}
+              className={buttonstyle_data.mainoption}
               variant="outlined"
               color="primary"
               size="large"

@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import Background from "./components/Background/Background";
-import MainButtons from "./components/Buttons/MainButtons/MainButtons";
-
 import MainScreen from "./components/MainScreen";
 
 import Weight from "./components/Pages/Weight";
@@ -30,7 +27,9 @@ const App = () => {
   useEffect(() => {
     history.replace("/main");
     //history.replace("/distributionsurvey");
+    //history.replace("/attendance");
     //history.replace("/weightsurvey");
+    //history.replace("/distribution");
   }, []);
 
   return (
@@ -39,6 +38,10 @@ const App = () => {
 
       <Route path="/signup">
         <AuthForm />
+      </Route>
+
+      <Route path="/attendance">
+        <Attendance />
       </Route>
 
       <Route path="/weightsurvey">
