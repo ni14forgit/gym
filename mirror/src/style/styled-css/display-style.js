@@ -1,4 +1,6 @@
-.containerDisplay {
+import styled from "styled-components";
+
+const Container = styled.div`
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -6,9 +8,8 @@
   display: flex;
   flex-flow: column;
   align-items: center;
-}
-
-.distributionOverlay {
+`;
+const DistributionOverlay = styled.div`
   height: 100vh;
   width: 100vw;
   position: absolute;
@@ -17,9 +18,8 @@
   background: blue;
   z-index: 1;
   opacity: 0.3;
-}
-
-.inner {
+`;
+const Inner = styled.div`
   font-weight: bold;
   font-size: "10px";
   z-index: 2;
@@ -29,22 +29,26 @@
   height: 100%;
   top: 0;
   bottom: 0;
-}
-
-.padleft {
+`;
+const PadLeft = styled.div`
   position: absolute;
   left: 5%;
   height: "99vh";
   width: 100vw;
   height: 100%;
   top: 15%;
-}
-
-.header-style-cool {
+`;
+const HeaderStyleCool = styled.div`
   color: white;
   font-size: 50px;
-}
+`;
 
-/* .h1 {
-  color: "white";
-} */
+const finalStyle = {
+  container: { ...Container },
+  distributionoverlay: { ...DistributionOverlay },
+  inner: { ...Inner },
+  padleft: { ...PadLeft },
+  headerstylecool: { ...HeaderStyleCool },
+};
+
+export default finalStyle;

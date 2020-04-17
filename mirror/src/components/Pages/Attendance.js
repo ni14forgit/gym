@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
-//import data from "../Graphs/CalendarGraph/CalendarData";
 import CalendarGraph from "../Graphs/CalendarGraph/CalendarGraph";
 import firebase from "../../store/firebase";
 import Background from "../Background/Background";
+import displayFinalStyle from "../../style/styled-css/display-style";
 
 const db = firebase.firestore();
 
 function Attendance() {
+  const Container = displayFinalStyle.container;
+  const DistributionOverlay = displayFinalStyle.distributionoverlay;
+  const Inner = displayFinalStyle.inner;
+  const PadLeft = displayFinalStyle.padleft;
+  const HeaderStyleCool = displayFinalStyle.headerstylecool;
+
   var user = firebase.auth().currentUser;
   var uid_value = "error";
 
@@ -60,12 +66,14 @@ function Attendance() {
   return (
     <div>
       <Background></Background>
-      <div className="containerDisplay">
-        <div className="inner">
-          <h1 className="header-style-cool">Year 2020</h1>
+      <Container>
+        <Inner>
+          <HeaderStyleCool>
+            <h1>Year 2020</h1>
+          </HeaderStyleCool>
           {show ? <CalendarGraph data={attendanceData} /> : null}
-        </div>
-      </div>
+        </Inner>
+      </Container>
     </div>
   );
 }

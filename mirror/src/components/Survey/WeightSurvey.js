@@ -4,10 +4,14 @@ import firebase from "../../store/firebase";
 import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import ReactLoading from "react-loading";
-import "./WeightSurvey.css";
+import wsFinalStyle from "../../style/styled-css/weightsurvey-style";
 
 const db = firebase.firestore();
 const WeightSurvey = () => {
+  const Title = wsFinalStyle.title;
+  const WeightTitle = wsFinalStyle.weighttitle;
+  const Container = wsFinalStyle.container;
+
   const [state, dispatch] = useStore();
   const history = useHistory();
 
@@ -38,7 +42,9 @@ const WeightSurvey = () => {
 
   const title = isOnScale ? "Detected!" : "Step on weight scale!";
   const displayInfo = isOnScale ? (
-    <h1 className="weightDisplay">{weight}</h1>
+    <WeightTitle>
+      <h1>{weight}</h1>
+    </WeightTitle>
   ) : (
     <div>
       <ReactLoading
@@ -53,8 +59,10 @@ const WeightSurvey = () => {
   return (
     //Some timed event to trigger the call of submit weight
 
-    <div className="containerWeight">
-      <h1 className="stepScaleTitle">{title}</h1>
+    <Container>
+      <Title>
+        <h1>{title}</h1>
+      </Title>
       {displayInfo}
       <div>
         <Button onClick={skip}>Skip</Button>
@@ -62,7 +70,7 @@ const WeightSurvey = () => {
           {show ? "Turn Off Display" : "Show Measurements"}
         </Button>
       </div>
-    </div>
+    </Container>
   );
 };
 

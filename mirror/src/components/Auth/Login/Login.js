@@ -12,7 +12,6 @@ import firebase from "../../../store/firebase";
 import { useStore } from "../../../store/store";
 import { useHistory } from "react-router-dom";
 import authStyleFinal from "../../../style/styled-css/auth-style";
-import "./Login.css";
 
 const KeyBoardContainer = authStyleFinal.keyBoardContainer;
 const Overlay = authStyleFinal.overlay;

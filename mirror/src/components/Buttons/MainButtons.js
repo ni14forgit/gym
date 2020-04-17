@@ -1,27 +1,34 @@
 import React, { useState } from "react";
-import "./MainButtons.css";
 import { Button } from "@material-ui/core";
 import {
   DumbellIcon,
   PieIcon,
   GraphIcon,
   WeightIcon,
-} from "../../../assets/icons/icons";
+} from "../../assets/icons/icons";
 import {
   buttonStyle,
   titleStyle,
-} from "../../../style/material-styles/totalStyles";
+} from "../../style/material-styles/totalStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
-import { useStore } from "../../../store/store";
-import firebase from "../../../store/firebase";
+import { useStore } from "../../store/store";
+import firebase from "../../store/firebase";
 import { Typography } from "@material-ui/core";
+import mainbuttonsFinalStyle from "../../style/styled-css/mainbuttons-style";
 
 const MainButtons = () => {
   const [boldAuth, setBoldAuth] = useState(false);
 
   const history = useHistory();
   const [state, dispatch] = useStore();
+
+  const Row = mainbuttonsFinalStyle.row;
+  const Column = mainbuttonsFinalStyle.column;
+  const Auth = mainbuttonsFinalStyle.auth;
+  const Pad = mainbuttonsFinalStyle.pad;
+  const Container = mainbuttonsFinalStyle.container;
+  const Title = mainbuttonsFinalStyle.title;
 
   const clickLogin = () => {
     history.push("/login");
@@ -70,14 +77,6 @@ const MainButtons = () => {
   };
 
   if (user != null) {
-    // user.providerData.forEach(function (profile) {
-    //   console.log("Sign-in provider: " + profile.providerId);
-    //   console.log("  Provider-specific UID: " + profile.uid);
-    //   console.log("  Name: " + profile.displayName);
-    //   console.log("  Email: " + profile.email);
-    //   console.log("  Photo URL: " + profile.photoURL);
-    // });
-
     console.log(user.providerData);
     var firstName = user.displayName.split(" ");
     userName = "Welcome, " + firstName[0];
@@ -86,8 +85,8 @@ const MainButtons = () => {
 
   const loginSignUp = () => {
     return (
-      <div className="loginlogoutsignup">
-        <div className="padder">
+      <Auth>
+        <Pad>
           <Button
             className={
               boldAuth ? buttonstyle_data.authBold : buttonstyle_data.auth
@@ -99,8 +98,8 @@ const MainButtons = () => {
           >
             Login
           </Button>
-        </div>
-        <div className="padder">
+        </Pad>
+        <Pad>
           <Button
             className={
               boldAuth ? buttonstyle_data.authBold : buttonstyle_data.auth
@@ -112,15 +111,15 @@ const MainButtons = () => {
           >
             Sign Up
           </Button>
-        </div>
-      </div>
+        </Pad>
+      </Auth>
     );
   };
 
   const logOut = () => {
     return (
       <div>
-        <div className="loginlogoutsignup">
+        <Auth>
           <div className="padder">
             <Button
               className={buttonstyle_data.auth}
@@ -132,7 +131,7 @@ const MainButtons = () => {
               Logout
             </Button>
           </div>
-        </div>
+        </Auth>
       </div>
     );
   };
@@ -142,14 +141,14 @@ const MainButtons = () => {
 
   return (
     <div>
-      <div className="containerMainButtons">
-        <div className="titleMainButtons">
+      <Container>
+        <Title>
           <Typography className={titlestyle_data.main} variant="h1">
             {userName}
           </Typography>
-        </div>
-        <div className="row">
-          <div id="dateDiv0" className="column">
+        </Title>
+        <Row>
+          <Column>
             <Button
               onClick={() => buttonPress("/attendance")}
               className={buttonstyle_data.mainoption}
@@ -160,8 +159,8 @@ const MainButtons = () => {
                 <GraphIcon style={{ fontSize: 100, color: "#6e10e5" }} />
               }
             ></Button>
-          </div>
-          <div id="chartDiv0" className="column">
+          </Column>
+          <Column>
             <Button
               onClick={() => buttonPress("/weight")}
               className={buttonstyle_data.mainoption}
@@ -172,10 +171,10 @@ const MainButtons = () => {
                 <WeightIcon style={{ fontSize: 80, color: "#f68b27" }} />
               }
             ></Button>
-          </div>
-        </div>
-        <div className="row">
-          <div id="dateDiv1" className="column">
+          </Column>
+        </Row>
+        <Row>
+          <Column>
             <Button
               onClick={() => {
                 buttonPress("/distribution");
@@ -186,8 +185,8 @@ const MainButtons = () => {
               size="large"
               startIcon={<PieIcon style={{ fontSize: 80, color: "#2cb205" }} />}
             ></Button>
-          </div>
-          <div id="chartDiv1" className="column">
+          </Column>
+          <Column>
             <Button
               className={buttonstyle_data.mainoption}
               variant="outlined"
@@ -195,10 +194,10 @@ const MainButtons = () => {
               size="large"
               startIcon={<DumbellIcon style={{ fontSize: 100 }} />}
             ></Button>
-          </div>
-        </div>
+          </Column>
+        </Row>
         {authStatusButton}
-      </div>
+      </Container>
     </div>
   );
 };

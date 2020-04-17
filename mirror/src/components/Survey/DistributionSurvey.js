@@ -5,10 +5,10 @@ import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import { workouts } from "../../assets/media/workouts";
 import { Button } from "@material-ui/core";
-import "./DistributionSurvey.css";
 import { useStore } from "../../store/store";
 import firebase from "../../store/firebase";
 import { useHistory } from "react-router-dom";
+import dFinalStyle from "../../style/styled-css/distributionsurvey-style";
 
 const db = firebase.firestore();
 
@@ -98,13 +98,9 @@ const DistributionSurvey = () => {
   const [state, dispatch] = useStore();
   const history = useHistory();
 
-  // useEffect(() => {
-  //   myOriginalSelection = {};
-  //   for (var i = 0; i < workouts.length; i++) {
-  //     console.log(workouts[i].title);
-  //     myOriginalSelection[workouts[i].title] = 0;
-  //   }
-  // }, []);
+  const Selection = dFinalStyle.selection;
+  const Parent = dFinalStyle.parent;
+  const Title = dFinalStyle.title;
 
   const [selection, setSelection] = useState(myOriginalSelection);
 
@@ -149,54 +145,44 @@ const DistributionSurvey = () => {
   };
 
   return (
-    <div className="exerciseParent">
-      <h1 className="titleWorkout">
-        Tap on the workouts you accomplished today!
-      </h1>
-      <div className="relativo">
-        <div className="selection">
-          <div className={classes.root}>
-            <GridList className={classes.gridList} cols={3}>
-              {workouts.map((tile) => {
-                const myTitle = tile.title;
-                // console.log(myTitle);
-                // console.log(selection[myTitle]);
-                // console.log(selection);
-                return (
-                  <GridListTile
-                    key={tile.img}
-                    onClick={() => updateSelection(tile.title)}
-                  >
-                    {selection[myTitle] === 1 ? (
-                      <div style={styles}>
-                        <BGImage bg={tile.img} tint="#3b79e3" />
-                      </div>
-                    ) : (
-                      <div style={styles}>
-                        <BGImage bg={tile.img} tint="" />
-                      </div>
-                    )}
-                    {/* <img
-                  className={classes.imgDrop}
-                  src={tile.img}
-                  alt={tile.title}
-                />
-                 */}
+    <Parent>
+      <Title>
+        <h1>Tap on the workouts you accomplished today!</h1>
+      </Title>
+      <Selection>
+        <div className={classes.root}>
+          <GridList className={classes.gridList} cols={3}>
+            {workouts.map((tile) => {
+              const myTitle = tile.title;
+              return (
+                <GridListTile
+                  key={tile.img}
+                  onClick={() => updateSelection(tile.title)}
+                >
+                  {selection[myTitle] === 1 ? (
+                    <div style={styles}>
+                      <BGImage bg={tile.img} tint="#3b79e3" />
+                    </div>
+                  ) : (
+                    <div style={styles}>
+                      <BGImage bg={tile.img} tint="" />
+                    </div>
+                  )}
 
-                    <GridListTileBar
-                      title={tile.title}
-                      classes={{
-                        root: classes.titleBar,
-                        title: classes.boldTitle,
-                      }}
-                    />
-                  </GridListTile>
-                );
-              })}
-            </GridList>
-          </div>
+                  <GridListTileBar
+                    title={tile.title}
+                    classes={{
+                      root: classes.titleBar,
+                      title: classes.boldTitle,
+                    }}
+                  />
+                </GridListTile>
+              );
+            })}
+          </GridList>
         </div>
-      </div>
+      </Selection>
+
       <Button
         className={classes.doneTypeStyle}
         variant="contained"
@@ -204,7 +190,7 @@ const DistributionSurvey = () => {
       >
         Done!
       </Button>
-    </div>
+    </Parent>
   );
 };
 

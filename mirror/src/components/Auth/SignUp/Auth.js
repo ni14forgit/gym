@@ -6,7 +6,6 @@ import {
   buttonStyle,
 } from "../../../style/material-styles/totalStyles";
 import { makeStyles } from "@material-ui/core/styles";
-//import "./Auth.css";
 import { validationAuth } from "./AuthLogic";
 import { Button } from "@material-ui/core";
 import Keyboard from "react-simple-keyboard";

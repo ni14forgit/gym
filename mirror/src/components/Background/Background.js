@@ -1,16 +1,19 @@
 import React from "react";
-import "./Background.css";
 import gym from "../../assets/media/gym.mp4";
 import { Typography } from "@material-ui/core";
 import { useStore } from "../../store/store";
 import firebase from "../../store/firebase";
+import backgroundFinalStyle from "../../style/styled-css/background-style";
 
 const Background = () => {
   const [store, dispatch] = useStore();
 
+  const Overlay = backgroundFinalStyle.overlay;
+  const FullscreenVideoWrap = backgroundFinalStyle.fullscreenVideoWrap;
+
   return (
     <div>
-      <div className="fullscreen-video-wrap">
+      <FullscreenVideoWrap>
         <video
           type="video/mp4"
           src={gym}
@@ -18,8 +21,8 @@ const Background = () => {
           muted
           loop={true}
         ></video>
-        <div className="headerOverlay"></div>
-      </div>
+        <Overlay></Overlay>
+      </FullscreenVideoWrap>
     </div>
   );
 };

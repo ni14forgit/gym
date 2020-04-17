@@ -1,6 +1,6 @@
 import React from "react";
 import Background from "./Background/Background";
-import MainButtons from "./Buttons/MainButtons/MainButtons";
+import MainButtons from "./Buttons/MainButtons";
 
 const MainScreen = (props) => {
   return (
