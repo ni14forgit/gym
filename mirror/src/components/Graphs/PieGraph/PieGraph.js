@@ -45,9 +45,9 @@ const MyResponsivePie = ({ data }) => {
         {
           anchor: "top-left",
           direction: "column",
-          translateY: -50,
+          translateY: 0,
           itemWidth: 150,
-          itemHeight: 100,
+          itemHeight: 60,
           itemTextColor: "white",
           fontWeight: "bold !important",
           symbolSize: 30,

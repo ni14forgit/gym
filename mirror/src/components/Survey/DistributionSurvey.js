@@ -9,6 +9,7 @@ import { useStore } from "../../store/store";
 import firebase from "../../store/firebase";
 import { useHistory } from "react-router-dom";
 import dFinalStyle from "../../style/styled-css/distributionsurvey-style";
+import { createDate } from "../../actions/actions";
 
 const db = firebase.firestore();
 
@@ -130,7 +131,7 @@ const DistributionSurvey = () => {
       .doc(uid_value)
       .collection("ratio")
       .add({
-        date: Date(),
+        date: createDate(),
         ...selection,
       })
       .catch(function (error, data) {
@@ -140,7 +141,8 @@ const DistributionSurvey = () => {
       //.then(() => history.push("/weightsurvey"));
       .then(() => {
         console.log("added data to firebase");
-        history.push("/main");
+        //history.push("/main");
+        history.push("/weightsurvey");
       });
   };
 

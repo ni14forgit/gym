@@ -32,6 +32,11 @@ const VideoFull = styled.video`
   overflow: hidden;
 `;
 
+const ImgFull = styled.div`
+  position: absolute;
+  z-index: -100;
+`;
+
 const Overlay = styled.div`
   height: 100vh;
   width: 100vw;
@@ -47,6 +52,7 @@ const backgroundFinalStyle = {
   overlay: { ...Overlay },
   fullscreenVideoWrap: { ...FullscreenVideoWrap },
   videoFull: { ...VideoFull },
+  imageFull: { ...ImgFull },
 };
 
 export default backgroundFinalStyle;

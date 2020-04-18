@@ -9,6 +9,8 @@ import Attendance from "./components/Pages/Attendance";
 import AuthForm from "./components/Auth/SignUp/Auth";
 import LoginForm from "./components/Auth/Login/Login";
 
+import StillBackground from "./components/Background/StillBackground";
+
 import { Route, Link, useHistory } from "react-router-dom";
 
 import DistributionSurvey from "./components/Survey/DistributionSurvey";
@@ -26,6 +28,7 @@ const App = () => {
 
   useEffect(() => {
     history.replace("/main");
+    //history.replace("/stillbackground");
     //history.replace("/distributionsurvey");
     //history.replace("/attendance");
     //history.replace("/weightsurvey");
@@ -45,6 +48,10 @@ const App = () => {
       <Route path="/weight">
         <Weight />
       </Route>
+
+      {/* <Route path="/stillbackground">
+        <StillBackground image={i} color="#6e10e5" />
+      </Route> */}
 
       <Route path="/attendance">
         <Attendance />

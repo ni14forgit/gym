@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@material-ui/core";
 import {
-  DumbellIcon,
+  CoinIcon,
   PieIcon,
   GraphIcon,
   WeightIcon,
@@ -136,8 +136,7 @@ const MainButtons = () => {
     );
   };
 
-  console.log("this is state.uid " + state.uid);
-  const authStatusButton = state.uid === "" ? loginSignUp() : logOut();
+  const authStatusButton = user ? logOut() : loginSignUp();
 
   return (
     <div>
@@ -156,7 +155,7 @@ const MainButtons = () => {
               color="primary"
               size="large"
               startIcon={
-                <GraphIcon style={{ fontSize: 100, color: "#6e10e5" }} />
+                <GraphIcon style={{ fontSize: 120, color: "#F77467" }} />
               }
             ></Button>
           </Column>
@@ -168,7 +167,7 @@ const MainButtons = () => {
               color="primary"
               size="large"
               startIcon={
-                <WeightIcon style={{ fontSize: 80, color: "#f68b27" }} />
+                <WeightIcon style={{ fontSize: 85, color: "#f68b27" }} />
               }
             ></Button>
           </Column>
@@ -183,7 +182,7 @@ const MainButtons = () => {
               variant="outlined"
               color="primary"
               size="large"
-              startIcon={<PieIcon style={{ fontSize: 80, color: "#2cb205" }} />}
+              startIcon={<PieIcon style={{ fontSize: 90, color: "#AF81FA" }} />}
             ></Button>
           </Column>
           <Column>
@@ -192,7 +191,9 @@ const MainButtons = () => {
               variant="outlined"
               color="primary"
               size="large"
-              startIcon={<DumbellIcon style={{ fontSize: 100 }} />}
+              startIcon={
+                <CoinIcon style={{ fontSize: 90, color: "#2cb205" }} />
+              }
             ></Button>
           </Column>
         </Row>

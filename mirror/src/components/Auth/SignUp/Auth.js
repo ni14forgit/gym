@@ -14,6 +14,7 @@ import firebase from "../../../store/firebase";
 import { useStore } from "../../../store/store";
 import { useHistory } from "react-router-dom";
 import authStyleFinal from "../../../style/styled-css/auth-style";
+import { createDate } from "../../../actions/actions";
 
 const db = firebase.firestore();
 
@@ -260,39 +261,26 @@ const Auth = () => {
       .then((cred) => {
         console.log("sucessfully signed up user");
         console.log(cred);
-        // var weightRef = db
-        //   .collection("users")
-        //   .doc(cred.user.uid)
-        //   .collection("weight")
-        //   .add({
-        //     date: "hello",
-        //   });
-        // var attendanceRef = db
-        //   .collection("users")
-        //   .doc(cred.user.uid)
-        //   .collection("attendance");
-        // var ratioRef = db
-        //   .collection("users")
-        //   .doc(cred.user.uid)
-        //   .collection("ratio");
         return cred.user.uid;
       })
       .then((uid) => {
-        console.log("UID:" + uid);
-        var user = firebase.auth().currentUser;
-        helperDispatch(user, firstName, lastName, uid).then(() =>
-          history.push("/main")
-        );
-        console.log(user.providerData);
+        db.collection("users")
+          .doc(uid)
+          .collection("attendance")
+          .add({ date: createDate(), value: 1 });
         return;
-        // .then(() => {
-        //   if (user != null) {
-        //     console.log("we made it!");
-        //     console.log(user.providerData);
-        //   } else {
-        //     console.log("NOOO");
-        //   }
-        // });
+      })
+      .then(() => {
+        var user = firebase.auth().currentUser;
+        const x = user.updateProfile({
+          displayName: firstName + " " + lastName,
+        });
+        console.log(user.providerData.displayName);
+        return x;
+      })
+      .then((something) => {
+        history.push("/main");
+        //history.push("/distributionsurvey");
       });
   };
 

@@ -12,6 +12,7 @@ import firebase from "../../../store/firebase";
 import { useStore } from "../../../store/store";
 import { useHistory } from "react-router-dom";
 import authStyleFinal from "../../../style/styled-css/auth-style";
+import { createDate } from "../../../actions/actions";
 
 const KeyBoardContainer = authStyleFinal.keyBoardContainer;
 const Overlay = authStyleFinal.overlay;
@@ -44,22 +45,6 @@ const Login = () => {
     }, 4000);
   };
 
-  const createDate = () => {
-    const todaydate = new Date();
-    const year = todaydate.getFullYear();
-    console.log(year);
-    var month = todaydate.getMonth() + 1;
-    if (Number(month) < 10) {
-      month = "0" + month;
-    }
-    var day = todaydate.getDate();
-    if (Number(day) < 10) {
-      day = "0" + day;
-    }
-    console.log(year + "-" + month + "-" + day);
-    return year + "-" + month + "-" + day;
-  };
-
   const submitSignUpHandler = () => {
     const emailFirebase = information.email.value;
     const passwordFirebase = information.password.value;
@@ -79,8 +64,8 @@ const Login = () => {
           .collection("attendance")
           .add({ date: createDate(), value: 1 });
 
-        history.push("/main");
-        //history.push("/distributionsurvey");
+        //history.push("/main");
+        history.push("/distributionsurvey");
         return;
       })
       .catch(function (error) {

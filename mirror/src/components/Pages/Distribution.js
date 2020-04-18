@@ -3,13 +3,16 @@ import PieGraph from "../Graphs/PieGraph/PieGraph";
 import firebase from "../../store/firebase";
 import Background from "../Background/Background";
 import displayFinalStyle from "../../style/styled-css/display-style";
+import StillBackground from "../Background/StillBackground";
+import { distribution } from "../../assets/media/backgrounds";
+import { withinMonth } from "../../actions/actions";
 
 const db = firebase.firestore();
 
 function Distribution() {
   const Container = displayFinalStyle.container;
-  const DistributionOverlay = displayFinalStyle.distributionoverlay;
-  const Inner = displayFinalStyle.inner;
+  // const DistributionOverlay = displayFinalStyle.distributionoverlay;
+  // const Inner = displayFinalStyle.inner;
   const PadLeft = displayFinalStyle.padleft;
   const HeaderStyleCool = displayFinalStyle.headerstylecool;
 
@@ -68,15 +71,14 @@ function Distribution() {
         querySnapshot.forEach(function (doc) {
           const x = doc.data();
           console.log(x.date);
-          // if (Date(x.date) < Date()){
-          //   continue
-          // }
-          for (let key in x) {
-            if (x[key] == 1) {
-              if (key in data) {
-                data[key] += 1;
-              } else {
-                data[key] = 1;
+          if (withinMonth(x.date)) {
+            for (let key in x) {
+              if (x[key] == 1) {
+                if (key in data) {
+                  data[key] += 1;
+                } else {
+                  data[key] = 1;
+                }
               }
             }
           }
@@ -108,7 +110,7 @@ function Distribution() {
 
   return (
     <div>
-      <Background></Background>
+      <StillBackground image={distribution} color="#2cb205" />
       <Container>
         <PadLeft>{show ? <PieGraph data={distributionData} /> : null}</PadLeft>
         <HeaderStyleCool>

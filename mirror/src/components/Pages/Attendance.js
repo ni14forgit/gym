@@ -3,6 +3,8 @@ import CalendarGraph from "../Graphs/CalendarGraph/CalendarGraph";
 import firebase from "../../store/firebase";
 import Background from "../Background/Background";
 import displayFinalStyle from "../../style/styled-css/display-style";
+import StillBackground from "../Background/StillBackground";
+import { calendar } from "../../assets/media/backgrounds";
 
 const db = firebase.firestore();
 
@@ -11,6 +13,10 @@ function Attendance() {
   const PadLeft = displayFinalStyle.padleft;
   const HeaderStyleCool = displayFinalStyle.headerstylecool;
   const Normalize = displayFinalStyle.normalize;
+
+  const date = new Date();
+  const year = date.getFullYear();
+  const yearTitle = "Year " + year;
 
   var user = firebase.auth().currentUser;
   var uid_value = "error";
@@ -64,13 +70,13 @@ function Attendance() {
 
   return (
     <div>
-      <Background></Background>
+      <StillBackground image={calendar} color="#6e10e5" />
       <Container>
         <Normalize>
           {show ? <CalendarGraph data={attendanceData} /> : null}
         </Normalize>
         <HeaderStyleCool>
-          <h1>Year 2020</h1>
+          <h1>{yearTitle}</h1>
         </HeaderStyleCool>
       </Container>
     </div>
