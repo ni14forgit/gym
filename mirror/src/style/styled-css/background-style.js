@@ -16,9 +16,6 @@ const FullscreenVideoWrap = styled.div`
   }
 `;
 
-const Relativo = styled.div`
-position`;
-
 const VideoFull = styled.video`
   position: absolute;
   right: 0;

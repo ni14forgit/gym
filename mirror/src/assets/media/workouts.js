@@ -26,7 +26,7 @@ const workouts = [
 
 const myOriginalSelection = {};
 for (var i = 0; i < workouts.length; i++) {
-  console.log(workouts[i].title);
+  //console.log(workouts[i].title);
   myOriginalSelection[workouts[i].title] = 0;
 }
 

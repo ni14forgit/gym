@@ -12,7 +12,7 @@ const MyResponsiveCalendar = ({ data /* see data tab */ }) => (
     data={data}
     from="2020-03-01"
     to="2020-04-01"
-    minValue="1"
+    minValue={1}
     emptyColor="#108BE5"
     colors={["#61cdbb", "#97e3d5", "#e8c1a0", "#f47560"]}
     margin={{ top: -50, right: 40, bottom: 0, left: 40 }}

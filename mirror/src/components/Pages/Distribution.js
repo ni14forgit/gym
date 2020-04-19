@@ -26,10 +26,10 @@ function Distribution() {
 
   if (user != null) {
     uid_value = user.uid;
-    console.log(uid_value);
-    console.log("uid boy");
+    //console.log(uid_value);
+    //console.log("uid boy");
   } else {
-    console.log("error rror");
+    //console.log("error rror");
   }
 
   const colors = [
@@ -55,7 +55,7 @@ function Distribution() {
       counter += 1;
       masterList.push(x);
     }
-    console.log(masterList);
+    //console.log(masterList);
     return masterList;
   };
 
@@ -70,7 +70,7 @@ function Distribution() {
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           const x = doc.data();
-          console.log(x.date);
+          //console.log(x.date);
           if (withinMonth(x.date)) {
             for (let key in x) {
               if (x[key] == 1) {
@@ -82,24 +82,24 @@ function Distribution() {
               }
             }
           }
-          console.log(doc.id, " => ", doc.data());
+          //console.log(doc.id, " => ", doc.data());
         });
         return data;
       })
       .then((mydata) => {
-        console.log("hi");
-        console.log(mydata);
+        //console.log("hi");
+        //console.log(mydata);
         return piedata(mydata);
       })
       .then((finalo) => {
-        console.log("bibi");
-        console.log(finalo);
+        //console.log("bibi");
+        //console.log(finalo);
         return finalo;
       })
       .catch(function (error) {
-        console.log("Error getting documents: ", error);
+        //console.log("Error getting documents: ", error);
       });
-    console.log(dataToReturn);
+    //console.log(dataToReturn);
     setShow(true);
     setDistributionData(dataToReturn);
   }

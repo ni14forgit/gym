@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import { workouts } from "../../assets/media/workouts";
 import { Button } from "@material-ui/core";
-import { useStore } from "../../store/store";
+// import { useStore } from "../../store/store";
 import firebase from "../../store/firebase";
 import { useHistory } from "react-router-dom";
 import dFinalStyle from "../../style/styled-css/distributionsurvey-style";
@@ -96,7 +96,7 @@ const DistributionSurvey = () => {
     squat: 0,
   };
   const classes = useStyles();
-  const [state, dispatch] = useStore();
+  // const [state, dispatch] = useStore();
   const history = useHistory();
 
   const Selection = dFinalStyle.selection;
@@ -121,11 +121,11 @@ const DistributionSurvey = () => {
 
   if (user != null) {
     uid_value = user.uid;
-    console.log(uid_value);
+    //console.log(uid_value);
   }
 
   const sendDataNextPage = () => {
-    console.log(selection);
+    //console.log(selection);
     db.collection("users")
       //.doc(state.uid)
       .doc(uid_value)
@@ -135,12 +135,12 @@ const DistributionSurvey = () => {
         ...selection,
       })
       .catch(function (error, data) {
-        console.log(error);
-        console.log(data);
+        //console.log(error);
+        //console.log(data);
       })
       //.then(() => history.push("/weightsurvey"));
       .then(() => {
-        console.log("added data to firebase");
+        //console.log("added data to firebase");
         //history.push("/main");
         history.push("/weightsurvey");
       });

@@ -1,7 +1,7 @@
 const createDate = () => {
   const todaydate = new Date();
   const year = todaydate.getFullYear();
-  console.log(year);
+  //console.log(year);
   var month = todaydate.getMonth() + 1;
   if (Number(month) < 10) {
     month = "0" + month;
@@ -10,7 +10,7 @@ const createDate = () => {
   if (Number(day) < 10) {
     day = "0" + day;
   }
-  console.log(year + "-" + month + "-" + day);
+  //console.log(year + "-" + month + "-" + day);
   return year + "-" + month + "-" + day;
 };
 
@@ -19,9 +19,9 @@ const withinMonth = (dateString) => {
   const historyDate = new Date(dateString);
   var newDate = new Date(historyDate.setMonth(historyDate.getMonth() + 1));
 
-  console.log("today: " + today);
-  console.log("history date: " + historyDate);
-  console.log("new date: " + newDate);
+  //console.log("today: " + today);
+  //console.log("history date: " + historyDate);
+  //console.log("new date: " + newDate);
 
   if (newDate.getTime() >= today.getTime()) {
     return true;
@@ -36,8 +36,8 @@ const withinSpecificYear = (dateString) => {
   const todayyear = today.getFullYear();
   const dateyear = date.getFullYear();
 
-  console.log("date past" + date + " -- " + dateyear);
-  console.log("today date" + today + " -- " + todayyear);
+  //console.log("date past" + date + " -- " + dateyear);
+  //console.log("today date" + today + " -- " + todayyear);
 
   if (todayyear === dateyear) {
     return true;

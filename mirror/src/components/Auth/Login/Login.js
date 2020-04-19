@@ -53,8 +53,8 @@ const Login = () => {
       .auth()
       .signInWithEmailAndPassword(emailFirebase, passwordFirebase)
       .then((res) => {
-        console.log("wemadeit");
-        console.log(res);
+        //console.log("wemadeit");
+        //console.log(res);
         return res.user.uid;
       })
       .then((uid) => {
@@ -72,14 +72,14 @@ const Login = () => {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
+        //console.log(errorCode);
+        //console.log(errorMessage);
 
         setInformation(myInformation);
         temporarySetError();
       });
 
-    console.log(information);
+    //console.log(information);
   };
 
   const myInformation = {

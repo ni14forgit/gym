@@ -2,7 +2,7 @@ import React from "react";
 import { ResponsivePie } from "@nivo/pie";
 
 const theme = {
-  fontSize: "40px",
+  fontSize: 40,
   fontWeight: 700,
   fontFamily: "Sans-Serif",
   fontColor: "white",
@@ -10,9 +10,9 @@ const theme = {
 };
 
 const MyResponsivePie = ({ data }) => {
-  console.log(data);
+  //console.log(data);
 
-  const legendHeight = data.length;
+  // const legendHeight = data.length;
   // console.log(legendHeight);
 
   return (

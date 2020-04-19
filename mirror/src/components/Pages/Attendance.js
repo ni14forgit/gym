@@ -23,10 +23,10 @@ function Attendance() {
 
   if (user != null) {
     uid_value = user.uid;
-    console.log(uid_value);
-    console.log("uid boy");
+    //console.log(uid_value);
+    //console.log("uid boy");
   } else {
-    console.log("error rror");
+    //console.log("error rror");
   }
 
   const [show, setShow] = useState(false);
@@ -47,19 +47,19 @@ function Attendance() {
           const x = doc.data();
           const y = { day: x.date, value: x.value };
           data.push(y);
-          console.log(doc.id, " => ", doc.data());
+          //console.log(doc.id, " => ", doc.data());
         });
         return data;
       })
       .then((mydata) => {
-        console.log("hi");
-        console.log(mydata);
+        //console.log("hi");
+        //console.log(mydata);
         return mydata;
       })
       .catch(function (error) {
-        console.log("Error getting documents: ", error);
+        //console.log("Error getting documents: ", error);
       });
-    console.log(dataToReturn);
+    //console.log(dataToReturn);
     setShow(true);
     setAttendanceData(dataToReturn);
   }

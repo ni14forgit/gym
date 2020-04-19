@@ -53,7 +53,7 @@ const MainButtons = () => {
         dispatch("SET_UID_USER", "");
       })
       .catch(function (error) {
-        console.log("logout error occurred");
+        //console.log("logout error occurred");
       });
   };
 
@@ -77,10 +77,10 @@ const MainButtons = () => {
   };
 
   if (user != null) {
-    console.log(user.providerData);
+    //console.log(user.providerData);
     var firstName = user.displayName.split(" ");
     userName = "Welcome, " + firstName[0];
-    console.log(user.displayName);
+    //console.log(user.displayName);
   }
 
   const loginSignUp = () => {

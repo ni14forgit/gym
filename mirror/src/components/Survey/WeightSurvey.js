@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useStore } from "../../store/store";
-import firebase from "../../store/firebase";
+import React, { useState } from "react";
+// import { useStore } from "../../store/store";
+// import firebase from "../../store/firebase";
 import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import ReactLoading from "react-loading";
 import wsFinalStyle from "../../style/styled-css/weightsurvey-style";
 
-const db = firebase.firestore();
+// const db = firebase.firestore();
 const WeightSurvey = () => {
   const Title = wsFinalStyle.title;
   const WeightTitle = wsFinalStyle.weighttitle;
   const Container = wsFinalStyle.container;
 
-  const [state, dispatch] = useStore();
+  // const [state, dispatch] = useStore();
   const history = useHistory();
 
   const [isOnScale, setIsOnScale] = useState(false);
@@ -21,20 +21,20 @@ const WeightSurvey = () => {
   const [show, setShow] = useState(false);
   //**probably not a good idea, don't wanna call setWeight many times
 
-  const submitWeightNextPage = () => {
-    // db.collection("users")
-    //   .doc(state.uid)
-    //   .collection("ratio")
-    //   .add({
-    //     date: Date(),
-    //     weight: weightState,
-    //   })
-    //   .catch(function (error, data) {
-    //     console.log(error);
-    //     console.log(data);
-    //   })
-    //   .then(() => history.push("/nextpage"));
-  };
+  // const submitWeightNextPage = () => {
+  //   // db.collection("users")
+  //   //   .doc(state.uid)
+  //   //   .collection("ratio")
+  //   //   .add({
+  //   //     date: Date(),
+  //   //     weight: weightState,
+  //   //   })
+  //   //   .catch(function (error, data) {
+  //   //     console.log(error);
+  //   //     console.log(data);
+  //   //   })
+  //   //   .then(() => history.push("/nextpage"));
+  // };
 
   const skip = () => {
     history.push("/main");

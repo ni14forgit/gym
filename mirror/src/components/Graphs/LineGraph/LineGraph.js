@@ -4,14 +4,14 @@ import React from "react";
 // Think of making the title March - April or something like that
 
 const theme = {
-  fontSize: "24px",
+  fontSize: 24,
   fontWeight: 700,
   fontFamily: "Sans-Serif",
   axis: {
     textColor: "#eee",
     //fontSize: "14px",
-    tickColor: "#eee"
-  }
+    tickColor: "#eee",
+  },
 };
 
 // const style = {
@@ -41,7 +41,7 @@ const MyResponsiveLine = ({ data /* see data tab */ }) => (
       min: "auto",
       max: "auto",
       stacked: true,
-      reverse: false
+      reverse: false,
     }}
     axisTop={null}
     axisRight={null}
@@ -53,7 +53,7 @@ const MyResponsiveLine = ({ data /* see data tab */ }) => (
       tickRotation: 90,
       legendOffset: 36,
       //   legendPosition: "middle"
-      format: () => null
+      format: () => null,
     }}
     axisLeft={{
       orient: "left",
@@ -62,7 +62,7 @@ const MyResponsiveLine = ({ data /* see data tab */ }) => (
       tickRotation: 0,
       //   legend: "count",
       legendOffset: -40,
-      legendPosition: "middle"
+      legendPosition: "middle",
     }}
     colors={{ scheme: "nivo" }}
     pointSize={11}

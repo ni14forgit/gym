@@ -95,8 +95,28 @@ const Auth = () => {
         ...updatedInformation[locator],
       };
       updatedElement.value = currentString;
+      updatedInformation[locator].value = currentString;
+
+      const [helperString, validity, bothPassword] = validationAuth(
+        updatedInformation,
+        locator
+      );
+
+      updatedElement.valid = validity;
+      updatedElement.displayValid = validity;
+      updatedElement.helperText = helperString;
 
       updatedInformation[locator] = updatedElement;
+
+      if (bothPassword) {
+        updatedInformation["passwordOne"]["valid"] = true;
+        updatedInformation["passwordTwo"]["valid"] = true;
+        updatedInformation["passwordOne"]["displayValid"] = true;
+        updatedInformation["passwordTwo"]["displayValid"] = true;
+        updatedInformation["passwordOne"]["helperText"] = null;
+        updatedInformation["passwordTwo"]["helperText"] = null;
+      }
+
       setInformation(updatedInformation);
       //console.log(updatedElement.value);
 
@@ -105,15 +125,6 @@ const Auth = () => {
     };
     inputText();
   }, [currentString]);
-
-  const setLocation = (data) => {
-    keyboard.current.setInput(information[data].value);
-    setLocator(data);
-  };
-
-  // const onKeyPress = (button) => {
-  //   //console.log("Button pressed", button);
-  // };
 
   const onChangeDataHandler = (event, inputIdentifier) => {
     const updatedInformation = {
@@ -124,6 +135,7 @@ const Auth = () => {
     };
 
     updatedElement.value = event.target.value;
+    keyboard.current.setInput(event.target.value);
     updatedInformation[inputIdentifier].value = event.target.value;
 
     //console.log(inputIdentifier);
@@ -131,8 +143,6 @@ const Auth = () => {
       updatedInformation,
       inputIdentifier
     );
-
-    //console.log("bothPassword" + bothPassword);
 
     updatedElement.valid = validity;
     updatedElement.displayValid = validity;
@@ -148,8 +158,14 @@ const Auth = () => {
       updatedInformation["passwordOne"]["helperText"] = null;
       updatedInformation["passwordTwo"]["helperText"] = null;
     }
+
     setInformation(updatedInformation);
     //console.log(updatedElement.value);
+  };
+
+  const setLocation = (data) => {
+    keyboard.current.setInput(information[data].value);
+    setLocator(data);
   };
 
   const elementsArray = [];
@@ -186,7 +202,7 @@ const Auth = () => {
   });
 
   const submitSignUpHandler = (event) => {
-    console.log(information);
+    //console.log(information);
 
     var isError = false;
 
@@ -195,7 +211,7 @@ const Auth = () => {
     };
 
     for (let key in information) {
-      console.log(key);
+      //console.log(key);
       if (information[key].valid !== information[key].displayValid) {
         const updatedElement = {
           ...updatedInformation[key],
@@ -216,7 +232,7 @@ const Auth = () => {
     //console.log(information);
 
     if (isError) {
-      console.log("error occurred");
+      //console.log("error occurred");
       return;
     }
 
@@ -249,17 +265,17 @@ const Auth = () => {
 
     setInformation(emptyInformation);
 
-    console.log(email);
-    console.log(password);
+    //console.log(email);
+    //console.log(password);
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .catch(function (error, data) {
-        console.log(error);
-        console.log(data);
+        //console.log(error);
+        //console.log(data);
       })
       .then((cred) => {
-        console.log("sucessfully signed up user");
+        //console.log("sucessfully signed up user");
         console.log(cred);
         return cred.user.uid;
       })
@@ -275,7 +291,7 @@ const Auth = () => {
         const x = user.updateProfile({
           displayName: firstName + " " + lastName,
         });
-        console.log(user.providerData.displayName);
+        //console.log(user.providerData.displayName);
         return x;
       })
       .then((something) => {
@@ -284,21 +300,21 @@ const Auth = () => {
       });
   };
 
-  const helperDispatch = (user, firstname, lastname, uid) => {
-    let x;
-    if (user) {
-      console.log("user true");
-      console.log(firstname);
-      console.log(lastname);
-      x = user.updateProfile({
-        displayName: firstname + " " + lastname,
-      });
-      dispatch("SET_UID_USER", uid);
-    } else {
-      console.log("user not found ERROR");
-    }
-    return x;
-  };
+  // const helperDispatch = (user, firstname, lastname, uid) => {
+  //   let x;
+  //   if (user) {
+  //     //console.log("user true");
+  //     console.log(firstname);
+  //     console.log(lastname);
+  //     x = user.updateProfile({
+  //       displayName: firstname + " " + lastname,
+  //     });
+  //     dispatch("SET_UID_USER", uid);
+  //   } else {
+  //     console.log("user not found ERROR");
+  //   }
+  //   return x;
+  // };
 
   // firebase.auth().onAuthStateChanged(function (user) {
   //   if (user) {
