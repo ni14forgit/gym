@@ -83,7 +83,7 @@ function Attendance() {
           <h1>{yearTitle}</h1>
         </HeaderStyleCool>
         <ExitButton>
-          <CancelButton></CancelButton>
+          <CancelButton />
         </ExitButton>
       </div>
       {show ? <CalendarGraph data={attendanceData} /> : null}

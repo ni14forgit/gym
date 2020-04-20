@@ -15,6 +15,7 @@ import { useStore } from "../../../store/store";
 import { useHistory } from "react-router-dom";
 import authStyleFinal from "../../../style/styled-css/auth-style";
 import { createDate } from "../../../actions/actions";
+import CancelButton from "../../Buttons/cancelButton";
 
 const db = firebase.firestore();
 
@@ -22,6 +23,7 @@ const KeyBoardContainer = authStyleFinal.keyBoardContainer;
 const Overlay = authStyleFinal.overlay;
 const ParentContainer = authStyleFinal.parentContainer;
 const Container = authStyleFinal.container;
+const ExitButton = authStyleFinal.exitButton;
 
 const Auth = () => {
   const myInformation = {
@@ -302,30 +304,39 @@ const Auth = () => {
 
   return (
     <div>
-      <Overlay />
-      <ParentContainer>
-        <Container>
-          <form className={inputstyle_data.form} noValidate autoComplete="off">
-            {form}
-            <Button
-              className={buttonstyle_data.authpage}
-              variant="outlined"
-              color="primary"
-              size="medium"
-              onClick={submitSignUpHandler}
+      <Overlay>
+        <ExitButton>
+          <CancelButton></CancelButton>
+        </ExitButton>
+        <ParentContainer>
+          <Container>
+            <form
+              className={inputstyle_data.form}
+              noValidate
+              autoComplete="off"
             >
-              sign up
-            </Button>
-          </form>
-        </Container>
-        <KeyBoardContainer>
-          <Keyboard
-            onChange={onKeyChange}
-            inputName={"default"}
-            keyboardRef={(r) => (keyboard.current = r)}
-          />
-        </KeyBoardContainer>
-      </ParentContainer>
+              {form}
+              <Button
+                className={buttonstyle_data.authpage}
+                variant="outlined"
+                color="primary"
+                size="medium"
+                onClick={submitSignUpHandler}
+              >
+                sign up
+              </Button>
+            </form>
+          </Container>
+          <KeyBoardContainer>
+            <Keyboard
+              onChange={onKeyChange}
+              inputName={"default"}
+              keyboardRef={(r) => (keyboard.current = r)}
+            />
+          </KeyBoardContainer>
+        </ParentContainer>
+        >
+      </Overlay>
     </div>
   );
 };

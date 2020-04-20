@@ -89,10 +89,10 @@ const NoDataMessage = styled.div`
   margin: auto;
 `;
 
+//position: absolute;
 const ExitButton = styled.div`
-position: absolute: 
-top: 3%
-left: 3%
+  top: 3%;
+  left: 3%;
 `;
 
 const finalStyle = {
