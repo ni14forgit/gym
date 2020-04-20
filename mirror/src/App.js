@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import MainScreen from "./components/MainScreen";
 
@@ -14,15 +14,15 @@ import { Route, useHistory } from "react-router-dom";
 import DistributionSurvey from "./components/Survey/DistributionSurvey";
 import WeightSurvey from "./components/Survey/WeightSurvey";
 
-import { useStore } from "./store/store";
+// import { useStore } from "./store/store";
 
 const App = () => {
   const history = useHistory();
 
-  const [state, dispatch] = useStore();
-  // const clickLogin = () => {
-  //   // history.push("/login");
-  // };
+  // const [state, dispatch] = useStore();
+  // // const clickLogin = () => {
+  // //   // history.push("/login");
+  // // };
 
   useEffect(() => {
     //history.replace("/main");
@@ -35,10 +35,10 @@ const App = () => {
     //history.replace("/signup");
   }, []);
 
+  // Can implement SWITCH Statements for ROUTES
+
   return (
     <div>
-      {/* <MainScreen login={clickLogin}></MainScreen> */}
-
       <Route path="/signup">
         <AuthForm />
       </Route>
@@ -46,10 +46,6 @@ const App = () => {
       <Route path="/weight">
         <Weight />
       </Route>
-
-      {/* <Route path="/stillbackground">
-        <StillBackground image={i} color="#6e10e5" />
-      </Route> */}
 
       <Route path="/attendance">
         <Attendance />
@@ -74,8 +70,6 @@ const App = () => {
       <Route path="/distributionsurvey">
         <DistributionSurvey />
       </Route>
-
-      {/* <Route path="/weather" render={() => weather} /> */}
     </div>
   );
 };

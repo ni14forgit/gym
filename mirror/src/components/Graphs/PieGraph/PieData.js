@@ -14,7 +14,7 @@ const PieData = (data) => {
     x.id = key;
     x.label = key;
     x.value = data[key];
-    x.color = colors[counter];
+    x.color = colors[counter % colors.length];
     counter += 1;
     masterList.push(x);
   }

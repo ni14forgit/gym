@@ -16,6 +16,7 @@ function Distribution() {
   const ExitButton = displayFinalStyle.exitButton;
   const PadLeft = displayFinalStyle.padleft;
   const HeaderStyleCool = displayFinalStyle.headerstylecool;
+  const NoDataMessage = displayFinalStyle.noDataMessage;
 
   var user = firebase.auth().currentUser;
   var uid_value = "error";
@@ -95,13 +96,15 @@ function Distribution() {
       .then((finalo) => {
         //console.log("bibi");
         //console.log(finalo);
+        if (finalo.length > 0) {
+          setShow(true);
+        }
         return finalo;
       })
       .catch(function (error) {
         //console.log("Error getting documents: ", error);
       });
     //console.log(dataToReturn);
-    setShow(true);
     setDistributionData(dataToReturn);
   }
 
@@ -116,7 +119,7 @@ function Distribution() {
   return (
     <Container>
       <StillBackground image={distribution} color="#F77467" />
-      <PadLeft>{show ? <PieGraph data={distributionData} /> : null}</PadLeft>
+
       <div>
         <HeaderStyleCool>
           <h1>Last 30 Days</h1>
@@ -125,6 +128,16 @@ function Distribution() {
           <CancelButton></CancelButton>
         </ExitButton>
       </div>
+
+      {show ? (
+        <PadLeft>
+          <PieGraph data={distributionData} />
+        </PadLeft>
+      ) : (
+        <NoDataMessage>
+          <h1>You have no recorded workouts!</h1>
+        </NoDataMessage>
+      )}
     </Container>
   );
 }

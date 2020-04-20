@@ -81,6 +81,14 @@ const HeaderStyleCool = styled.div`
   -webkit-transform: translate(-50%, -50%);
 `;
 
+const NoDataMessage = styled.div`
+  color: white;
+  font-size: 35px;
+  z-index: 2;
+  position: relative;
+  margin: auto;
+`;
+
 const ExitButton = styled.div`
 position: absolute: 
 top: 3%
@@ -96,6 +104,7 @@ const finalStyle = {
   headerstylecool: { ...HeaderStyleCool },
   normalize: { ...Normalize },
   exitButton: { ...ExitButton },
+  noDataMessage: { ...NoDataMessage },
 };
 
 export default finalStyle;
