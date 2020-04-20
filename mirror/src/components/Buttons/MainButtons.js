@@ -155,7 +155,7 @@ const MainButtons = () => {
               color="primary"
               size="large"
               startIcon={
-                <GraphIcon style={{ fontSize: 120, color: "#F77467" }} />
+                <GraphIcon style={{ fontSize: 120, color: "#AF81FA" }} />
               }
             ></Button>
           </Column>
@@ -182,7 +182,7 @@ const MainButtons = () => {
               variant="outlined"
               color="primary"
               size="large"
-              startIcon={<PieIcon style={{ fontSize: 90, color: "#AF81FA" }} />}
+              startIcon={<PieIcon style={{ fontSize: 90, color: "#F77467" }} />}
             ></Button>
           </Column>
           <Column>

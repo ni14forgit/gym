@@ -4,29 +4,24 @@ import React from "react";
 // Think of making the title March - April or something like that
 
 const theme = {
-  fontSize: 24,
-  fontWeight: 700,
+  fontSize: 30,
+  fontWeight: 200,
   fontFamily: "Sans-Serif",
+  itemTextColor: "white",
+  textColor: "white",
   axis: {
     textColor: "#eee",
-    //fontSize: "14px",
+    itemTextColor: "white",
     tickColor: "#eee",
   },
 };
-
-// const style = {
-//   height: "800px",
-//   fontWeight: "bold",
-//   fontSize: "20px",
-//   backgroundColor: "#F68B27"
-// };
 
 const MyResponsiveLine = ({ data /* see data tab */ }) => (
   // <div style={style}>
   <ResponsiveLine
     theme={theme}
     data={data}
-    margin={{ top: 150, right: 150, bottom: 150, left: 150 }}
+    margin={{ top: 50, right: 150, bottom: 150, left: 150 }}
     curve="catmullRom"
     lineWidth={5}
     //enableArea={true}
@@ -61,10 +56,11 @@ const MyResponsiveLine = ({ data /* see data tab */ }) => (
       tickPadding: 35,
       tickRotation: 0,
       //   legend: "count",
+      itemTextColor: "white",
       legendOffset: -40,
       legendPosition: "middle",
     }}
-    colors={{ scheme: "nivo" }}
+    colors={{ scheme: "blues" }}
     pointSize={11}
     pointColor={{ theme: "background" }}
     pointBorderWidth={11}
@@ -72,34 +68,7 @@ const MyResponsiveLine = ({ data /* see data tab */ }) => (
     pointLabel="y"
     pointLabelYOffset={-12}
     useMesh={true}
-    // legends={[
-    //   {
-    //     anchor: "bottom-right",
-    //     direction: "column",
-    //     justify: false,
-    //     translateX: 100,
-    //     translateY: 0,
-    //     itemsSpacing: 0,
-    //     itemDirection: "left-to-right",
-    //     itemWidth: 80,
-    //     itemHeight: 20,
-    //     itemOpacity: 0.75,
-    //     symbolSize: 12,
-    //     symbolShape: "circle",
-    //     symbolBorderColor: "rgba(0, 0, 0, .5)",
-    //     effects: [
-    //       {
-    //         on: "hover",
-    //         style: {
-    //           itemBackground: "rgba(0, 0, 0, .03)",
-    //           itemOpacity: 1
-    //         }
-    //       }
-    //     ]
-    //   }
-    // ]}
   />
-  // </div>
 );
 
 export default MyResponsiveLine;

@@ -1,33 +1,34 @@
 import React, { useState, useEffect } from "react";
 import CalendarGraph from "../Graphs/CalendarGraph/CalendarGraph";
 import firebase from "../../store/firebase";
-import Background from "../Background/Background";
 import displayFinalStyle from "../../style/styled-css/display-style";
 import StillBackground from "../Background/StillBackground";
 import { calendar } from "../../assets/media/backgrounds";
+import CancelButton from "../Buttons/cancelButton";
+import { withinSpecificYear, shouldRedirect } from "../../actions/actions";
+import { Redirect } from "react-router-dom";
 
 const db = firebase.firestore();
 
 function Attendance() {
-  const Container = displayFinalStyle.container;
+  const ContainerAttendance = displayFinalStyle.containerattendance;
   const PadLeft = displayFinalStyle.padleft;
   const HeaderStyleCool = displayFinalStyle.headerstylecool;
   const Normalize = displayFinalStyle.normalize;
-
-  const date = new Date();
-  const year = date.getFullYear();
-  const yearTitle = "Year " + year;
+  const ExitButton = displayFinalStyle.exitButton;
 
   var user = firebase.auth().currentUser;
   var uid_value = "error";
 
   if (user != null) {
     uid_value = user.uid;
-    //console.log(uid_value);
-    //console.log("uid boy");
   } else {
-    //console.log("error rror");
+    console.log("error");
   }
+
+  const date = new Date();
+  const year = date.getFullYear();
+  const yearTitle = "Year " + year;
 
   const [show, setShow] = useState(false);
   const [attendanceData, setAttendanceData] = useState([
@@ -45,8 +46,10 @@ function Attendance() {
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           const x = doc.data();
-          const y = { day: x.date, value: x.value };
-          data.push(y);
+          if (withinSpecificYear(x.date)) {
+            const y = { day: x.date, value: x.value };
+            data.push(y);
+          }
           //console.log(doc.id, " => ", doc.data());
         });
         return data;
@@ -68,18 +71,23 @@ function Attendance() {
     createData();
   }, []);
 
+  if (shouldRedirect()) {
+    return <Redirect to="/" />;
+  }
+
   return (
-    <div>
+    <ContainerAttendance>
       <StillBackground image={calendar} color="#6e10e5" />
-      <Container>
-        <Normalize>
-          {show ? <CalendarGraph data={attendanceData} /> : null}
-        </Normalize>
+      <div>
         <HeaderStyleCool>
           <h1>{yearTitle}</h1>
         </HeaderStyleCool>
-      </Container>
-    </div>
+        <ExitButton>
+          <CancelButton></CancelButton>
+        </ExitButton>
+      </div>
+      {show ? <CalendarGraph data={attendanceData} /> : null}
+    </ContainerAttendance>
   );
 }
 

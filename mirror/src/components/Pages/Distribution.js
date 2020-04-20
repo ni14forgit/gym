@@ -5,14 +5,15 @@ import Background from "../Background/Background";
 import displayFinalStyle from "../../style/styled-css/display-style";
 import StillBackground from "../Background/StillBackground";
 import { distribution } from "../../assets/media/backgrounds";
-import { withinMonth } from "../../actions/actions";
+import { withinMonth, shouldRedirect } from "../../actions/actions";
+import CancelButton from "../Buttons/cancelButton";
+import { Redirect } from "react-router-dom";
 
 const db = firebase.firestore();
 
 function Distribution() {
-  const Container = displayFinalStyle.container;
-  // const DistributionOverlay = displayFinalStyle.distributionoverlay;
-  // const Inner = displayFinalStyle.inner;
+  const Container = displayFinalStyle.containerweight;
+  const ExitButton = displayFinalStyle.exitButton;
   const PadLeft = displayFinalStyle.padleft;
   const HeaderStyleCool = displayFinalStyle.headerstylecool;
 
@@ -108,16 +109,23 @@ function Distribution() {
     createData();
   }, []);
 
+  if (shouldRedirect()) {
+    return <Redirect to="/" />;
+  }
+
   return (
-    <div>
-      <StillBackground image={distribution} color="#2cb205" />
-      <Container>
-        <PadLeft>{show ? <PieGraph data={distributionData} /> : null}</PadLeft>
+    <Container>
+      <StillBackground image={distribution} color="#F77467" />
+      <PadLeft>{show ? <PieGraph data={distributionData} /> : null}</PadLeft>
+      <div>
         <HeaderStyleCool>
-          <h1 style={{ color: "white", fontSize: "50px" }}>Last 30 Days</h1>
+          <h1>Last 30 Days</h1>
         </HeaderStyleCool>
-      </Container>
-    </div>
+        <ExitButton>
+          <CancelButton></CancelButton>
+        </ExitButton>
+      </div>
+    </Container>
   );
 }
 

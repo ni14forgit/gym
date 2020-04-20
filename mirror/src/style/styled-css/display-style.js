@@ -1,15 +1,28 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+//align-items: flex-start;
+const ContainerWeight = styled.div`
   height: 100%;
   width: 100%;
   overflow: hidden;
   position: absolute;
   display: flex;
   flex-flow: column;
-  align-items: center;
+  justify-content: flex-start;
   z-index: 2;
 `;
+
+const ContainerAttendance = styled.div`
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  z-index: 2;
+`;
+
 const DistributionOverlay = styled.div`
   height: 100vh;
   width: 100vw;
@@ -48,19 +61,41 @@ const Normalize = styled.div`
   top: 15%;
 `;
 
+// const NormalizeBefore = styled.div`
+//   position: absolute;
+//   height: "99vh";
+//   width: 100vw;
+//   height: 100%;
+//   top: 15%;
+// `;
+
+// align-items: center; for HeaderStyleCool
 const HeaderStyleCool = styled.div`
   color: white;
-  font-size: 50px;
-  align-items: center;
+  font-size: 40px;
+  position: absolute;
+  z-index: 2;
+  top: 6%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+`;
+
+const ExitButton = styled.div`
+position: absolute: 
+top: 3%
+left: 3%
 `;
 
 const finalStyle = {
-  container: { ...Container },
+  containerweight: { ...ContainerWeight },
+  containerattendance: { ...ContainerAttendance },
   distributionoverlay: { ...DistributionOverlay },
   inner: { ...Inner },
   padleft: { ...PadLeft },
   headerstylecool: { ...HeaderStyleCool },
   normalize: { ...Normalize },
+  exitButton: { ...ExitButton },
 };
 
 export default finalStyle;

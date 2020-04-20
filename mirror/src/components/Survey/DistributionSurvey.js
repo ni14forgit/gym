@@ -10,6 +10,8 @@ import firebase from "../../store/firebase";
 import { useHistory } from "react-router-dom";
 import dFinalStyle from "../../style/styled-css/distributionsurvey-style";
 import { createDate } from "../../actions/actions";
+import { shouldRedirect } from "../../actions/actions";
+import { Redirect } from "react-router-dom";
 
 const db = firebase.firestore();
 
@@ -145,6 +147,10 @@ const DistributionSurvey = () => {
         history.push("/weightsurvey");
       });
   };
+
+  if (shouldRedirect()) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <Parent>

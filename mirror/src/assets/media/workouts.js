@@ -12,7 +12,7 @@ import squat from "./workouts/squat.jpg";
 
 const workouts = [
   { img: abs, title: "abs" },
-  { img: anotherman, title: "idk" },
+  { img: anotherman, title: "general" },
   { img: cardio, title: "cardio" },
   { img: deadlift, title: "deadlift" },
   { img: legs, title: "legs" },

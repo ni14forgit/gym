@@ -3,13 +3,13 @@ import styled from "styled-components";
 const Title = styled.div`
   color: #357edd;
   text-align: center;
-  font-size: 80px;
+  font-size: 60px;
 `;
 
 const WeightTitle = styled.div`
   color: #357edd;
   text-align: center;
-  font-size: 150px;
+  font-size: 60px;
 `;
 
 const Container = styled.div`

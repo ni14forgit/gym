@@ -9,9 +9,7 @@ import Attendance from "./components/Pages/Attendance";
 import AuthForm from "./components/Auth/SignUp/Auth";
 import LoginForm from "./components/Auth/Login/Login";
 
-import StillBackground from "./components/Background/StillBackground";
-
-import { Route, Link, useHistory } from "react-router-dom";
+import { Route, useHistory } from "react-router-dom";
 
 import DistributionSurvey from "./components/Survey/DistributionSurvey";
 import WeightSurvey from "./components/Survey/WeightSurvey";
@@ -27,7 +25,7 @@ const App = () => {
   // };
 
   useEffect(() => {
-    history.replace("/main");
+    //history.replace("/main");
     //history.replace("/stillbackground");
     //history.replace("/distributionsurvey");
     //history.replace("/attendance");
@@ -69,7 +67,7 @@ const App = () => {
         <LoginForm />
       </Route>
 
-      <Route path="/main">
+      <Route exact path="/">
         <MainScreen />
       </Route>
 

@@ -1,24 +1,35 @@
 import React from "react";
 import data from "../Graphs/LineGraph/DataLine";
 import LineGraph from "../Graphs/LineGraph/LineGraph";
-import Background from "../Background/Background";
 import displayFinalStyle from "../../style/styled-css/display-style";
 import StillBackground from "../Background/StillBackground";
 import { weight } from "../../assets/media/backgrounds";
+import CancelButton from "../Buttons/cancelButton";
+import { shouldRedirect } from "../../actions/actions";
+import { Redirect } from "react-router-dom";
 
 function Weight() {
-  const Container = displayFinalStyle.container;
-  const DistributionOverlay = displayFinalStyle.distributionoverlay;
-  const Inner = displayFinalStyle.inner;
-  const PadLeft = displayFinalStyle.padleft;
+  const ContainerWeight = displayFinalStyle.containerweight;
   const HeaderStyleCool = displayFinalStyle.headerstylecool;
+  const ExitButton = displayFinalStyle.exitButton;
+
+  if (shouldRedirect()) {
+    return <Redirect to="/" />;
+  }
 
   return (
-    <Container>
+    <ContainerWeight>
       <StillBackground image={weight} color="#f68b27" />
-      <h1>Last 30 Days</h1>
+      <div>
+        <HeaderStyleCool>
+          <h1>Last 30 Days</h1>
+        </HeaderStyleCool>
+        <ExitButton>
+          <CancelButton></CancelButton>
+        </ExitButton>
+      </div>
       <LineGraph data={data} />
-    </Container>
+    </ContainerWeight>
   );
 }
 

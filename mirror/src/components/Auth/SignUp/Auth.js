@@ -295,35 +295,10 @@ const Auth = () => {
         return x;
       })
       .then((something) => {
-        history.push("/main");
+        history.push("/distributionsurvey");
         //history.push("/distributionsurvey");
       });
   };
-
-  // const helperDispatch = (user, firstname, lastname, uid) => {
-  //   let x;
-  //   if (user) {
-  //     //console.log("user true");
-  //     console.log(firstname);
-  //     console.log(lastname);
-  //     x = user.updateProfile({
-  //       displayName: firstname + " " + lastname,
-  //     });
-  //     dispatch("SET_UID_USER", uid);
-  //   } else {
-  //     console.log("user not found ERROR");
-  //   }
-  //   return x;
-  // };
-
-  // firebase.auth().onAuthStateChanged(function (user) {
-  //   if (user) {
-  //     console.log("hi");
-  //     history.push("/main");
-  //   } else {
-  //     console.log("no user on auth change");
-  //   }
-  // });
 
   return (
     <div>

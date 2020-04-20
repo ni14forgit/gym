@@ -1,3 +1,5 @@
+import firebase from "../store/firebase";
+
 const createDate = () => {
   const todaydate = new Date();
   const year = todaydate.getFullYear();
@@ -46,4 +48,14 @@ const withinSpecificYear = (dateString) => {
   return false;
 };
 
-export { createDate, withinMonth };
+const shouldRedirect = () => {
+  var user = firebase.auth().currentUser;
+  if (!user) {
+    return true;
+  } else {
+    // return <Redirect to="/" />;
+    return false;
+  }
+};
+
+export { createDate, withinMonth, withinSpecificYear, shouldRedirect };

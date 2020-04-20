@@ -5,6 +5,8 @@ import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import ReactLoading from "react-loading";
 import wsFinalStyle from "../../style/styled-css/weightsurvey-style";
+import { shouldRedirect } from "../../actions/actions";
+import { Redirect } from "react-router-dom";
 
 // const db = firebase.firestore();
 const WeightSurvey = () => {
@@ -37,7 +39,7 @@ const WeightSurvey = () => {
   // };
 
   const skip = () => {
-    history.push("/main");
+    history.push("/");
   };
 
   const title = isOnScale ? "Detected!" : "Step on weight scale!";
@@ -55,6 +57,10 @@ const WeightSurvey = () => {
       ></ReactLoading>
     </div>
   );
+
+  if (shouldRedirect()) {
+    return <Redirect to="/" />;
+  }
 
   return (
     //Some timed event to trigger the call of submit weight
