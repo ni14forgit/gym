@@ -335,7 +335,6 @@ const Auth = () => {
             />
           </KeyBoardContainer>
         </ParentContainer>
-        >
       </Overlay>
     </div>
   );

@@ -41,6 +41,7 @@ const ParentContainer = styled.div`
 const KeyBoardContainer = styled.div`
   position: relative;
   padding-top: 30px;
+  padding-bottom: 15px;
   width: 75%;
   clear: both;
   z-index: 2;
