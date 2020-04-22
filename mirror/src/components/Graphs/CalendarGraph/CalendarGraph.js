@@ -13,8 +13,9 @@ const MyResponsiveCalendar = ({ data /* see data tab */ }) => (
     from="2020-03-01"
     to="2020-04-01"
     minValue={1}
-    emptyColor="#108BE5"
-    colors={["#61cdbb", "#97e3d5", "#e8c1a0", "#f47560"]}
+    emptyColor="#00000000"
+    emptyOpacity={0.2}
+    colors={["#108BE5"]}
     margin={{ top: -50, right: 40, bottom: 0, left: 40 }}
     direction="horizontal"
     yearLegend={() => ""}

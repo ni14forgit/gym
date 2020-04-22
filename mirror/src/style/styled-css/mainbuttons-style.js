@@ -7,7 +7,7 @@ const Row = styled.div`
 `;
 
 const Column = styled.div`
-  margin: 30px;
+  margin: 20px;
   display: inline-block;
 `;
 
@@ -31,10 +31,12 @@ const Container = styled.div`
   text-align: center;
   min-height: 100vh;
   overflow: hidden;
+  z-index: 2;
 `;
 
 const Title = styled.div`
   z-index: 2;
+  margin-bottom: 20px;
 `;
 
 const finalStyle = {

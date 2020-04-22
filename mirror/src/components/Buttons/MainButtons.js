@@ -16,6 +16,7 @@ import { useStore } from "../../store/store";
 import firebase from "../../store/firebase";
 import { Typography } from "@material-ui/core";
 import mainbuttonsFinalStyle from "../../style/styled-css/mainbuttons-style";
+import Background from "../Background/Background";
 
 const MainButtons = () => {
   const [boldAuth, setBoldAuth] = useState(false);
@@ -72,7 +73,7 @@ const MainButtons = () => {
     if (user) {
       history.push(path);
     } else {
-      toggleBold();
+      history.push("/signup");
     }
   };
 
@@ -120,7 +121,7 @@ const MainButtons = () => {
     return (
       <div>
         <Auth>
-          <div className="padder">
+          <Pad>
             <Button
               className={buttonstyle_data.auth}
               variant="outlined"
@@ -130,7 +131,7 @@ const MainButtons = () => {
             >
               Logout
             </Button>
-          </div>
+          </Pad>
         </Auth>
       </div>
     );
@@ -146,6 +147,7 @@ const MainButtons = () => {
             {userName}
           </Typography>
         </Title>
+        {authStatusButton}
         <Row>
           <Column>
             <Button
@@ -187,6 +189,9 @@ const MainButtons = () => {
           </Column>
           <Column>
             <Button
+              onClick={() => {
+                buttonPress("/points");
+              }}
               className={buttonstyle_data.mainoption}
               variant="outlined"
               color="primary"
@@ -197,7 +202,6 @@ const MainButtons = () => {
             ></Button>
           </Column>
         </Row>
-        {authStatusButton}
       </Container>
     </div>
   );

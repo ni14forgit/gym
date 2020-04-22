@@ -5,6 +5,7 @@ import MainScreen from "./components/MainScreen";
 import Weight from "./components/Pages/Weight";
 import Distribution from "./components/Pages/Distribution";
 import Attendance from "./components/Pages/Attendance";
+import Points from "./components/Pages/Points";
 
 import AuthForm from "./components/Auth/SignUp/Auth";
 import LoginForm from "./components/Auth/Login/Login";
@@ -41,6 +42,10 @@ const App = () => {
     <div>
       <Route path="/signup">
         <AuthForm />
+      </Route>
+
+      <Route path="/points">
+        <Points />
       </Route>
 
       <Route path="/weight">

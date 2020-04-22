@@ -1,8 +1,8 @@
 const buttonStyle = {
   mainoption: {
-    width: "600px",
-    height: "200px",
-    borderWidth: "3px",
+    width: "500px",
+    height: "190px",
+    borderWidh: "3px",
     borderRadius: "2%",
     color: "white",
     fontSize: "20px",
