@@ -278,7 +278,7 @@ const Auth = () => {
       })
       .then((cred) => {
         //console.log("sucessfully signed up user");
-        console.log(cred);
+        //console.log(cred);
         return cred.user.uid;
       })
       .then((uid) => {
@@ -286,6 +286,11 @@ const Auth = () => {
           .doc(uid)
           .collection("attendance")
           .add({ date: createDate(), value: 1 });
+
+        db.collection("users").doc(uid).set({
+          score: 10,
+          date: createDate(),
+        });
         return;
       })
       .then(() => {

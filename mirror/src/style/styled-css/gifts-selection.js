@@ -25,10 +25,22 @@ const Title = styled.div`
   color: white;
 `;
 
+const Instruction = styled.div`
+  color: white;
+  font-size: 35px;
+  position: absolute;
+  z-index: 2;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+`;
+
 const finalStyle = {
   selection: { ...Selection },
   parent: { ...Parent },
   title: { ...Title },
+  instruction: { ...Instruction },
 };
 
 export default finalStyle;

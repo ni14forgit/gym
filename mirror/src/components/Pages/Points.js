@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
-import { shouldRedirect } from "../../actions/actions";
+import { shouldRedirect, createDate } from "../../actions/actions";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
@@ -17,19 +17,10 @@ import firebase from "../../store/firebase";
 import DoneButton from "../Buttons/doneButton";
 
 const db = firebase.firestore();
+var uid_value = "error";
 
 const Points = () => {
   const history = useHistory();
-
-  var user = firebase.auth().currentUser;
-  var uid_value = "error";
-  if (user != null) {
-    uid_value = user.uid;
-    console.log(uid_value);
-    //console.log("uid boy");
-  } else {
-    console.log("error rror");
-  }
 
   const myOriginalSelection = {
     gatorade: 0,
@@ -40,7 +31,35 @@ const Points = () => {
   };
 
   const [selection, setSelection] = useState(myOriginalSelection);
-  const [scorepoints, setScorePoints] = useState(10);
+  const [scorepoints, setScorePoints] = useState("0");
+
+  useEffect(() => {
+    var user = firebase.auth().currentUser;
+    if (user != null) {
+      uid_value = user.uid;
+      //console.log(uid_value);
+      //console.log("uid boy");
+    } else {
+      console.log("error rror");
+    }
+    var scoreRef = db.collection("users").doc(uid_value);
+    scoreRef
+      .get()
+      .then(function (doc) {
+        if (doc.exists) {
+          //console.log("Document data:", doc.data());
+          //console.log("score" + doc.data().score);
+          var initialscore = doc.data().score;
+          setScorePoints(initialscore);
+        } else {
+          // doc.data() will be undefined in this case
+          // console.log("No such document!");
+        }
+      })
+      .catch(function (error) {
+        //console.log("Error getting document:", error);
+      });
+  }, []);
 
   const updateSelection = (identifier, cost) => {
     const newVal = selection[identifier] ? 0 : 1;
@@ -50,31 +69,13 @@ const Points = () => {
         setScorePoints(scorepoints - cost);
         setSelection({ ...selection, [identifier]: newVal });
       } else {
-        console.log("you can't afford");
+        //console.log("you can't afford");
       }
     } else {
       setSelection({ ...selection, [identifier]: newVal });
       setScorePoints(scorepoints + cost);
     }
   };
-
-  var scoreRef = db.collection("users").doc(uid_value);
-  scoreRef
-    .get()
-    .then(function (doc) {
-      if (doc.exists) {
-        console.log("Document data:", doc.data());
-        console.log("score" + doc.data().score);
-        setScorePoints(doc.data().score);
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-        setScorePoints("WRONG");
-      }
-    })
-    .catch(function (error) {
-      console.log("Error getting document:", error);
-    });
 
   const styles = {
     fontFamily: "sans-serif",
@@ -131,24 +132,48 @@ const Points = () => {
 
   const Container = displayFinalStyle.containerweight;
   const ExitButton = displayFinalStyle.exitButton;
-  const HeaderStyleCool = displayFinalStyle.headerstylecool;
+  const Instruction = giftsFinalStyle.instruction;
   const DoneButtonStyle = displayFinalStyle.doneButton;
   const Selection = giftsFinalStyle.selection;
   const Title = giftsFinalStyle.title;
 
   const purchase = () => {
-    //purchase items, update firebase with items, new points
+    const selToPush = {};
+    const keys = Object.keys(selection);
+    for (const key of keys) {
+      if (selection[key] > 0) {
+        selToPush[key] = selection[key];
+      }
+    }
+
+    db.collection("users")
+      .doc(uid_value)
+      .update({
+        score: scorepoints,
+        date: createDate(),
+        ...selToPush,
+      })
+      .catch(function (error, data) {
+        // console.log(error);
+        // console.log(data);
+      });
+    // .then((res) => {
+    //   console.log(`Document updated at ${res.updateTime}`);
+    // });
+    history.push("/");
+    //if user buys twice in one day.
     // create new page saying that they should go to the attendant to pick up
     //that day only
+    //fix signup login on how they get points
   };
 
   return (
     <Container>
       <StillBackground image={points} color="#2cb205" />
       <div>
-        <HeaderStyleCool>
-          <h1>Click to Redeem!</h1>
-        </HeaderStyleCool>
+        <Instruction>
+          <h1>Collect Prizes at Desk</h1>
+        </Instruction>
         <ExitButton>
           <CancelButton></CancelButton>
         </ExitButton>

@@ -12,7 +12,7 @@ import firebase from "../../../store/firebase";
 import { useStore } from "../../../store/store";
 import { useHistory } from "react-router-dom";
 import authStyleFinal from "../../../style/styled-css/auth-style";
-import { createDate } from "../../../actions/actions";
+import { createDate, withinSameDay } from "../../../actions/actions";
 import CancelButton from "../../Buttons/cancelButton";
 
 const KeyBoardContainer = authStyleFinal.keyBoardContainer;
@@ -47,6 +47,15 @@ const Login = () => {
     }, 4000);
   };
 
+  const addPoint = (pointval, uid) => {
+    db.collection("users")
+      .doc(uid)
+      .update({
+        score: pointval + 1,
+        date: createDate(),
+      });
+  };
+
   const submitSignUpHandler = () => {
     const emailFirebase = information.email.value;
     const passwordFirebase = information.password.value;
@@ -61,10 +70,30 @@ const Login = () => {
       })
       .then((uid) => {
         dispatch("SET_UID_USER", uid);
+
         db.collection("users")
           .doc(uid)
           .collection("attendance")
           .add({ date: createDate(), value: 1 });
+
+        db.collection("users")
+          .doc(uid)
+          .get()
+          .then(function (doc) {
+            if (doc.exists) {
+              // console.log("Document data:", doc.data());
+              // console.log("score" + doc.data().score);
+              if (!withinSameDay(doc.data().date)) {
+                addPoint(doc.data().score, uid);
+              }
+            } else {
+              // console.log("No such document!");
+              addPoint(0, uid);
+            }
+          })
+          .catch(function (error) {
+            //console.log("Error getting document:", error);
+          });
 
         //history.push("/main");
         history.push("/distributionsurvey");

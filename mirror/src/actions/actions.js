@@ -58,4 +58,18 @@ const shouldRedirect = () => {
   }
 };
 
-export { createDate, withinMonth, withinSpecificYear, shouldRedirect };
+const withinSameDay = (dateString) => {
+  if (dateString === createDate()) {
+    // console.log("SAME DAY");
+    return true;
+  }
+  return false;
+};
+
+export {
+  createDate,
+  withinMonth,
+  withinSpecificYear,
+  shouldRedirect,
+  withinSameDay,
+};

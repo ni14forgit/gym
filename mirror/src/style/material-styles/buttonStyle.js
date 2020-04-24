@@ -32,6 +32,15 @@ const buttonStyle = {
     textAlign: "center",
     color: "white",
   },
+  points: {
+    width: "250px",
+    height: "80px",
+    fontSize: "40px",
+    textAlign: "center",
+    color: "white",
+    fontWeight: "bold",
+    borderWidth: "2px",
+  },
   authBold: {
     width: "200px",
     height: "60px",
