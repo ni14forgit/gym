@@ -24,10 +24,10 @@ const workouts = [
   { img: squat, title: "squat" },
 ];
 
-const myOriginalSelection = {};
-for (var i = 0; i < workouts.length; i++) {
-  //console.log(workouts[i].title);
-  myOriginalSelection[workouts[i].title] = 0;
-}
+// const myOriginalSelection = {};
+// for (var i = 0; i < workouts.length; i++) {
+//   //console.log(workouts[i].title);
+//   myOriginalSelection[workouts[i].title] = 0;
+// }
 
 export { workouts };

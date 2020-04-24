@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-//align-items: flex-start;
 const ContainerWeight = styled.div`
   height: 100%;
   width: 100%;
@@ -61,21 +60,12 @@ const Normalize = styled.div`
   top: 15%;
 `;
 
-// const NormalizeBefore = styled.div`
-//   position: absolute;
-//   height: "99vh";
-//   width: 100vw;
-//   height: 100%;
-//   top: 15%;
-// `;
-
-// align-items: center; for HeaderStyleCool
 const HeaderStyleCool = styled.div`
   color: white;
   font-size: 40px;
   position: absolute;
   z-index: 2;
-  top: 6%;
+  top: 7%;
   left: 50%;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
@@ -89,10 +79,14 @@ const NoDataMessage = styled.div`
   margin: auto;
 `;
 
-//position: absolute;
 const ExitButton = styled.div`
   top: 3%;
   left: 3%;
+`;
+
+const DoneButton = styled.div`
+  position: relative;
+  margin: auto;
 `;
 
 const finalStyle = {
@@ -105,6 +99,7 @@ const finalStyle = {
   normalize: { ...Normalize },
   exitButton: { ...ExitButton },
   noDataMessage: { ...NoDataMessage },
+  doneButton: { ...DoneButton },
 };
 
 export default finalStyle;

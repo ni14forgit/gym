@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PieGraph from "../Graphs/PieGraph/PieGraph";
 import firebase from "../../store/firebase";
-import Background from "../Background/Background";
 import displayFinalStyle from "../../style/styled-css/display-style";
 import StillBackground from "../Background/StillBackground";
 import { distribution } from "../../assets/media/backgrounds";

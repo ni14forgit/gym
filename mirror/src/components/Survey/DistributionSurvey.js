@@ -12,6 +12,7 @@ import dFinalStyle from "../../style/styled-css/distributionsurvey-style";
 import { createDate } from "../../actions/actions";
 import { shouldRedirect } from "../../actions/actions";
 import { Redirect } from "react-router-dom";
+import BGImage from "../../style/BGImage";
 
 const db = firebase.firestore();
 
@@ -31,9 +32,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     fontSize: "24px",
   },
-  notTitle: {
-    color: "blue",
-  },
+  // notTitle: {
+  //   color: "blue",
+  // },
   titleBar: {
     background:
       "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
@@ -50,31 +51,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-function BGImage(props) {
-  return (
-    <div
-      style={{
-        background: "url(" + props.bg + ")",
-        height: "50%",
-        width: "50%",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-      }}
-    >
-      <div
-        style={{
-          position: "absolute",
-          height: "100vh",
-          width: "100vw",
-          backgroundColor: props.tint,
-          zIndex: "100",
-          opacity: "0.5",
-        }}
-      ></div>
-    </div>
-  );
-}
 
 const styles = {
   fontFamily: "sans-serif",
