@@ -126,9 +126,9 @@ const Points = () => {
 
   const classes = useStyles();
 
-  // if (shouldRedirect()) {
-  //   return <Redirect to="/" />;
-  // }
+  if (shouldRedirect()) {
+    return <Redirect to="/" />;
+  }
 
   const Container = displayFinalStyle.containerweight;
   const ExitButton = displayFinalStyle.exitButton;

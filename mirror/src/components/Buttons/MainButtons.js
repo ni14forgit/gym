@@ -20,10 +20,8 @@ import Background from "../Background/Background";
 
 const MainButtons = () => {
   const [boldAuth, setBoldAuth] = useState(false);
-
   const history = useHistory();
   const [state, dispatch] = useStore();
-
   const Row = mainbuttonsFinalStyle.row;
   const Column = mainbuttonsFinalStyle.column;
   const Auth = mainbuttonsFinalStyle.auth;
@@ -152,26 +150,40 @@ const MainButtons = () => {
           <Column>
             <Button
               onClick={() => buttonPress("/attendance")}
-              className={buttonstyle_data.mainoption}
+              classes={{
+                root: buttonstyle_data.mainoption,
+                label: buttonstyle_data.mainlabel,
+              }}
               variant="outlined"
               color="primary"
               size="large"
               startIcon={
-                <GraphIcon style={{ fontSize: 120, color: "#AF81FA" }} />
+                <GraphIcon
+                  style={{ fontSize: 115, color: "#AF81FA", padding: "-50px" }}
+                />
               }
-            ></Button>
+            >
+              Attendance
+            </Button>
           </Column>
           <Column>
             <Button
               onClick={() => buttonPress("/weight")}
-              className={buttonstyle_data.mainoption}
+              classes={{
+                root: buttonstyle_data.mainoption,
+                label: buttonstyle_data.mainlabel,
+              }}
               variant="outlined"
               color="primary"
               size="large"
               startIcon={
-                <WeightIcon style={{ fontSize: 85, color: "#f68b27" }} />
+                <WeightIcon
+                  style={{ fontSize: 85, color: "#f68b27", padding: "15px" }}
+                />
               }
-            ></Button>
+            >
+              Weight Tracker
+            </Button>
           </Column>
         </Row>
         <Row>
@@ -180,26 +192,44 @@ const MainButtons = () => {
               onClick={() => {
                 buttonPress("/distribution");
               }}
-              className={buttonstyle_data.mainoption}
+              classes={{
+                root: buttonstyle_data.mainoption,
+                label: buttonstyle_data.mainlabel,
+              }}
               variant="outlined"
               color="primary"
               size="large"
-              startIcon={<PieIcon style={{ fontSize: 90, color: "#F77467" }} />}
-            ></Button>
+              startIcon={
+                <PieIcon
+                  style={{ fontSize: 90, color: "#F77467", padding: "15px" }}
+                />
+              }
+            >
+              Workout Distribution
+            </Button>
           </Column>
           <Column>
             <Button
               onClick={() => {
                 buttonPress("/points");
               }}
-              className={buttonstyle_data.mainoption}
+              onFocus={() => console.log("Focus")}
+              onBlur={() => console.log("Blur")}
+              classes={{
+                root: buttonstyle_data.mainoption,
+                label: buttonstyle_data.mainlabel,
+              }}
               variant="outlined"
               color="primary"
               size="large"
               startIcon={
-                <CoinIcon style={{ fontSize: 90, color: "#2cb205" }} />
+                <CoinIcon
+                  style={{ fontSize: 90, color: "#2cb205", padding: "15px" }}
+                />
               }
-            ></Button>
+            >
+              Store
+            </Button>
           </Column>
         </Row>
       </Container>

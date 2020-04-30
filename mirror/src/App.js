@@ -30,7 +30,7 @@ const App = () => {
     //history.replace("/stillbackground");
     //history.replace("/distributionsurvey");
     //history.replace("/attendance");
-    //history.replace("/weightsurvey");
+    history.replace("/weightsurvey");
     //history.replace("/distribution");
     //history.replace("/weight");
     //history.replace("/signup");

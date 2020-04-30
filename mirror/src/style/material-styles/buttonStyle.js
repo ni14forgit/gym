@@ -1,12 +1,16 @@
 const buttonStyle = {
   mainoption: {
-    width: "500px",
-    height: "190px",
+    width: "25vw",
+    height: "25vh",
     borderWidh: "3px",
     borderRadius: "2%",
     color: "white",
     fontSize: "20px",
     outlinedPrimary: "white",
+  },
+  mainlabel: {
+    flexDirection: "column",
+    justifyContent: "spaceBetween",
   },
   authpage: {
     width: "300px",
@@ -48,6 +52,9 @@ const buttonStyle = {
     textAlign: "center",
     color: "white",
     background: "white",
+  },
+  weightOption: {
+    fontSize: "30px",
   },
 };
 
