@@ -5,6 +5,10 @@ import {
   PieIcon,
   GraphIcon,
   WeightIcon,
+  FriendsIcon,
+  EventsIcon,
+  TrainerClassIcon,
+  FeedbackIcon,
 } from "../../assets/icons/icons";
 import {
   buttonStyle,
@@ -17,13 +21,32 @@ import firebase from "../../store/firebase";
 import { Typography } from "@material-ui/core";
 import mainbuttonsFinalStyle from "../../style/styled-css/mainbuttons-style";
 import Background from "../Background/Background";
+import GridList from "@material-ui/core/GridList";
+import Grid from "@material-ui/core/Grid";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    overflow: "hidden",
+    backgroundColor: theme.palette.background.paper,
+  },
+  gridList: {
+    width: 500,
+    height: 450,
+  },
+  icon: {
+    color: "rgba(255, 255, 255, 0.54)",
+  },
+}));
 
 const MainButtons = () => {
   const [boldAuth, setBoldAuth] = useState(false);
   const history = useHistory();
   const [state, dispatch] = useStore();
-  const Row = mainbuttonsFinalStyle.row;
-  const Column = mainbuttonsFinalStyle.column;
+  // const Row = mainbuttonsFinalStyle.row;
+  // const Column = mainbuttonsFinalStyle.column;
   const Auth = mainbuttonsFinalStyle.auth;
   const Pad = mainbuttonsFinalStyle.pad;
   const Container = mainbuttonsFinalStyle.container;
@@ -37,12 +60,14 @@ const MainButtons = () => {
     history.push("/signup");
   };
 
-  const toggleBold = () => {
-    setBoldAuth(true);
-    setTimeout(function () {
-      setBoldAuth(false);
-    }, 800);
-  };
+  const classes = useStyles();
+
+  // const toggleBold = () => {
+  //   setBoldAuth(true);
+  //   setTimeout(function () {
+  //     setBoldAuth(false);
+  //   }, 800);
+  // };
 
   const clickLogout = () => {
     firebase
@@ -135,6 +160,83 @@ const MainButtons = () => {
     );
   };
 
+  const tileData = [
+    {
+      id: "attendance",
+      page: "/attendance",
+      size: 115,
+      color: "E9F576",
+      text: "Attendance",
+      pad: "0px",
+    },
+    {
+      id: "feedback",
+      page: "/attendance",
+      size: 115,
+      color: "#AF81FA",
+      text: "Submit Feedback",
+      pad: "0px",
+    },
+    {
+      id: "events",
+      page: "/attendance",
+      size: 115,
+      color: "81EBFA",
+      text: "Upcoming Events!",
+      pad: "0px",
+    },
+    {
+      id: "trainerclass",
+      page: "/attendance",
+      size: 115,
+      color: "#F77467",
+      text: "Trainers/Classes",
+      pad: "0px",
+    },
+    {
+      id: "friends",
+      page: "/attendance",
+      size: 115,
+      color: "DA7C3A",
+      text: "Workout Buddy",
+      pad: "0px",
+    },
+    {
+      id: "weight",
+      page: "/weight",
+      size: 85,
+      color: "F576AA",
+      text: "Weight Tracker",
+      pad: "15px",
+    },
+    {
+      id: "store",
+      page: "/points",
+      size: 90,
+      color: "#2cb205",
+      text: "Store",
+      pad: "15px",
+    },
+    {
+      id: "distribution",
+      page: "/distribution",
+      size: 90,
+      color: "F4DE65",
+      text: "Workout Distribution",
+      pad: "15px",
+    },
+  ];
+
+  const BaseButton = {
+    classes: {
+      root: buttonstyle_data.mainoption,
+      label: buttonstyle_data.mainlabel,
+    },
+    variant: "outlined",
+    color: "primary",
+    size: "large",
+  };
+
   const authStatusButton = user ? logOut() : loginSignUp();
 
   return (
@@ -146,92 +248,158 @@ const MainButtons = () => {
           </Typography>
         </Title>
         {authStatusButton}
-        <Row>
-          <Column>
-            <Button
-              onClick={() => buttonPress("/attendance")}
-              classes={{
-                root: buttonstyle_data.mainoption,
-                label: buttonstyle_data.mainlabel,
-              }}
-              variant="outlined"
-              color="primary"
-              size="large"
-              startIcon={
-                <GraphIcon
-                  style={{ fontSize: 115, color: "#AF81FA", padding: "-50px" }}
-                />
-              }
-            >
-              Attendance
-            </Button>
-          </Column>
-          <Column>
-            <Button
-              onClick={() => buttonPress("/weight")}
-              classes={{
-                root: buttonstyle_data.mainoption,
-                label: buttonstyle_data.mainlabel,
-              }}
-              variant="outlined"
-              color="primary"
-              size="large"
-              startIcon={
-                <WeightIcon
-                  style={{ fontSize: 85, color: "#f68b27", padding: "15px" }}
-                />
-              }
-            >
-              Weight Tracker
-            </Button>
-          </Column>
-        </Row>
-        <Row>
-          <Column>
-            <Button
-              onClick={() => {
-                buttonPress("/distribution");
-              }}
-              classes={{
-                root: buttonstyle_data.mainoption,
-                label: buttonstyle_data.mainlabel,
-              }}
-              variant="outlined"
-              color="primary"
-              size="large"
-              startIcon={
-                <PieIcon
-                  style={{ fontSize: 90, color: "#F77467", padding: "15px" }}
-                />
-              }
-            >
-              Workout Distribution
-            </Button>
-          </Column>
-          <Column>
-            <Button
-              onClick={() => {
-                buttonPress("/points");
-              }}
-              onFocus={() => console.log("Focus")}
-              onBlur={() => console.log("Blur")}
-              classes={{
-                root: buttonstyle_data.mainoption,
-                label: buttonstyle_data.mainlabel,
-              }}
-              variant="outlined"
-              color="primary"
-              size="large"
-              startIcon={
-                <CoinIcon
-                  style={{ fontSize: 90, color: "#2cb205", padding: "15px" }}
-                />
-              }
-            >
-              Store
-            </Button>
-          </Column>
-        </Row>
+        <Grid container cols={2} padding={4}>
+          {tileData.map((tile) => {
+            switch (tile.id) {
+              case "weight":
+                return (
+                  <Button
+                    onClick={() => buttonPress(tile.page)}
+                    {...BaseButton}
+                    startIcon={
+                      <WeightIcon
+                        style={{
+                          fontSize: tile.size,
+                          color: tile.color,
+                          padding: tile.pad,
+                        }}
+                      />
+                    }
+                  >
+                    {tile.text}
+                  </Button>
+                );
+              case "attendance":
+                return (
+                  <Button
+                    onClick={() => buttonPress(tile.page)}
+                    {...BaseButton}
+                    startIcon={
+                      <GraphIcon
+                        style={{
+                          fontSize: tile.size,
+                          color: tile.color,
+                          padding: tile.pad,
+                        }}
+                      />
+                    }
+                  >
+                    {tile.text}
+                  </Button>
+                );
+              case "distribution":
+                return (
+                  <Button
+                    onClick={() => buttonPress(tile.page)}
+                    {...BaseButton}
+                    startIcon={
+                      <PieIcon
+                        style={{
+                          fontSize: tile.size,
+                          color: tile.color,
+                          padding: tile.pad,
+                        }}
+                      />
+                    }
+                  >
+                    {tile.text}
+                  </Button>
+                );
+              case "feedback":
+                return (
+                  <Button
+                    onClick={() => buttonPress(tile.page)}
+                    {...BaseButton}
+                    startIcon={
+                      <FeedbackIcon
+                        style={{
+                          fontSize: tile.size,
+                          color: tile.color,
+                          padding: tile.pad,
+                        }}
+                      />
+                    }
+                  >
+                    {tile.text}
+                  </Button>
+                );
+              case "store":
+                return (
+                  <Button
+                    onClick={() => buttonPress(tile.page)}
+                    {...BaseButton}
+                    startIcon={
+                      <CoinIcon
+                        style={{
+                          fontSize: tile.size,
+                          color: tile.color,
+                          padding: tile.pad,
+                        }}
+                      />
+                    }
+                  >
+                    {tile.text}
+                  </Button>
+                );
+              case "friends":
+                return (
+                  <Button
+                    onClick={() => buttonPress(tile.page)}
+                    {...BaseButton}
+                    startIcon={
+                      <FriendsIcon
+                        style={{
+                          fontSize: tile.size,
+                          color: tile.color,
+                          padding: tile.pad,
+                        }}
+                      />
+                    }
+                  >
+                    {tile.text}
+                  </Button>
+                );
+              case "trainerclass":
+                return (
+                  <Button
+                    onClick={() => buttonPress(tile.page)}
+                    {...BaseButton}
+                    startIcon={
+                      <TrainerClassIcon
+                        style={{
+                          fontSize: tile.size,
+                          color: tile.color,
+                          padding: tile.pad,
+                        }}
+                      />
+                    }
+                  >
+                    {tile.text}
+                  </Button>
+                );
+              case "events":
+                return (
+                  <Button
+                    onClick={() => buttonPress(tile.page)}
+                    {...BaseButton}
+                    startIcon={
+                      <EventsIcon
+                        style={{
+                          fontSize: tile.size,
+                          color: tile.color,
+                          padding: tile.pad,
+                        }}
+                      />
+                    }
+                  >
+                    {tile.text}
+                  </Button>
+                );
+              default:
+                return null;
+            }
+          })}
+        </Grid>
       </Container>
     </div>
   );
