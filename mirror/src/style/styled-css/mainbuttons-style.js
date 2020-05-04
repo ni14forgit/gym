@@ -34,6 +34,11 @@ const Container = styled.div`
   z-index: 2;
 `;
 
+const GridContainer = styled.div`
+  margin: auto;
+  align-items: center;
+`;
+
 const Title = styled.div`
   z-index: 2;
   margin-bottom: 20px;
@@ -46,6 +51,7 @@ const finalStyle = {
   pad: { ...Pad },
   container: { ...Container },
   title: { ...Title },
+  gridContainer: { ...GridContainer },
 };
 
 export default finalStyle;

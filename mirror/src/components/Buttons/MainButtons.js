@@ -47,6 +47,7 @@ const MainButtons = () => {
   const [state, dispatch] = useStore();
   // const Row = mainbuttonsFinalStyle.row;
   // const Column = mainbuttonsFinalStyle.column;
+  const GridContainer = mainbuttonsFinalStyle.gridContainer;
   const Auth = mainbuttonsFinalStyle.auth;
   const Pad = mainbuttonsFinalStyle.pad;
   const Container = mainbuttonsFinalStyle.container;
@@ -248,7 +249,8 @@ const MainButtons = () => {
           </Typography>
         </Title>
         {authStatusButton}
-        <Grid container cols={2} padding={4}>
+        {/* <GridContainer> */}
+        <Grid item xs={11}>
           {tileData.map((tile) => {
             switch (tile.id) {
               case "weight":
@@ -400,6 +402,7 @@ const MainButtons = () => {
             }
           })}
         </Grid>
+        {/* </GridContainer> */}
       </Container>
     </div>
   );

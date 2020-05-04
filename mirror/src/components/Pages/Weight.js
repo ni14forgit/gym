@@ -4,7 +4,7 @@ import LineGraph from "../Graphs/LineGraph/LineGraph";
 import displayFinalStyle from "../../style/styled-css/display-style";
 import StillBackground from "../Background/StillBackground";
 import { weight } from "../../assets/media/backgrounds";
-import CancelButton from "../Buttons/cancelButton";
+import { CancelButton } from "../Buttons/MaterialButton";
 import { shouldRedirect } from "../../actions/actions";
 import { Redirect } from "react-router-dom";
 

@@ -6,6 +6,7 @@ import Weight from "./components/Pages/Weight";
 import Distribution from "./components/Pages/Distribution";
 import Attendance from "./components/Pages/Attendance";
 import Points from "./components/Pages/Points";
+import Events from "./components/Events/Events";
 
 import AuthForm from "./components/Auth/SignUp/Auth";
 import LoginForm from "./components/Auth/Login/Login";
@@ -30,7 +31,8 @@ const App = () => {
     //history.replace("/stillbackground");
     //history.replace("/distributionsurvey");
     //history.replace("/attendance");
-    history.replace("/weightsurvey");
+    //history.replace("/weightsurvey");
+    history.replace("/events");
     //history.replace("/distribution");
     //history.replace("/weight");
     //history.replace("/signup");
@@ -41,6 +43,9 @@ const App = () => {
 
   return (
     <div>
+      <Route path="/events">
+        <Events />
+      </Route>
       <Route path="/signup">
         <AuthForm />
       </Route>

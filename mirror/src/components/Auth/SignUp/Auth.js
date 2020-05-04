@@ -15,7 +15,7 @@ import { useStore } from "../../../store/store";
 import { useHistory } from "react-router-dom";
 import authStyleFinal from "../../../style/styled-css/auth-style";
 import { createDate } from "../../../actions/actions";
-import CancelButton from "../../Buttons/cancelButton";
+import { CancelButton } from "../../Buttons/MaterialButton";
 
 const db = firebase.firestore();
 

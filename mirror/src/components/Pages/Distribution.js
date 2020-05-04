@@ -5,7 +5,7 @@ import displayFinalStyle from "../../style/styled-css/display-style";
 import StillBackground from "../Background/StillBackground";
 import { distribution } from "../../assets/media/backgrounds";
 import { withinMonth, shouldRedirect } from "../../actions/actions";
-import CancelButton from "../Buttons/cancelButton";
+import { CancelButton } from "../Buttons/MaterialButton";
 import { Redirect } from "react-router-dom";
 
 const db = firebase.firestore();

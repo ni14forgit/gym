@@ -1,7 +1,7 @@
 const buttonStyle = {
   mainoption: {
-    width: "25vw",
-    height: "25vh",
+    width: "22vw",
+    height: "26vh",
     borderWidh: "3px",
     borderRadius: "2%",
     color: "white",

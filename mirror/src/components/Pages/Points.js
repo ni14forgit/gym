@@ -5,7 +5,7 @@ import { shouldRedirect, createDate } from "../../actions/actions";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
-import CancelButton from "../Buttons/cancelButton";
+import { CancelButton } from "../Buttons/MaterialButton";
 import displayFinalStyle from "../../style/styled-css/display-style";
 import giftsFinalStyle from "../../style/styled-css/gifts-selection";
 import StillBackground from "../Background/StillBackground";

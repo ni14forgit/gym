@@ -4,7 +4,7 @@ import firebase from "../../store/firebase";
 import displayFinalStyle from "../../style/styled-css/display-style";
 import StillBackground from "../Background/StillBackground";
 import { calendar } from "../../assets/media/backgrounds";
-import CancelButton from "../Buttons/cancelButton";
+import { CancelButton } from "../Buttons/MaterialButton";
 import { withinSpecificYear, shouldRedirect } from "../../actions/actions";
 import { Redirect } from "react-router-dom";
 
