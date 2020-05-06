@@ -25,7 +25,7 @@ function Weight() {
           <h1>Last 30 Days</h1>
         </HeaderStyleCool>
         <ExitButton>
-          <CancelButton></CancelButton>
+          <CancelButton color="white"></CancelButton>
         </ExitButton>
       </div>
       <LineGraph data={data} />

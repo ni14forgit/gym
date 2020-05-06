@@ -7,6 +7,9 @@ const configureStore = () => {
       //console.log("action is being dispatched");
       return { uid: uidInput };
     },
+    SET_AGE_USER: (curState, v) => {
+      return { age: v };
+    },
     // MOVE_TO_SIGNUP: (curState, payload) => {
     //   history.push("/login");
     // },
@@ -15,7 +18,7 @@ const configureStore = () => {
     // },
   };
 
-  initStore(actions, { uid: "" });
+  initStore(actions, { age: 0, uid: "" });
 };
 
 export default configureStore;

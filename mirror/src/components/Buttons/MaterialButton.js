@@ -6,11 +6,11 @@ import React from "react";
 import { IconButton } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
-const CancelButton = () => {
+const CancelButton = (props) => {
   const history = useHistory();
   return (
     <IconButton onClick={() => history.push("/")}>
-      <HighlightOffIcon style={{ fontSize: 60, color: "white" }} />
+      <HighlightOffIcon style={{ fontSize: 60, color: `${props.color}` }} />
     </IconButton>
   );
 };
@@ -18,7 +18,7 @@ const CancelButton = () => {
 const LikeButton = (props) => {
   return (
     <IconButton onClick={() => props.likefunc(props.id)}>
-      <ThumbUpIcon style={{ fontSize: 40, color: "white" }} />
+      <ThumbUpIcon style={{ fontSize: 40, color: `${props.color}` }} />
     </IconButton>
   );
 };
@@ -26,7 +26,7 @@ const LikeButton = (props) => {
 const RemoveButton = (props) => {
   return (
     <IconButton onClick={() => props.removefunc(props.id)}>
-      <RemoveIcon style={{ fontSize: 40, color: "white" }} />
+      <RemoveIcon style={{ fontSize: 40, color: `${props.color}` }} />
     </IconButton>
   );
 };

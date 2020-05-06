@@ -12,14 +12,19 @@ import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import FinalStyle from "../../style/styled-css/events-style";
-import { LikeButton, RemoveButton } from "../Buttons/MaterialButton";
+import {
+  LikeButton,
+  RemoveButton,
+  CancelButton,
+} from "../Buttons/MaterialButton";
 
 const Image = FinalStyle.image;
 const Background = FinalStyle.background;
 const Title = FinalStyle.title;
 const DateDiv = FinalStyle.date;
 const Like = FinalStyle.like;
-
+const Description = FinalStyle.description;
+const ExitButton = FinalStyle.exitbutton;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -27,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "left",
     margin: "auto",
     overflow: "hidden",
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
   },
   gridList: {
     width: "25wh",
@@ -70,16 +75,17 @@ const Events = () => {
     console.log(props.id);
     return (
       // <div style={style}>
-      <Background>
+      <Background color="#81EBFA">
         <Image>
           <img src={props.image}></img>
         </Image>
         <Title>{props.title}</Title>
+        <Description>{props.description}</Description>
         <DateDiv>
           <b>{props.date}</b>
         </DateDiv>
         <Like>
-          <LikeButton id={props.id} likefunc={addEvent} />
+          <LikeButton color="white" id={props.id} likefunc={addEvent} />
         </Like>
       </Background>
       // </div>
@@ -90,16 +96,17 @@ const Events = () => {
     console.log(props.id);
     return (
       // <div style={style}>
-      <Background>
+      <Background color="#76C7F5">
         <Image>
           <img src={props.image}></img>
         </Image>
         <Title>{props.title}</Title>
+        <Description>{props.description}</Description>
         <DateDiv>
           <b>{props.date}</b>
         </DateDiv>
         <Like>
-          <RemoveButton id={props.id} removefunc={removeEvent} />
+          <RemoveButton color="white" id={props.id} removefunc={removeEvent} />
         </Like>
       </Background>
       // </div>
@@ -107,8 +114,13 @@ const Events = () => {
   };
 
   return (
-    <div>
-      <h1>Your Events</h1>
+    <div style={{ backgroundColor: "", position: "absolute" }}>
+      <ExitButton>
+        <CancelButton color="#81EBFA"></CancelButton>
+      </ExitButton>
+      <h1 style={{ color: "#76C7F5", fontSize: "70px", textAlign: "center" }}>
+        Liked
+      </h1>
       <GridList className={classes.root}>
         {events.map((tile) => {
           return (
@@ -117,11 +129,14 @@ const Events = () => {
               image={tile.image}
               title={tile.title}
               date={tile.date}
+              description={tile.description}
             />
           );
         })}
       </GridList>
-      <h1> Events</h1>
+      <h1 style={{ color: "#81EBFA", fontSize: "70px", textAlign: "center" }}>
+        Open
+      </h1>
       <GridList className={classes.root}>
         {EventsData.map((tile) => {
           return (
@@ -129,6 +144,7 @@ const Events = () => {
               id={tile.id}
               image={tile.image}
               title={tile.title}
+              description={tile.description}
               date={tile.date}
             />
           );

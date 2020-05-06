@@ -175,7 +175,7 @@ const Points = () => {
           <h1>Collect Prizes at Desk</h1>
         </Instruction>
         <ExitButton>
-          <CancelButton></CancelButton>
+          <CancelButton color="white"></CancelButton>
         </ExitButton>
         {/* //{scoreTitle} */}
         <Title>{scorepoints}</Title>

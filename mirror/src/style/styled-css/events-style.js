@@ -19,8 +19,13 @@ const Background = styled.div`
   width: 30vw;
   height: 60vh;
   margin: 0.5vw;
-  background-color: pink;
+  background-color: ${(props) => props.color};
   border-radius: 5%;
+`;
+
+const ExitButton = styled.div`
+  top: 3%;
+  left: 3%;
 `;
 
 const Title = styled.div`
@@ -28,6 +33,15 @@ const Title = styled.div`
   padding-top: 2vh;
   padding-left: 2vh;
   font-size: 28px;
+  font-family: Arial;
+  font-weight: bold;
+`;
+
+const Description = styled.div`
+  color: white;
+  padding-top: 2vh;
+  padding-left: 2vh;
+  font-size: 20px;
   font-family: Arial;
   font-weight: bold;
 `;
@@ -55,6 +69,8 @@ const finalStyle = {
   title: { ...Title },
   date: { ...DateDiv },
   like: { ...Like },
+  description: { ...Description },
+  exitbutton: { ...ExitButton },
 };
 
 export default finalStyle;

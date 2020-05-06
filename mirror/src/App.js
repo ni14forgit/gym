@@ -7,6 +7,7 @@ import Distribution from "./components/Pages/Distribution";
 import Attendance from "./components/Pages/Attendance";
 import Points from "./components/Pages/Points";
 import Events from "./components/Events/Events";
+import Buddy from "./components/Buddy/Buddy";
 
 import AuthForm from "./components/Auth/SignUp/Auth";
 import LoginForm from "./components/Auth/Login/Login";
@@ -32,20 +33,26 @@ const App = () => {
     //history.replace("/distributionsurvey");
     //history.replace("/attendance");
     //history.replace("/weightsurvey");
-    history.replace("/events");
+    //history.replace("/events");
     //history.replace("/distribution");
     //history.replace("/weight");
     //history.replace("/signup");
     //history.replace("/points");
+    history.replace("/buddy");
   }, []);
 
   // Can implement SWITCH Statements for ROUTES
 
   return (
     <div>
+      <Route path="/buddy">
+        <Buddy />
+      </Route>
+
       <Route path="/events">
         <Events />
       </Route>
+
       <Route path="/signup">
         <AuthForm />
       </Route>

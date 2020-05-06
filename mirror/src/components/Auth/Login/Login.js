@@ -187,7 +187,7 @@ const Login = () => {
     <div>
       <Overlay>
         <ExitButton>
-          <CancelButton></CancelButton>
+          <CancelButton color="white"></CancelButton>
         </ExitButton>
         <ParentContainer>
           <Container>

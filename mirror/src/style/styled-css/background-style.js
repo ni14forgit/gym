@@ -32,35 +32,6 @@ const VideoFull = styled.video`
   z-index: -100;
 `;
 
-// const FullscreenVideoWrap = styled.div`
-//   position: relative;
-//   top: 0;
-//   left: 0;
-//   width: auto;
-//   height: auto;
-//   background-size: cover;
-//   min-width: 100%;
-//   min-height: 100%;
-//   & video : {
-//     min-width: 100%;
-//     min-height: 100%;
-//   }
-// `;
-
-// // background-size: cover;
-// // overflow: hidden;
-
-// const VideoFull = styled.video`
-//   position: relative;
-//   right: 0;
-//   bottom: 0;
-//   min-width: 100%;
-//   min-height: 100%;
-//   width: auto;
-//   height: auto;
-//   z-index: -100;
-// `;
-
 const ImgFull = styled.div`
   position: absolute;
   z-index: -100;

@@ -16,6 +16,14 @@ const titles = [
 
 const dates = ["Jan 2-3", "Feb 2-3", "Feb 17-18", "April 4-5", "May 23"];
 
+const descriptions = [
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+];
+
 const EventsData = [];
 for (var i = 0; i < titles.length; i++) {
   const event = {};
@@ -23,6 +31,7 @@ for (var i = 0; i < titles.length; i++) {
   event.title = titles[i];
   event.date = dates[i];
   event.id = i;
+  event.description = descriptions[i];
   EventsData.push(event);
 }
 
