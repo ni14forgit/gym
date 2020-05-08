@@ -3,20 +3,14 @@ import EventsData from "./EventsData";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import GridList from "@material-ui/core/GridList";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import Radio from "@material-ui/core/Radio";
-import Paper from "@material-ui/core/Paper";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
-import ListSubheader from "@material-ui/core/ListSubheader";
 import FinalStyle from "../../style/styled-css/events-style";
 import {
   LikeButton,
   RemoveButton,
   CancelButton,
 } from "../Buttons/MaterialButton";
+import StillBackground from "./../Background/StillBackground";
+import { distribution } from "./../../assets/media/backgrounds";
 
 const Image = FinalStyle.image;
 const Background = FinalStyle.background;
@@ -29,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "left",
+    justifyContent: "center",
     margin: "auto",
     overflow: "hidden",
     // backgroundColor: theme.palette.background.paper,
@@ -49,33 +43,33 @@ const useStyles = makeStyles((theme) => ({
 const Events = () => {
   const classes = useStyles();
   const [events, setEvents] = useState([]);
-  const addEvent = (id) => {
-    for (var i = 0; i < events.length; i++) {
-      console.log(events[i].id);
-      console.log(id);
-      if (events[i].id === id) {
-        return;
-      }
-    }
+  // const addEvent = (id) => {
+  //   for (var i = 0; i < events.length; i++) {
+  //     console.log(events[i].id);
+  //     console.log(id);
+  //     if (events[i].id === id) {
+  //       return;
+  //     }
+  //   }
 
-    setEvents((old) => [...old, EventsData[id]]);
-    console.log(id);
-    console.log(events);
-  };
-  const removeEvent = (id) => {
-    function notElement(compare_event) {
-      return id !== compare_event.id;
-    }
-    const newevents = events.filter(notElement);
-    setEvents(newevents);
-    console.log(id);
-    console.log(events);
-  };
+  //   setEvents((old) => [...old, EventsData[id]]);
+  //   console.log(id);
+  //   console.log(events);
+  // };
+  // const removeEvent = (id) => {
+  //   function notElement(compare_event) {
+  //     return id !== compare_event.id;
+  //   }
+  //   const newevents = events.filter(notElement);
+  //   setEvents(newevents);
+  //   console.log(id);
+  //   console.log(events);
+  // };
   const GeneralEvent = (props) => {
     console.log(props.id);
     return (
       // <div style={style}>
-      <Background color="#81EBFA">
+      <Background color="#137cbd">
         <Image>
           <img src={props.image}></img>
         </Image>
@@ -84,59 +78,40 @@ const Events = () => {
         <DateDiv>
           <b>{props.date}</b>
         </DateDiv>
-        <Like>
+        {/* <Like>
           <LikeButton color="white" id={props.id} likefunc={addEvent} />
-        </Like>
+        </Like> */}
       </Background>
       // </div>
     );
   };
 
-  const LikedEvent = (props) => {
-    console.log(props.id);
-    return (
-      // <div style={style}>
-      <Background color="#76C7F5">
-        <Image>
-          <img src={props.image}></img>
-        </Image>
-        <Title>{props.title}</Title>
-        <Description>{props.description}</Description>
-        <DateDiv>
-          <b>{props.date}</b>
-        </DateDiv>
-        <Like>
-          <RemoveButton color="white" id={props.id} removefunc={removeEvent} />
-        </Like>
-      </Background>
-      // </div>
-    );
-  };
+  // const LikedEvent = (props) => {
+  //   console.log(props.id);
+  //   return (
+  //     // <div style={style}>
+  //     <Background color="#76C7F5">
+  //       <Image>
+  //         <img src={props.image}></img>
+  //       </Image>
+  //       <Title>{props.title}</Title>
+  //       <Description>{props.description}</Description>
+  //       <DateDiv>
+  //         <b>{props.date}</b>
+  //       </DateDiv>
+  //       <Like>
+  //         <RemoveButton color="white" id={props.id} removefunc={removeEvent} />
+  //       </Like>
+  //     </Background>
+  //     // </div>
+  //   );
+  // };
 
   return (
-    <div style={{ backgroundColor: "", position: "absolute" }}>
+    <div style={{ backgroundColor: "#81EBFA" }}>
       <ExitButton>
-        <CancelButton color="#81EBFA"></CancelButton>
+        <CancelButton color="white"></CancelButton>
       </ExitButton>
-      <h1 style={{ color: "#76C7F5", fontSize: "70px", textAlign: "center" }}>
-        Liked
-      </h1>
-      <GridList className={classes.root}>
-        {events.map((tile) => {
-          return (
-            <LikedEvent
-              id={tile.id}
-              image={tile.image}
-              title={tile.title}
-              date={tile.date}
-              description={tile.description}
-            />
-          );
-        })}
-      </GridList>
-      <h1 style={{ color: "#81EBFA", fontSize: "70px", textAlign: "center" }}>
-        Open
-      </h1>
       <GridList className={classes.root}>
         {EventsData.map((tile) => {
           return (

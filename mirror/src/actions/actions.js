@@ -16,6 +16,22 @@ const createDate = () => {
   return year + "-" + month + "-" + day;
 };
 
+const createMonthDate = (dateString) => {
+  const historyDate = new Date(dateString);
+  var newDate = new Date(historyDate.setMonth(historyDate.getMonth() + 1));
+  const year = newDate.getFullYear();
+  var month = newDate.getMonth() + 1;
+  if (Number(month) < 10) {
+    month = "0" + month;
+  }
+  var day = newDate.getDate();
+  if (Number(day) < 10) {
+    day = "0" + day;
+  }
+  //console.log(year + "-" + month + "-" + day);
+  return year + "-" + month + "-" + day;
+};
+
 const withinMonth = (dateString) => {
   const today = new Date();
   const historyDate = new Date(dateString);
@@ -72,4 +88,5 @@ export {
   withinSpecificYear,
   shouldRedirect,
   withinSameDay,
+  createMonthDate,
 };

@@ -16,16 +16,18 @@ const Container = styled.div`
   z-index: 2;
 `;
 
-// height: 100%;
-// width: 100%;
-// position: absolute;
-// top: 0;
-// left: 0;
-
 const Overlay = styled.div`
   background-color: #225470;
   z-index: 1;
   opacity: 1;
+`;
+
+const NavBar = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  padding: 2vh;
 `;
 
 const ParentContainer = styled.div`
@@ -48,7 +50,9 @@ const KeyBoardContainer = styled.div`
 `;
 
 const ExitButton = styled.div`
-  position: relative;
+  position: absolute;
+  top: 1vh;
+  left: 1vh;
   z-index: 3;
 `;
 
@@ -59,7 +63,7 @@ const authStyleFinal = {
   parentContainer: { ...ParentContainer },
   keyBoardContainer: { ...KeyBoardContainer },
   exitButton: { ...ExitButton },
+  navBar: { ...NavBar },
 };
 
 export default authStyleFinal;
-//export { Error, Container, Overlay, ParentContainer, KeyBoardContainer };

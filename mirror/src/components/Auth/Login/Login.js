@@ -13,14 +13,12 @@ import { useStore } from "../../../store/store";
 import { useHistory } from "react-router-dom";
 import authStyleFinal from "../../../style/styled-css/auth-style";
 import { createDate, withinSameDay } from "../../../actions/actions";
-import { CancelButton } from "../../Buttons/MaterialButton";
 
 const KeyBoardContainer = authStyleFinal.keyBoardContainer;
-const Overlay = authStyleFinal.overlay;
+// const Overlay = authStyleFinal.overlay;
 const ParentContainer = authStyleFinal.parentContainer;
 const Container = authStyleFinal.container;
 const Error = authStyleFinal.error;
-const ExitButton = authStyleFinal.exitButton;
 
 const Login = () => {
   const buttonstyle = makeStyles(buttonStyle);
@@ -185,75 +183,66 @@ const Login = () => {
 
   return (
     <div>
-      <Overlay>
-        <ExitButton>
-          <CancelButton color="white"></CancelButton>
-        </ExitButton>
-        <ParentContainer>
-          <Container>
-            <form
-              className={inputstyle_data.form}
-              noValidate
-              autoComplete="off"
-            >
-              <TextField
-                key={email}
-                className={inputstyle_data.input}
-                id={email}
-                error={!information.email.valid}
-                label={information.email.placeholder}
-                color="primary"
-                value={information.email.value}
-                onChange={(event) => onChangeDataHandler(event, email)}
-                onFocus={() => setLocation(email)}
-                helperText={information.email.helperText}
-                InputProps={{
-                  className: inputstyle_data.text,
-                }}
-              />
-
-              <TextField
-                key={password}
-                className={inputstyle_data.input}
-                id={password}
-                error={!information.password.valid}
-                label={information.password.placeholder}
-                color="primary"
-                type={"password"}
-                value={information.password.value}
-                onChange={(event) => onChangeDataHandler(event, password)}
-                onFocus={() => setLocation(password)}
-                helperText={information.password.helperText}
-                InputProps={{
-                  className: inputstyle_data.text,
-                }}
-              />
-
-              <Button
-                className={buttonstyle_data.authpage}
-                variant="outlined"
-                color="primary"
-                size="medium"
-                onClick={submitSignUpHandler}
-              >
-                login
-              </Button>
-            </form>
-            {errorMessage ? (
-              <Error>
-                <h1>Incorrect login, please try again.</h1>
-              </Error>
-            ) : null}
-          </Container>
-          <KeyBoardContainer>
-            <Keyboard
-              onChange={onKeyChange}
-              inputName={"default"}
-              keyboardRef={(r) => (keyboard.current = r)}
+      <ParentContainer>
+        <Container>
+          <form className={inputstyle_data.form} noValidate autoComplete="off">
+            <TextField
+              key={email}
+              className={inputstyle_data.input}
+              id={email}
+              error={!information.email.valid}
+              label={information.email.placeholder}
+              color="primary"
+              value={information.email.value}
+              onChange={(event) => onChangeDataHandler(event, email)}
+              onFocus={() => setLocation(email)}
+              helperText={information.email.helperText}
+              InputProps={{
+                className: inputstyle_data.text,
+              }}
             />
-          </KeyBoardContainer>
-        </ParentContainer>
-      </Overlay>
+
+            <TextField
+              key={password}
+              className={inputstyle_data.input}
+              id={password}
+              error={!information.password.valid}
+              label={information.password.placeholder}
+              color="primary"
+              type={"password"}
+              value={information.password.value}
+              onChange={(event) => onChangeDataHandler(event, password)}
+              onFocus={() => setLocation(password)}
+              helperText={information.password.helperText}
+              InputProps={{
+                className: inputstyle_data.text,
+              }}
+            />
+
+            <Button
+              className={buttonstyle_data.authpage}
+              variant="outlined"
+              color="primary"
+              size="medium"
+              onClick={submitSignUpHandler}
+            >
+              login
+            </Button>
+          </form>
+          {errorMessage ? (
+            <Error>
+              <h1>Incorrect login, please try again.</h1>
+            </Error>
+          ) : null}
+        </Container>
+        <KeyBoardContainer>
+          <Keyboard
+            onChange={onKeyChange}
+            inputName={"default"}
+            keyboardRef={(r) => (keyboard.current = r)}
+          />
+        </KeyBoardContainer>
+      </ParentContainer>
     </div>
   );
 };

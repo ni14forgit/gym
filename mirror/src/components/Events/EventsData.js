@@ -3,8 +3,10 @@ import cardio from "../../assets/media/workouts/cardio.jpg";
 import legs from "../../assets/media/workouts/legs.jpg";
 import run from "../../assets/media/workouts/run.jpg";
 import sports from "../../assets/media/workouts/sports.jpg";
+import oldman from "../../assets/media/people/oldman.jpg";
 
 const activity = [abs, cardio, legs, run, sports];
+// const activity = [oldman, oldman, oldman, oldman, oldman];
 
 const titles = [
   "Basketball 3 v. 3",

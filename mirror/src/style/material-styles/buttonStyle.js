@@ -30,8 +30,8 @@ const buttonStyle = {
     fontSize: "large",
   },
   auth: {
-    width: "200px",
-    height: "60px",
+    width: "10vw",
+    height: "8vh",
     fontSize: "30px",
     textAlign: "center",
     color: "white",
@@ -55,6 +55,25 @@ const buttonStyle = {
   },
   weightOption: {
     fontSize: "30px",
+  },
+  buddy: {
+    width: "200px",
+    height: "50px",
+    borderWidth: "5px",
+    margin: "auto",
+    outlinedPrimary: "white",
+    color: "#137cbd",
+    fontSize: "20px",
+  },
+  matchsendmessage: {
+    height: "5vh",
+    backgroundColor: "#137cbd",
+    color: "white",
+    "&:hover": {
+      border: "2px solid #137cbd",
+      color: "#137cbd",
+      backgroundColor: "#FCD8F4",
+    },
   },
 };
 

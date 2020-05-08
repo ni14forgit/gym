@@ -26,7 +26,7 @@ const Pad = styled.div`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   text-align: center;
   min-height: 100vh;
@@ -41,7 +41,13 @@ const GridContainer = styled.div`
 
 const Title = styled.div`
   z-index: 2;
-  margin-bottom: 20px;
+`;
+
+const Copyright = styled.div`
+  z-index: 2;
+  position: absolute;
+  bottom: 2vh;
+  left: 75vw;
 `;
 
 const finalStyle = {
@@ -52,6 +58,7 @@ const finalStyle = {
   container: { ...Container },
   title: { ...Title },
   gridContainer: { ...GridContainer },
+  copyright: { ...Copyright },
 };
 
 export default finalStyle;

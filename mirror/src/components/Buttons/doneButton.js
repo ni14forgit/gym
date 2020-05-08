@@ -23,7 +23,6 @@ const DoneButton = (props) => {
     // </IconButton>
     <Button
       className={buttonstyle_data.points}
-      variant="outlined"
       color="primary"
       size="medium"
       onClick={props.submitContinue}

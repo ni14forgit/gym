@@ -9,8 +9,9 @@ import Points from "./components/Pages/Points";
 import Events from "./components/Events/Events";
 import Buddy from "./components/Buddy/Buddy";
 
-import AuthForm from "./components/Auth/SignUp/Auth";
+import SignupForm from "./components/Auth/SignUp/Signup";
 import LoginForm from "./components/Auth/Login/Login";
+import Auth from "./components/Auth/Auth";
 
 import { Route, useHistory } from "react-router-dom";
 
@@ -38,7 +39,8 @@ const App = () => {
     //history.replace("/weight");
     //history.replace("/signup");
     //history.replace("/points");
-    history.replace("/buddy");
+    //history.replace("/buddy");
+    // history.replace("/auth");
   }, []);
 
   // Can implement SWITCH Statements for ROUTES
@@ -53,8 +55,12 @@ const App = () => {
         <Events />
       </Route>
 
-      <Route path="/signup">
-        <AuthForm />
+      {/* <Route path="/signup">
+        <SignupForm />
+      </Route> */}
+
+      <Route path="/auth">
+        <Auth />
       </Route>
 
       <Route path="/points">
@@ -77,9 +83,9 @@ const App = () => {
         <Distribution></Distribution>
       </Route>
 
-      <Route path="/login">
+      {/* <Route path="/login">
         <LoginForm />
-      </Route>
+      </Route> */}
 
       <Route exact path="/">
         <MainScreen />
