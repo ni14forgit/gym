@@ -2,17 +2,18 @@ import styled from "styled-components";
 
 const Selection = styled.div`
   position: relative;
-  padding-bottom: 1%;
 `;
 
 const Parent = styled.div`
   display: flex;
   flex-flow: column;
-  align-items: center;
+  justify-content: space-around;
 `;
 
 const Title = styled.div`
+  position: relative;
   text-align: center;
+  margin: 3vh;
 `;
 
 const finalStyle = {

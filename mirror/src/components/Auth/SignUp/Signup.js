@@ -302,7 +302,7 @@ const Auth = () => {
         return x;
       })
       .then((something) => {
-        history.push("/distributionsurvey");
+        history.push("/signsurveypath");
         //history.push("/distributionsurvey");
       });
   };

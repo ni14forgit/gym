@@ -9,14 +9,14 @@ import Points from "./components/Pages/Points";
 import Events from "./components/Events/Events";
 import Buddy from "./components/Buddy/Buddy";
 
-import SignupForm from "./components/Auth/SignUp/Signup";
-import LoginForm from "./components/Auth/Login/Login";
 import Auth from "./components/Auth/Auth";
 
 import { Route, useHistory } from "react-router-dom";
 
-import DistributionSurvey from "./components/Survey/DistributionSurvey";
-import WeightSurvey from "./components/Survey/WeightSurvey";
+// import DistributionSurvey from "./components/Survey/Surveys/DistributionSurvey";
+// import WeightSurvey from "./components/Survey/Surveys/WeightSurvey";
+
+import SurveyPath from "./components/Survey/SurveyPath";
 
 // import { useStore } from "./store/store";
 
@@ -40,7 +40,8 @@ const App = () => {
     //history.replace("/signup");
     //history.replace("/points");
     //history.replace("/buddy");
-    // history.replace("/auth");
+    //history.replace("/auth");
+    //history.push("/signsurveypath");
   }, []);
 
   // Can implement SWITCH Statements for ROUTES
@@ -55,9 +56,13 @@ const App = () => {
         <Events />
       </Route>
 
-      {/* <Route path="/signup">
-        <SignupForm />
-      </Route> */}
+      <Route path="/signsurveypath">
+        <SurveyPath counter={3} />
+      </Route>
+
+      <Route path="/logsurveypath">
+        <SurveyPath counter={2} />
+      </Route>
 
       <Route path="/auth">
         <Auth />
@@ -75,25 +80,17 @@ const App = () => {
         <Attendance />
       </Route>
 
-      <Route path="/weightsurvey">
-        <WeightSurvey />
-      </Route>
-
       <Route path="/distribution">
         <Distribution></Distribution>
       </Route>
-
-      {/* <Route path="/login">
-        <LoginForm />
-      </Route> */}
 
       <Route exact path="/">
         <MainScreen />
       </Route>
 
-      <Route path="/distributionsurvey">
+      {/* <Route path="/distributionsurvey">
         <DistributionSurvey />
-      </Route>
+      </Route> */}
     </div>
   );
 };

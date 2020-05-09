@@ -3,12 +3,12 @@ import React, { useState, useEffect } from "react";
 // import firebase from "../../store/firebase";
 import $ from "jquery";
 import { useHistory } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import ReactLoading from "react-loading";
-import wsFinalStyle from "../../style/styled-css/weightsurvey-style";
-import { shouldRedirect } from "../../actions/actions";
+import wsFinalStyle from "../../../style/styled-css/weightsurvey-style";
+import { shouldRedirect } from "../../../actions/actions";
 import { Redirect } from "react-router-dom";
-import { buttonStyle } from "../../style/material-styles/totalStyles";
+import { buttonStyle } from "../../../style/material-styles/totalStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import io from "socket.io-client";
 let endpoint = "http://localhost:5000";
@@ -16,14 +16,19 @@ let socket = io.connect(`${endpoint}`);
 const MARGIN_OF_ERROR = 9;
 
 // const db = firebase.firestore();
-const WeightSurvey = () => {
+const WeightSurvey = (props) => {
   const Title = wsFinalStyle.title;
   const WeightTitle = wsFinalStyle.weighttitle;
   const Container = wsFinalStyle.container;
   const ButtonVertical = wsFinalStyle.buttonVertical;
 
   // const [state, dispatch] = useStore();
-  const history = useHistory();
+  // const history = useHistory();
+
+  const style = {
+    color: "#137cbd",
+    fontWeight: "bold",
+  };
 
   const buttonstyle = makeStyles(buttonStyle);
   const buttonstyle_data = buttonstyle();
@@ -53,7 +58,7 @@ const WeightSurvey = () => {
   // };
 
   const skip = () => {
-    history.push("/");
+    props.increment();
   };
 
   const title = () => {
@@ -107,9 +112,9 @@ const WeightSurvey = () => {
     setFinalWeight(weights[3] + MARGIN_OF_ERROR);
   }, [weights, myTitle]);
 
-  if (shouldRedirect()) {
-    return <Redirect to="/" />;
-  }
+  // if (shouldRedirect()) {
+  //   return <Redirect to="/" />;
+  // }
 
   return (
     //Some timed event to trigger the call of submit weight
@@ -120,22 +125,16 @@ const WeightSurvey = () => {
       </Title>
       {displayInfo}
       <ButtonVertical>
-        <Button
-          className={buttonstyle_data.weightOption}
-          size="large"
-          fontSize="large"
-          onClick={skip}
-        >
-          Skip If Not On Wii Fit Board
+        <Button onClick={skip}>
+          <Typography style={style} variant="h5">
+            Skip If Not On Wii Fit Board
+          </Typography>
         </Button>
         {show ? (
-          <Button
-            className={buttonstyle_data.weightOption}
-            size="large"
-            fontSize="large"
-            onClick={skip}
-          >
-            Submit Weight
+          <Button onClick={skip}>
+            <Typography style={style} variant="h5">
+              Submit Weight
+            </Typography>
           </Button>
         ) : null}
       </ButtonVertical>

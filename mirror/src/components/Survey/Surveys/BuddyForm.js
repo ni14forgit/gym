@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
-import SmoothSlide from "./Form/SliderForm";
 import { Button, Typography, makeStyles, Paper } from "@material-ui/core";
 import {
   createDate,
   withinMonth,
   createMonthDate,
-} from "../../actions/actions";
-import Options from "./Form/MultiSelect";
-import Switch from "./Form/Switch";
-import { SmoothSlider, DiscreteSlider } from "./Form/SliderForm";
-import RadioForm from "./Form/RadioForm";
-import buddyStyleFinal from "../../style/styled-css/buddy-style";
-import { buttonStyle } from "../../style/material-styles/totalStyles";
-import firebase from "../../store/firebase";
-import { useStore } from "../../store/store";
+} from "../../../actions/actions";
+import Options from "../../Buddy/Form/MultiSelect";
+import Switch from "../../Buddy/Form/Switch";
+import { SmoothSlider, DiscreteSlider } from "../../Buddy/Form/SliderForm";
+import RadioForm from "../../Buddy/Form/RadioForm";
+import buddyStyleFinal from "../../../style/styled-css/buddy-style";
+import { buttonStyle } from "../../../style/material-styles/totalStyles";
+import firebase from "../../../store/firebase";
 
 const db = firebase.firestore();
 
@@ -55,8 +53,6 @@ const grades = [FRESHMAN, SOPHOMORE, JUNIOR, SENIOR, GRADUATE];
 const repetitions = [1, 2, 3, 4, 5, 6, 7];
 
 const Form = (props) => {
-  const [state, dispatch] = useStore();
-
   const convertDataToDict = (input) => {
     const len = input.length;
     const dict = {};
@@ -72,11 +68,9 @@ const Form = (props) => {
   const [age, setAge] = useState(20);
   const [repetition, setRepetition] = useState(3);
   const [goalsOptions, setGoalsOptions] = useState(convertDataToDict(goals));
-  const [date, setDate] = useState(new Date());
   const [characterOptions, setCharacterOptions] = useState(
     convertDataToDict(characteristics)
   );
-  const [mistake, setMistake] = useState(false);
 
   const Divider = buddyStyleFinal.divider;
   const RowContainer = buddyStyleFinal.rowContainer;
@@ -122,53 +116,6 @@ const Form = (props) => {
     setAge(newValue);
   };
 
-  useEffect(() => {
-    // db.collection("users")
-    //   .doc(uid_value)
-    //   .get()
-    //   .then(function (doc) {
-    //     if (doc.exists) {
-    //       console.log("Document data:", doc.data());
-    //       const myprofiledate = doc.data().profiledate;
-    //       setDate(myprofiledate);
-    //     }
-    //   });
-    // .update({
-    //   studentStatus: isStudent,
-    //   gradeStatus: grade,
-    //   experienceStatus: experience,
-    //   ageStatus: age,
-    //   repetitionStatus: repetition,
-    //   characteristicStatus: DictToList(characterOptions),
-    //   goalStatus: DictToList(goalsOptions),
-    //   profiledate: createDate(),
-    // });
-    const convertFireBaseToDict = (input, firedata) => {
-      const len = input.length;
-      const dict = {};
-      for (var i = 0; i < firedata.length; i++) {
-        dict[firedata[i]] = true;
-      }
-      for (var i = 0; i < len; i++) {
-        if (!(i in dict)) {
-          dict[i] = false;
-        }
-      }
-      return dict;
-    };
-    const profile = state.profile;
-    setIsStudent(profile.studentStatus);
-    setGrade(profile.gradeStatus);
-    setExperience(profile.experienceStatus);
-    setAge(profile.ageStatus);
-    setRepetition(profile.repetitionStatus);
-    setCharacterOptions(
-      convertFireBaseToDict(characteristics, profile.characteristicStatus)
-    );
-    setGoalsOptions(convertFireBaseToDict(goals, profile.goalStatus));
-    setDate(profile.profiledate);
-  }, []);
-
   const DictToList = (input) => {
     const keys = Object.keys(input);
     var listToSend = [];
@@ -180,56 +127,22 @@ const Form = (props) => {
     return listToSend;
   };
 
-  async function waitedMonth() {
-    const result = await db
-      .collection("users")
-      .doc(uid_value)
-      .get()
-      .then(function (doc) {
-        if (doc.exists) {
-          console.log("Document data:", doc.data());
-          const myprofiledate = doc.data().profiledate;
-          if (myprofiledate) {
-            console.log("hehe");
-            if (!withinMonth(myprofiledate)) {
-              console.log(myprofiledate);
-              console.log("lololol");
-              return true;
-            }
-          } else {
-            console.log("am i true");
-            return true;
-          }
-        } else {
-          console.log("No such document!");
-        }
-        return false;
-      });
-
-    return result;
-  }
-
   async function submitForm() {
-    const bool = await waitedMonth();
-    if (bool) {
-      console.log("happened");
-      db.collection("users")
-        .doc(uid_value)
-        .update({
-          studentStatus: isStudent,
-          gradeStatus: grade,
-          experienceStatus: experience,
-          ageStatus: age,
-          repetitionStatus: repetition,
-          characteristicStatus: DictToList(characterOptions),
-          goalStatus: DictToList(goalsOptions),
-          profiledate: createDate(),
-          filledForm: true,
-        });
-      props.sendToMain();
-    } else {
-      setMistake(true);
-    }
+    console.log("happened");
+    db.collection("users")
+      .doc(uid_value)
+      .update({
+        studentStatus: isStudent,
+        gradeStatus: grade,
+        experienceStatus: experience,
+        ageStatus: age,
+        repetitionStatus: repetition,
+        characteristicStatus: DictToList(characterOptions),
+        goalStatus: DictToList(goalsOptions),
+        profiledate: createDate(),
+        filledForm: true,
+      });
+    props.increment();
   }
 
   return (
@@ -240,17 +153,10 @@ const Form = (props) => {
       }}
     >
       <ColumnContainer color="">
-        <Message>
-          <Typography
-            style={{ fontWeight: mistake ? "bold" : "normal" }}
-            variant={mistake ? "h5" : "h6"}
-          >
-            {withinMonth(date)
-              ? "Cannot Update Till: " + createMonthDate(date)
-              : null}
-          </Typography>
-        </Message>
-        <Typography variant="h4" style={{ margin: "auto" }}>
+        <Typography
+          variant="h4"
+          style={{ margin: "auto", paddingBottom: "2vh" }}
+        >
           About Yourself
         </Typography>
         <RowContainer>

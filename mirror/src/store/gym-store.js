@@ -10,6 +10,9 @@ const configureStore = () => {
     SET_AGE_USER: (curState, v) => {
       return { age: v };
     },
+    FORM_SETTINGS: (curState, info) => {
+      return { profile: { ...info } };
+    },
     // MOVE_TO_SIGNUP: (curState, payload) => {
     //   history.push("/login");
     // },
@@ -18,7 +21,7 @@ const configureStore = () => {
     // },
   };
 
-  initStore(actions, { age: 0, uid: "" });
+  initStore(actions, { age: 0, uid: "", profile: {} });
 };
 
 export default configureStore;

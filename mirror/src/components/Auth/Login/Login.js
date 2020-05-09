@@ -94,7 +94,7 @@ const Login = () => {
           });
 
         //history.push("/main");
-        history.push("/distributionsurvey");
+        history.push("/logsurveypath");
         return;
       })
       .catch(function (error) {

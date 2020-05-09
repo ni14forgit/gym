@@ -18,6 +18,29 @@ const Person = (props) => {
   const buttonstyle = makeStyles(buttonStyle);
   const buttonstyle_data = buttonstyle();
 
+  const sendEmail = () => {
+    const emailcontent = {
+      personalizations: [{ to: [{ email: "test@example.com" }] }],
+      from: { email: "test@example.com" },
+      subject: "Sending with SendGrid is Fun",
+      content: [
+        {
+          type: "text/plain",
+          value: "and easy to do anywhere, even with cURL",
+        },
+      ],
+    };
+    console.log(process.env.REACT_APP_EMAIL_KEY);
+    fetch("https://api.sendgrid.com/v3/mail/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+        Authentication: process.env.REACT_APP_EMAIL_KEY,
+      },
+      body: JSON.stringify(emailcontent),
+    });
+  };
+
   return (
     <TotalProfile>
       <ImageBio>
@@ -36,6 +59,7 @@ const Person = (props) => {
         </Background>
       </ImageBio>
       <Button
+        onClick={sendEmail}
         style={{ margin: "auto" }}
         variant="contained"
         className={buttonstyle_data.matchsendmessage}
