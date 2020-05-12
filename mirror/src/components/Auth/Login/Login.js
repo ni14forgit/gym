@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import {
   inputStyle,
@@ -12,7 +12,11 @@ import firebase from "../../../store/firebase";
 import { useStore } from "../../../store/store";
 import { useHistory } from "react-router-dom";
 import authStyleFinal from "../../../style/styled-css/auth-style";
-import { createDate, withinSameDay } from "../../../actions/actions";
+import {
+  createDate,
+  withinSameDay,
+  determinePeriodOfDay,
+} from "../../../actions/actions";
 
 const KeyBoardContainer = authStyleFinal.keyBoardContainer;
 // const Overlay = authStyleFinal.overlay;
@@ -72,7 +76,7 @@ const Login = () => {
         db.collection("users")
           .doc(uid)
           .collection("attendance")
-          .add({ date: createDate(), value: 1 });
+          .add({ date: createDate(), time: determinePeriodOfDay() });
 
         db.collection("users")
           .doc(uid)
@@ -221,12 +225,9 @@ const Login = () => {
 
             <Button
               className={buttonstyle_data.authpage}
-              variant="outlined"
-              color="primary"
-              size="medium"
               onClick={submitSignUpHandler}
             >
-              login
+              <Typography variant="h5">continue</Typography>
             </Button>
           </form>
           {errorMessage ? (

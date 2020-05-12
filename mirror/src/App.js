@@ -13,8 +13,7 @@ import Auth from "./components/Auth/Auth";
 
 import { Route, useHistory } from "react-router-dom";
 
-// import DistributionSurvey from "./components/Survey/Surveys/DistributionSurvey";
-// import WeightSurvey from "./components/Survey/Surveys/WeightSurvey";
+import Retrieve from "./actions/retrieve";
 
 import SurveyPath from "./components/Survey/SurveyPath";
 
@@ -42,6 +41,7 @@ const App = () => {
     //history.replace("/buddy");
     //history.replace("/auth");
     //history.push("/signsurveypath");
+    // history.push("/retrieve");
   }, []);
 
   // Can implement SWITCH Statements for ROUTES
@@ -50,6 +50,10 @@ const App = () => {
     <div>
       <Route path="/buddy">
         <Buddy />
+      </Route>
+
+      <Route path="/retrieve">
+        <Retrieve />
       </Route>
 
       <Route path="/events">

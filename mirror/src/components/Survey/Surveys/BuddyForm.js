@@ -29,15 +29,7 @@ const goals = [
   "get a beach bod",
   "eat healthier",
   "lift a certain amount",
-  "some other goal",
-  "get a beach bod",
-  "eat healthier",
-  "lift a certain amount",
-  "some other goal",
-  "get a beach bod",
-  "eat healthier",
-  "lift a certain amount",
-  "some other goal",
+  "reduce stress",
 ];
 
 const characteristics = [
@@ -129,7 +121,8 @@ const Form = (props) => {
 
   async function submitForm() {
     console.log("happened");
-    db.collection("users")
+    await db
+      .collection("users")
       .doc(uid_value)
       .update({
         studentStatus: isStudent,

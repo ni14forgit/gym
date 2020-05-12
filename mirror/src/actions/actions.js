@@ -82,6 +82,19 @@ const withinSameDay = (dateString) => {
   return false;
 };
 
+const determinePeriodOfDay = () => {
+  const today = new Date();
+  const hour = today.getHours();
+
+  if (hour <= 11) {
+    return 1;
+  } else if (hour < 17) {
+    return 2;
+  } else {
+    return 3;
+  }
+};
+
 export {
   createDate,
   withinMonth,
@@ -89,4 +102,5 @@ export {
   shouldRedirect,
   withinSameDay,
   createMonthDate,
+  determinePeriodOfDay,
 };

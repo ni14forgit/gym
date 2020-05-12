@@ -47,7 +47,7 @@ function Attendance() {
         querySnapshot.forEach(function (doc) {
           const x = doc.data();
           if (withinSpecificYear(x.date)) {
-            const y = { day: x.date, value: x.value };
+            const y = { day: x.date, value: 1 };
             data.push(y);
           }
           //console.log(doc.id, " => ", doc.data());

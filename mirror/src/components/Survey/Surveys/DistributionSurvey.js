@@ -60,7 +60,7 @@ const DistributionSurvey = (props) => {
   const myOriginalSelection = {
     abs: 0,
     cardio: 0,
-    idk: 0,
+    general: 0,
     deadlift: 0,
     legs: 0,
     mandeadlift: 0,

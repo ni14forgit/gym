@@ -71,6 +71,7 @@ const SignupSurveyPath = (props) => {
           console.log("No such document!");
         }
       });
+    console.log("redirect about to happen");
     return <Redirect to="/" />;
   }
 

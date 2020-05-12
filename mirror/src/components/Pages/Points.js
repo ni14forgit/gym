@@ -137,21 +137,24 @@ const Points = () => {
   const Selection = giftsFinalStyle.selection;
   const Title = giftsFinalStyle.title;
 
-  const purchase = () => {
-    const selToPush = {};
+  const createBoughtItems = () => {
+    const selToPush = [];
     const keys = Object.keys(selection);
     for (const key of keys) {
       if (selection[key] > 0) {
-        selToPush[key] = selection[key];
+        selToPush.push(key);
       }
     }
+    return selToPush;
+  };
 
+  const purchase = () => {
     db.collection("users")
       .doc(uid_value)
       .update({
         score: scorepoints,
         date: createDate(),
-        ...selToPush,
+        items: createBoughtItems(),
       })
       .catch(function (error, data) {
         // console.log(error);

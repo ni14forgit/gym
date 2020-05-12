@@ -17,7 +17,7 @@ const Container = styled.div`
 `;
 
 const Overlay = styled.div`
-  background-color: #225470;
+  background-color: #137cbd;
   z-index: 1;
   opacity: 1;
 `;

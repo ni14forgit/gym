@@ -11,6 +11,8 @@ const configureStore = () => {
       return { age: v };
     },
     FORM_SETTINGS: (curState, info) => {
+      console.log("FORM BEING SET");
+      console.log(info);
       return { profile: { ...info } };
     },
     // MOVE_TO_SIGNUP: (curState, payload) => {

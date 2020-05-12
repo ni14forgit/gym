@@ -31,15 +31,7 @@ const goals = [
   "get a beach bod",
   "eat healthier",
   "lift a certain amount",
-  "some other goal",
-  "get a beach bod",
-  "eat healthier",
-  "lift a certain amount",
-  "some other goal",
-  "get a beach bod",
-  "eat healthier",
-  "lift a certain amount",
-  "some other goal",
+  "reduce stress",
 ];
 
 const characteristics = [
@@ -123,26 +115,6 @@ const Form = (props) => {
   };
 
   useEffect(() => {
-    // db.collection("users")
-    //   .doc(uid_value)
-    //   .get()
-    //   .then(function (doc) {
-    //     if (doc.exists) {
-    //       console.log("Document data:", doc.data());
-    //       const myprofiledate = doc.data().profiledate;
-    //       setDate(myprofiledate);
-    //     }
-    //   });
-    // .update({
-    //   studentStatus: isStudent,
-    //   gradeStatus: grade,
-    //   experienceStatus: experience,
-    //   ageStatus: age,
-    //   repetitionStatus: repetition,
-    //   characteristicStatus: DictToList(characterOptions),
-    //   goalStatus: DictToList(goalsOptions),
-    //   profiledate: createDate(),
-    // });
     const convertFireBaseToDict = (input, firedata) => {
       const len = input.length;
       const dict = {};

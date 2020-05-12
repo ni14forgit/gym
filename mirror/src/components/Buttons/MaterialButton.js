@@ -1,4 +1,4 @@
-import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import CloseIcon from "@material-ui/icons/Close";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import RemoveIcon from "@material-ui/icons/Remove";
 
@@ -10,7 +10,7 @@ const CancelButton = (props) => {
   const history = useHistory();
   return (
     <IconButton onClick={() => history.push("/")}>
-      <HighlightOffIcon style={{ fontSize: 60, color: `${props.color}` }} />
+      <CloseIcon style={{ fontSize: 50, color: `${props.color}` }} />
     </IconButton>
   );
 };

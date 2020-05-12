@@ -7,14 +7,14 @@ import {
 } from "../../../style/material-styles/totalStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import { validationAuth } from "./SignupLogic";
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 import firebase from "../../../store/firebase";
 import { useStore } from "../../../store/store";
 import { useHistory } from "react-router-dom";
 import authStyleFinal from "../../../style/styled-css/auth-style";
-import { createDate } from "../../../actions/actions";
+import { createDate, determinePeriodOfDay } from "../../../actions/actions";
 import { CancelButton } from "../../Buttons/MaterialButton";
 
 const db = firebase.firestore();
@@ -285,7 +285,7 @@ const Auth = () => {
         db.collection("users")
           .doc(uid)
           .collection("attendance")
-          .add({ date: createDate(), value: 1 });
+          .add({ date: createDate(), time: determinePeriodOfDay() });
 
         db.collection("users").doc(uid).set({
           score: 10,
@@ -323,12 +323,9 @@ const Auth = () => {
               {form}
               <Button
                 className={buttonstyle_data.authpage}
-                variant="outlined"
-                color="primary"
-                size="medium"
                 onClick={submitSignUpHandler}
               >
-                sign up
+                <Typography variant="h5">continue</Typography>
               </Button>
             </form>
           </Container>
