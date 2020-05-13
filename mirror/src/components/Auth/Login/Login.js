@@ -97,7 +97,6 @@ const Login = () => {
             //console.log("Error getting document:", error);
           });
 
-        //history.push("/main");
         history.push("/logsurveypath");
         return;
       })

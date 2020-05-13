@@ -38,3 +38,47 @@ for (var i = 0; i < titles.length; i++) {
 }
 
 export default EventsData;
+
+// const addEvent = (id) => {
+//   for (var i = 0; i < events.length; i++) {
+//     console.log(events[i].id);
+//     console.log(id);
+//     if (events[i].id === id) {
+//       return;
+//     }
+//   }
+
+//   setEvents((old) => [...old, EventsData[id]]);
+//   console.log(id);
+//   console.log(events);
+// };
+// const removeEvent = (id) => {
+//   function notElement(compare_event) {
+//     return id !== compare_event.id;
+//   }
+//   const newevents = events.filter(notElement);
+//   setEvents(newevents);
+//   console.log(id);
+//   console.log(events);
+// };
+
+// const LikedEvent = (props) => {
+//   console.log(props.id);
+//   return (
+//     // <div style={style}>
+//     <Background color="#76C7F5">
+//       <Image>
+//         <img src={props.image}></img>
+//       </Image>
+//       <Title>{props.title}</Title>
+//       <Description>{props.description}</Description>
+//       <DateDiv>
+//         <b>{props.date}</b>
+//       </DateDiv>
+//       <Like>
+//         <RemoveButton color="white" id={props.id} removefunc={removeEvent} />
+//       </Like>
+//     </Background>
+//     // </div>
+//   );
+// };

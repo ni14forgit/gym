@@ -6,17 +6,11 @@ import GridList from "@material-ui/core/GridList";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import FinalStyle from "../../style/styled-css/matches-style";
+import { useStore } from "../../store/store";
 const useStyles = makeStyles((theme) => ({
   root: {
-    // display: "flex",
-    // flexWrap: "wrap",
-    // justifyContent: "left",
-    // margin: "auto",
-    // overflow: "hidden",
-    // backgroundColor: theme.palette.background.paper,
     flexWrap: "nowrap",
     transform: "translateZ(0)",
-    // borderRadius: "40px!important",
   },
   gridList: {
     width: "25wh",
@@ -32,29 +26,38 @@ const useStyles = makeStyles((theme) => ({
 
 const Matches = () => {
   const classes = useStyles();
+  const [state, dispatch] = useStore();
   const VerticalCenter = FinalStyle.verticalCenter;
+  console.log("state of friends empty list");
+  console.log(state["friends"]);
   return (
     <VerticalCenter>
-      <GridList className={classes.root} cols={2}>
-        {MatchesData.map((tile) => {
-          return (
-            <Person
-              id={tile.id}
-              image={tile.profile}
-              title={tile.name}
-              description={tile.common}
-            />
-          );
-        })}
-      </GridList>
-      {/* : (
+      {state["friends"] === [] ? (
+        <GridList className={classes.root} cols={2}>
+          {state["friends"].map((tile, ind) => {
+            return (
+              <Person
+                id={ind}
+                image={MatchesData[ind % 3].profile}
+                title={tile["name"]}
+                description={tile["similarity"]}
+              />
+            );
+          })}
+        </GridList>
+      ) : (
         <Typography
-          variant="h1"
-          style={{ position: "absolute", margin: "0 auto", right: "40%" }}
+          style={{
+            fontWeight: "bold",
+            color: "#137cbd",
+            margin: "auto",
+            textAlign: "center",
+          }}
+          variant="h4"
         >
-          Fill out your profile to see matches!
+          No matches for you yet! Come by later!
         </Typography>
-      )} */}
+      )}
     </VerticalCenter>
   );
 };

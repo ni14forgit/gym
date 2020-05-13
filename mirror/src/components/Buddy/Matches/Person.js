@@ -32,27 +32,6 @@ const Person = (props) => {
   // }, [weights, myTitle]);
 
   const sendEmail = () => {
-    // const emailcontent = {
-    //   personalizations: [{ to: [{ email: "iyengar.nish@gmail.com" }] }],
-    //   from: { email: "ni14@duke.edu" },
-    //   subject: "Sending with SendGrid is Cool",
-    //   content: [
-    //     {
-    //       type: "text/plain",
-    //       value: "and easy to do anywhere, even with cURL",
-    //     },
-    //   ],
-    // };
-    // console.log(process.env.REACT_APP_EMAIL_KEY);
-    // fetch("https://api.sendgrid.com/v3/mail/send", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json;charset=utf-8",
-    //     Authorization: "Bearer" + process.env.REACT_APP_EMAIL_KEY,
-    //   },
-    //   body: JSON.stringify(emailcontent),
-    // });
-
     const emailcontent = {
       fromemail: "ni14@duke.edu",
       toemail: "iyengar.nish@gmail.com",
@@ -75,6 +54,17 @@ const Person = (props) => {
     console.log("make restful call to flask to send email? ");
   };
 
+  const mutateListToString = (input) => {
+    var mystring = "";
+    for (var i = 0; i < input.length; i++) {
+      mystring += input[i];
+      mystring += "\n";
+      mystring += "\n";
+    }
+    console.log(mystring);
+    return mystring;
+  };
+
   return (
     <TotalProfile>
       <ImageBio>
@@ -88,7 +78,9 @@ const Person = (props) => {
             </Typography>
           </Title>
           <Description color="#137cbd">
-            <Typography variant="p1">{props.description}</Typography>
+            <Typography style={{ whiteSpace: "pre-line" }} variant="p1">
+              {mutateListToString(props.description)}
+            </Typography>
           </Description>
         </Background>
       </ImageBio>

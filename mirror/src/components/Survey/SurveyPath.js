@@ -7,8 +7,37 @@ import { useStore } from "../../store/store";
 import firebase from "../../store/firebase";
 const db = firebase.firestore();
 const SignupSurveyPath = (props) => {
-  const history = useHistory();
+  // const history = useHistory();
   const [state, dispatch] = useStore();
+
+  const getfriends = (uid) => {
+    const namecontent = {
+      uid: uid,
+    };
+
+    fetch("http://localhost:5000/friends", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(namecontent),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        // console.log(res);
+        // var realdata = res["data"]
+
+        dispatch("SAVE_FRIENDS", res["data"]);
+      })
+      .catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log("backend has not updated to contain new user");
+        //console.log(errorCode);
+        //console.log(errorMessage);
+      });
+  };
 
   const [page, setPage] = useState(0);
 
@@ -71,6 +100,9 @@ const SignupSurveyPath = (props) => {
           console.log("No such document!");
         }
       });
+    if (props.counter == 2) {
+      getfriends(uid_value);
+    }
     console.log("redirect about to happen");
     return <Redirect to="/" />;
   }

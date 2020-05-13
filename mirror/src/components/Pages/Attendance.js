@@ -77,7 +77,7 @@ function Attendance() {
 
   return (
     <ContainerAttendance>
-      <StillBackground image={calendar} color="#6e10e5" />
+      <StillBackground image={calendar} color="#b28ae6" />
       <div>
         <HeaderStyleCool>
           <h1>{yearTitle}</h1>

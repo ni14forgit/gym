@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import EventsData from "./EventsData";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import GridList from "@material-ui/core/GridList";
 import FinalStyle from "../../style/styled-css/events-style";
 import {
@@ -16,16 +17,20 @@ const Image = FinalStyle.image;
 const Background = FinalStyle.background;
 const Title = FinalStyle.title;
 const DateDiv = FinalStyle.date;
-const Like = FinalStyle.like;
+const Tint = FinalStyle.tint;
 const Description = FinalStyle.description;
 const ExitButton = FinalStyle.exitbutton;
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    margin: "auto",
-    overflow: "hidden",
+    // display: "flex",
+    // flexWrap: "wrap",
+    // justifyContent: "left",
+
+    paddingLeft: "4vw",
+    paddingRight: "4vw",
+    paddingTop: "2vh",
+    position: "relative",
+    // overflow: "hidden",
     // backgroundColor: theme.palette.background.paper,
   },
   gridList: {
@@ -43,72 +48,38 @@ const useStyles = makeStyles((theme) => ({
 const Events = () => {
   const classes = useStyles();
   const [events, setEvents] = useState([]);
-  // const addEvent = (id) => {
-  //   for (var i = 0; i < events.length; i++) {
-  //     console.log(events[i].id);
-  //     console.log(id);
-  //     if (events[i].id === id) {
-  //       return;
-  //     }
-  //   }
 
-  //   setEvents((old) => [...old, EventsData[id]]);
-  //   console.log(id);
-  //   console.log(events);
-  // };
-  // const removeEvent = (id) => {
-  //   function notElement(compare_event) {
-  //     return id !== compare_event.id;
-  //   }
-  //   const newevents = events.filter(notElement);
-  //   setEvents(newevents);
-  //   console.log(id);
-  //   console.log(events);
-  // };
   const GeneralEvent = (props) => {
     console.log(props.id);
     return (
       // <div style={style}>
-      <Background color="#137cbd">
+      <Background>
+        <Tint />
         <Image>
           <img src={props.image}></img>
         </Image>
-        <Title>{props.title}</Title>
-        <Description>{props.description}</Description>
+        <Title>
+          <Typography style={{ fontWeight: "bold" }} variant="h5">
+            {props.title}
+          </Typography>
+        </Title>
+        <Description>
+          <Typography style={{ fontWeight: "bold" }} variant="body1">
+            {props.description}
+          </Typography>
+        </Description>
         <DateDiv>
-          <b>{props.date}</b>
+          <Typography style={{ fontWeight: "bold" }} variant="body1">
+            {props.date}
+          </Typography>
         </DateDiv>
-        {/* <Like>
-          <LikeButton color="white" id={props.id} likefunc={addEvent} />
-        </Like> */}
       </Background>
       // </div>
     );
   };
 
-  // const LikedEvent = (props) => {
-  //   console.log(props.id);
-  //   return (
-  //     // <div style={style}>
-  //     <Background color="#76C7F5">
-  //       <Image>
-  //         <img src={props.image}></img>
-  //       </Image>
-  //       <Title>{props.title}</Title>
-  //       <Description>{props.description}</Description>
-  //       <DateDiv>
-  //         <b>{props.date}</b>
-  //       </DateDiv>
-  //       <Like>
-  //         <RemoveButton color="white" id={props.id} removefunc={removeEvent} />
-  //       </Like>
-  //     </Background>
-  //     // </div>
-  //   );
-  // };
-
   return (
-    <div style={{ backgroundColor: "#81EBFA" }}>
+    <div style={{ height: "100vh", backgroundColor: "#137cbd" }}>
       <ExitButton>
         <CancelButton color="white"></CancelButton>
       </ExitButton>

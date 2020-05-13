@@ -11,19 +11,21 @@ const configureStore = () => {
       return { age: v };
     },
     FORM_SETTINGS: (curState, info) => {
-      console.log("FORM BEING SET");
-      console.log(info);
+      // console.log("FORM BEING SET");
+      // console.log(info);
       return { profile: { ...info } };
     },
-    // MOVE_TO_SIGNUP: (curState, payload) => {
-    //   history.push("/login");
-    // },
-    // MOVE_TO_MAIN: (curState, payload) => {
-    //   history.push("/main");
-    // },
+    SAVE_FRIENDS: (curState, info) => {
+      // console.log("SAVE FRIENDS");
+      console.log(info);
+      return { friends: info };
+    },
+    LOG_OUT: (curState, info) => {
+      return { age: 0, uid: "", profile: {}, friends: [] };
+    },
   };
 
-  initStore(actions, { age: 0, uid: "", profile: {} });
+  initStore(actions, { age: 0, uid: "", profile: {}, friends: [] });
 };
 
 export default configureStore;

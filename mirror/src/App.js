@@ -33,7 +33,7 @@ const App = () => {
     //history.replace("/distributionsurvey");
     //history.replace("/attendance");
     //history.replace("/weightsurvey");
-    //history.replace("/events");
+    // history.replace("/events");
     //history.replace("/distribution");
     //history.replace("/weight");
     //history.replace("/signup");
@@ -41,7 +41,7 @@ const App = () => {
     //history.replace("/buddy");
     //history.replace("/auth");
     //history.push("/signsurveypath");
-    // history.push("/retrieve");
+    //history.push("/retrieve");
   }, []);
 
   // Can implement SWITCH Statements for ROUTES

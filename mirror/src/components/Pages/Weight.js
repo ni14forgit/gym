@@ -19,7 +19,7 @@ function Weight() {
 
   return (
     <ContainerWeight>
-      <StillBackground image={weight} color="#f68b27" />
+      <StillBackground image={weight} color="#eda36f" />
       <div>
         <HeaderStyleCool>
           <h1>Last 30 Days</h1>

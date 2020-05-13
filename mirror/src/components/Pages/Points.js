@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { shouldRedirect, createDate } from "../../actions/actions";
 import GridList from "@material-ui/core/GridList";
+import { Button, Typography } from "@material-ui/core";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import { CancelButton } from "../Buttons/MaterialButton";
@@ -172,7 +173,7 @@ const Points = () => {
 
   return (
     <Container>
-      <StillBackground image={points} color="#2cb205" />
+      <StillBackground image={points} color="#8bc979" />
       <div>
         <Instruction>
           <h1>Collect Prizes at Desk</h1>
@@ -219,11 +220,19 @@ const Points = () => {
         </div>
       </Selection>
       <DoneButtonStyle>
-        <DoneButton
+        <Button onClick={purchase}>
+          <Typography
+            variant="h4"
+            style={{ fontWeight: "bold", color: "white" }}
+          >
+            submit
+          </Typography>
+        </Button>
+        {/* <DoneButton
           submitContinue={purchase}
           selection={selection}
           score={scorepoints}
-        />
+        /> */}
       </DoneButtonStyle>
     </Container>
   );
