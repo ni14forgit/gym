@@ -8,6 +8,13 @@ import BuddyPic from "../../assets/media/people/oldman.jpg";
 import { useHistory, Redirect } from "react-router-dom";
 import { useStore } from "../../store/store";
 import firebase from "../../store/firebase";
+
+import {
+  withinSpecificYear,
+  shouldRedirect,
+  withinMonth,
+} from "../../actions/actions";
+
 const db = firebase.firestore();
 const SignupSurveyPath = (props) => {
   // const history = useHistory();
@@ -15,7 +22,22 @@ const SignupSurveyPath = (props) => {
   var storage = firebase.storage();
   var storageRef = storage.ref();
 
-  async function getImage(uid) {
+  const fetchForm = (uid) => {
+    db.collection("users")
+      .doc(uid)
+      .get()
+      .then(function (doc) {
+        if (doc.exists) {
+          console.log("Document data:", doc.data());
+          dispatch("FORM_SETTINGS", doc.data());
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      });
+  };
+
+  async function fetchImageHelper(uid) {
     const userRef = storageRef.child(uid + ".jpg");
     const answer = await userRef
       .getDownloadURL()
@@ -38,7 +60,7 @@ const SignupSurveyPath = (props) => {
     return answer;
   }
 
-  async function getfriends(uid) {
+  async function fetchFriends(uid) {
     const namecontent = {
       uid: uid,
     };
@@ -57,7 +79,9 @@ const SignupSurveyPath = (props) => {
         // const ans = getImageMeta(res);
         console.log(res["data"].length);
         for (var i = 0; i < res["data"].length; i++) {
-          res["data"][i]["image"] = await getImage(res["data"][i]["uid"]);
+          res["data"][i]["image"] = await fetchImageHelper(
+            res["data"][i]["uid"]
+          );
           console.log("for llop lets go");
         }
         return res;
@@ -74,6 +98,97 @@ const SignupSurveyPath = (props) => {
         //console.log(errorCode);
         //console.log(errorMessage);
       });
+  }
+
+  const fetchWeight = (uid) => {};
+
+  async function fetchAttendance(uid) {
+    var data = [];
+    const dataToReturn = await db
+      .collection("users")
+      .doc(uid)
+      .collection("attendance")
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          const x = doc.data();
+          if (withinSpecificYear(x.date)) {
+            const y = { day: x.date, value: 1 };
+            data.push(y);
+          }
+          //console.log(doc.id, " => ", doc.data());
+        });
+        return data;
+      })
+      .then((mydata) => {
+        return mydata;
+      })
+      .catch(function (error) {});
+    dispatch("SAVE_ATTENDANCE", dataToReturn);
+  }
+
+  async function fetchDistribution(uid) {
+    const colors = [
+      "hsl(176, 70%, 50%)",
+      "hsl(207, 70%, 50%)",
+      "hsl(247, 70%, 50%)",
+      "hsl(38, 70%, 50%)",
+      "hsl(199, 70%, 50%)",
+      "hsl(199, 70%, 50%)",
+      "hsl(199, 70%, 50%)",
+      "hsl(199, 70%, 50%)",
+    ];
+
+    const piedata = (data_pie) => {
+      var counter = 0;
+      var masterList = [];
+      for (let key in data_pie) {
+        const x = {};
+        x.id = key;
+        x.label = key;
+        x.value = data_pie[key];
+        x.color = colors[counter];
+        counter += 1;
+        masterList.push(x);
+      }
+      //console.log(masterList);
+      return masterList;
+    };
+
+    var data = {};
+    const dataToReturn = await db
+      .collection("users")
+      .doc(uid)
+      .collection("ratio")
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          const x = doc.data();
+          if (withinMonth(x.date)) {
+            for (let key in x) {
+              if (x[key] == 1) {
+                if (key in data) {
+                  data[key] += 1;
+                } else {
+                  data[key] = 1;
+                }
+              }
+            }
+          }
+          //console.log(doc.id, " => ", doc.data());
+        });
+        return data;
+      })
+      .then((mydata) => {
+        return piedata(mydata);
+      })
+      .then((finalo) => {
+        return finalo;
+      })
+      .catch(function (error) {
+        //console.log("Error getting documents: ", error);
+      });
+    dispatch("SAVE_DISTRIBUTION", dataToReturn);
   }
 
   const [page, setPage] = useState(0);
@@ -132,20 +247,11 @@ const SignupSurveyPath = (props) => {
   };
 
   if (page >= props.counter) {
-    db.collection("users")
-      .doc(uid_value)
-      .get()
-      .then(function (doc) {
-        if (doc.exists) {
-          console.log("Document data:", doc.data());
-          dispatch("FORM_SETTINGS", doc.data());
-        } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-        }
-      });
+    fetchForm(uid_value);
+    fetchAttendance(uid_value);
+    fetchDistribution(uid_value);
     if (props.counter == 2) {
-      getfriends(uid_value);
+      fetchFriends(uid_value);
     }
     console.log("redirect about to happen");
     return <Redirect to="/" />;

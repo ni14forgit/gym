@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 
 import MainScreen from "./components/MainScreen";
 
-import Weight from "./components/Pages/Weight";
-import Distribution from "./components/Pages/Distribution";
-import Attendance from "./components/Pages/Attendance";
-import Points from "./components/Pages/Points";
+// import Weight from "./components/Metrics/Weight";
+// import Distribution from "./components/Metrics/Distribution";
+// import Attendance from "./components/Metrics/Attendance";
+import Metrics from "./components/Metrics/Metrics";
+import Points from "./components/Points/Points";
 import Events from "./components/Events/Events";
 import Buddy from "./components/Buddy/Buddy";
 
@@ -42,7 +43,7 @@ const App = () => {
     //history.replace("/buddy");
     //history.replace("/auth");
     //history.push("/signsurveypath");
-    // history.push("/retrieve");
+    history.push("/metrics");
   }, []);
 
   // Can implement SWITCH Statements for ROUTES
@@ -51,6 +52,10 @@ const App = () => {
     <div>
       <Route path="/buddy">
         <Buddy />
+      </Route>
+
+      <Route path="/metrics">
+        <Metrics />
       </Route>
 
       <Route path="/retrieve">
@@ -77,7 +82,7 @@ const App = () => {
         <Points />
       </Route>
 
-      <Route path="/weight">
+      {/* <Route path="/weight">
         <Weight />
       </Route>
 
@@ -87,7 +92,7 @@ const App = () => {
 
       <Route path="/distribution">
         <Distribution></Distribution>
-      </Route>
+      </Route> */}
 
       <Route exact path="/">
         <MainScreen />

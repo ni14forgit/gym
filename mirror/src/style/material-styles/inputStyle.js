@@ -1,6 +1,6 @@
 const inputStyle = {
   form: {
-    padding: "10px",
+    paddingTop: "4vh",
     display: "flex",
     align: "center",
     justifyContent: "center",
@@ -11,10 +11,10 @@ const inputStyle = {
   },
   input: {
     width: "70%",
-    margin: "20px",
+    margin: "0.75vh",
   },
   text: {
-    color: "white",
+    color: "#137cbd",
   },
 };
 export default inputStyle;

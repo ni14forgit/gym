@@ -1,7 +1,7 @@
 const DataLine = [
   {
     id: "japan",
-    color: "hsl(165, 100%, 100%)",
+    color: "hsl(234, 100%, 50%)",
     data: [
       {
         x: "2020-03-01",

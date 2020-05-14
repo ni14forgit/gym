@@ -16,16 +16,40 @@ const configureStore = () => {
       return { profile: { ...info } };
     },
     SAVE_FRIENDS: (curState, info) => {
-      // console.log("SAVE FRIENDS");
+      console.log("SAVE FRIENDS");
       console.log(info);
       return { friends: info };
     },
     LOG_OUT: (curState, info) => {
-      return { age: 0, uid: "", profile: {}, friends: [] };
+      return {
+        age: 0,
+        uid: "",
+        profile: {},
+        friends: [],
+        attendance: [],
+        distribution: [],
+      };
+    },
+    SAVE_DISTRIBUTION: (curState, info) => {
+      console.log("SAVE Distribution");
+      console.log(info);
+      return { distribution: info };
+    },
+    SAVE_ATTENDANCE: (curState, info) => {
+      console.log("SAVE Attendance");
+      console.log(info);
+      return { attendance: info };
     },
   };
 
-  initStore(actions, { age: 0, uid: "", profile: {}, friends: [] });
+  initStore(actions, {
+    age: 0,
+    uid: "",
+    profile: {},
+    friends: [],
+    attendance: [],
+    distribution: [],
+  });
 };
 
 export default configureStore;

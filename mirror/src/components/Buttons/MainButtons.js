@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@material-ui/core";
-import {
-  CoinIcon,
-  PieIcon,
-  CalendarIcon,
-  WeightIcon,
-  FriendsIcon,
-  EventsIcon,
-  TrainerClassIcon,
-  FeedbackIcon,
-} from "../../assets/icons/icons";
+import { RewardIcon, GraphIcon, FriendsIcon } from "../../assets/icons/icons";
 import { buttonStyle } from "../../style/material-styles/totalStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
@@ -18,23 +9,6 @@ import firebase from "../../store/firebase";
 import { Typography } from "@material-ui/core";
 import mainbuttonsFinalStyle from "../../style/styled-css/mainbuttons-style";
 import Grid from "@material-ui/core/Grid";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    overflow: "hidden",
-    backgroundColor: theme.palette.background.paper,
-  },
-  gridList: {
-    width: 500,
-    height: 450,
-  },
-  icon: {
-    color: "rgba(255, 255, 255, 0.54)",
-  },
-}));
 
 const MainButtons = () => {
   const [boldAuth, setBoldAuth] = useState(false);
@@ -60,16 +34,6 @@ const MainButtons = () => {
         });
     }
   };
-
-  const classes = useStyles();
-
-  // const toggleBold = () => {
-  //   setBoldAuth(true);
-  //   setTimeout(function () {
-  //     setBoldAuth(false);
-  //   }, 800);
-  // };
-
   const buttonstyle = makeStyles(buttonStyle);
   const buttonstyle_data = buttonstyle();
 
@@ -111,69 +75,28 @@ const MainButtons = () => {
 
   const tileData = [
     {
-      id: "attendance",
-      page: "/attendance",
-      size: 95,
-      color: "#b28ae6",
-      text: "Attendance",
-      pad: "15px",
-    },
-    // {
-    //   id: "feedback",
-    //   page: "/attendance",
-    //   size: 105,
-    //   color: "#AF81FA",
-    //   text: "Submit Feedback",
-    //   pad: "10px",
-    // },
-    {
-      id: "events",
-      page: "/events",
-      size: 100,
-      // color: "81EBFA",
-      color: "#137cbd",
-      text: "Upcoming Events!",
-      pad: "10px",
-    },
-    // {
-    //   id: "trainerclass",
-    //   page: "/attendance",
-    //   size: 115,
-    //   color: "#F77467",
-    //   text: "Trainers/Classes",
-    //   pad: "5px",
-    // },
-    {
       id: "friends",
       page: "/buddy",
       size: 110,
       color: "#FCD8F4",
       text: "Find Buddies!",
-      pad: "5px",
+      pad: "9px",
     },
     {
-      id: "weight",
-      page: "/weight",
-      size: 85,
-      color: "#eda36f",
-      text: "Weight Tracker",
-      pad: "14px",
+      id: "metrics",
+      page: "/metrics",
+      size: 125,
+      color: "#FCD8F4",
+      text: "My Progress",
+      pad: "0px",
     },
     {
       id: "store",
       page: "/points",
       size: 90,
-      color: "#8bc979",
-      text: "Store",
-      pad: "10px",
-    },
-    {
-      id: "distribution",
-      page: "/distribution",
-      size: 90,
-      color: "#F77467",
-      text: "Workout Distribution",
-      pad: "10px",
+      color: "#FCD8F4",
+      text: "Rewards",
+      pad: "18px",
     },
   ];
 
@@ -187,17 +110,24 @@ const MainButtons = () => {
     size: "large",
   };
 
+  const TypographyButton = (title) => {
+    // style={{ position: "absolute", bottom: "1vh" }}
+    return <Typography variant="h5">{title}</Typography>;
+  };
+
   return (
     <div>
       <Container>
-        <Title>
-          <Typography
-            style={{ color: "white", fontWeight: "500" }}
-            variant="h2"
-          >
-            {userName}
-          </Typography>
-        </Title>
+        {userName.length > 0 ? (
+          <Title>
+            <Typography
+              style={{ color: "white", fontWeight: "500" }}
+              variant="h2"
+            >
+              {userName}
+            </Typography>
+          </Title>
+        ) : null}
         <Copyright>
           <Typography
             style={{ color: "white", fontWeight: "500" }}
@@ -207,89 +137,31 @@ const MainButtons = () => {
           </Typography>
         </Copyright>
         {AuthButtonFunc()}
-        <Grid justify="center" container xs={10}>
+        <Grid justify="center" spacing={0} container xs={12}>
           {tileData.map((tile) => {
             switch (tile.id) {
-              case "weight":
+              case "metrics":
                 return (
                   <Grid item>
                     <Button
                       onClick={() => buttonPress(tile.page)}
                       {...BaseButton}
                       startIcon={
-                        <WeightIcon
+                        <GraphIcon
                           style={{
                             fontSize: tile.size,
                             color: tile.color,
+                            // top: "1vh",
                             padding: tile.pad,
                           }}
                         />
                       }
                     >
-                      {tile.text}
+                      {TypographyButton(tile.text)}
                     </Button>
                   </Grid>
                 );
-              case "attendance":
-                return (
-                  <Grid item>
-                    <Button
-                      onClick={() => buttonPress(tile.page)}
-                      {...BaseButton}
-                      startIcon={
-                        <CalendarIcon
-                          style={{
-                            fontSize: tile.size,
-                            color: tile.color,
-                            padding: tile.pad,
-                          }}
-                        />
-                      }
-                    >
-                      {tile.text}
-                    </Button>
-                  </Grid>
-                );
-              case "distribution":
-                return (
-                  <Grid item>
-                    <Button
-                      onClick={() => buttonPress(tile.page)}
-                      {...BaseButton}
-                      startIcon={
-                        <PieIcon
-                          style={{
-                            fontSize: tile.size,
-                            color: tile.color,
-                            padding: tile.pad,
-                          }}
-                        />
-                      }
-                    >
-                      {tile.text}
-                    </Button>
-                  </Grid>
-                );
-              case "feedback":
-                return (
-                  <Grid item>
-                    <Button
-                      onClick={() => buttonPress(tile.page)}
-                      {...BaseButton}
-                      startIcon={
-                        <FeedbackIcon
-                          style={{
-                            fontSize: tile.size,
-                            color: tile.color,
-                            padding: tile.pad,
-                          }}
-                        />
-                      }
-                    >
-                      {tile.text}
-                    </Button>
-                  </Grid>
-                );
+
               case "store":
                 return (
                   <Grid item>
@@ -297,16 +169,17 @@ const MainButtons = () => {
                       onClick={() => buttonPress(tile.page)}
                       {...BaseButton}
                       startIcon={
-                        <CoinIcon
+                        <RewardIcon
                           style={{
                             fontSize: tile.size,
                             color: tile.color,
+                            // position: "absolute",
                             padding: tile.pad,
                           }}
                         />
                       }
                     >
-                      {tile.text}
+                      {TypographyButton(tile.text)}
                     </Button>
                   </Grid>
                 );
@@ -321,52 +194,13 @@ const MainButtons = () => {
                           style={{
                             fontSize: tile.size,
                             color: tile.color,
+                            // position: "absolute",
                             padding: tile.pad,
                           }}
                         />
                       }
                     >
-                      {tile.text}
-                    </Button>
-                  </Grid>
-                );
-              case "trainerclass":
-                return (
-                  <Grid item>
-                    <Button
-                      onClick={() => buttonPress(tile.page)}
-                      {...BaseButton}
-                      startIcon={
-                        <TrainerClassIcon
-                          style={{
-                            fontSize: tile.size,
-                            color: tile.color,
-                            padding: tile.pad,
-                          }}
-                        />
-                      }
-                    >
-                      {tile.text}
-                    </Button>
-                  </Grid>
-                );
-              case "events":
-                return (
-                  <Grid item>
-                    <Button
-                      onClick={() => buttonPress(tile.page)}
-                      {...BaseButton}
-                      startIcon={
-                        <EventsIcon
-                          style={{
-                            fontSize: tile.size,
-                            color: tile.color,
-                            padding: tile.pad,
-                          }}
-                        />
-                      }
-                    >
-                      {tile.text}
+                      {TypographyButton(tile.text)}
                     </Button>
                   </Grid>
                 );

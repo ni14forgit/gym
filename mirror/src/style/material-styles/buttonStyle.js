@@ -11,10 +11,12 @@ const buttonStyle = {
   mainlabel: {
     flexDirection: "column",
     justifyContent: "spaceBetween",
+    // alignItems: "center",
+    // textAlign: "center",
   },
   authpage: {
     width: "10vw",
-    height: "8vh",
+    // height: "8vh",
     color: "#137cbd",
     fontWeight: "bold",
     top: "20px",

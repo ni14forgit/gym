@@ -52,6 +52,13 @@ const PadLeft = styled.div`
   top: 15%;
 `;
 
+const FlexBottom = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+
 const Normalize = styled.div`
   position: absolute;
   height: "99vh";
@@ -80,8 +87,10 @@ const NoDataMessage = styled.div`
 `;
 
 const ExitButton = styled.div`
-  top: 3%;
-  left: 3%;
+  top: 0 vh;
+  left: 0vh;
+  position: absolute;
+  z-index: 100;
 `;
 
 const DoneButton = styled.div`
@@ -94,6 +103,7 @@ const finalStyle = {
   containerattendance: { ...ContainerAttendance },
   distributionoverlay: { ...DistributionOverlay },
   inner: { ...Inner },
+  flexbottom: { ...FlexBottom },
   padleft: { ...PadLeft },
   headerstylecool: { ...HeaderStyleCool },
   normalize: { ...Normalize },

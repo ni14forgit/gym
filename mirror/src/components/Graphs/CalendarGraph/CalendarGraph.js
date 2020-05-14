@@ -2,7 +2,7 @@ import React from "react";
 import { ResponsiveCalendar } from "@nivo/calendar";
 
 const theme = {
-  textColor: "white",
+  textColor: "#137cbd",
   fontSize: "24px",
 };
 
@@ -16,14 +16,15 @@ const MyResponsiveCalendar = ({ data /* see data tab */ }) => (
     emptyColor="#00000000"
     emptyOpacity={0.2}
     colors={["#108BE5"]}
-    margin={{ top: -50, right: 40, bottom: 0, left: 40 }}
+    // margin={{ top: -50, right: 40, bottom: 0, left: 40 }}
+    margin={{ right: 20, bottom: 0, left: 20 }}
     direction="horizontal"
     yearLegend={() => ""}
     // yearSpacing={40}
-    monthBorderColor="white"
+    monthBorderColor="#137cbd"
     dayBorderWidth={1}
     monthBorderWidth={3}
-    dayBorderColor="white"
+    dayBorderColor="#137cbd"
     // legends={[
     //   {
     //     anchor: "bottom-right",

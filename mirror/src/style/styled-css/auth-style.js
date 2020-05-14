@@ -8,8 +8,8 @@ const Error = styled.div`
 `;
 
 const Container = styled.div`
-  width: 500px;
-  height: 600px;
+  width: 40vw;
+  height: 70vh;
   background: pink;
   border-radius: 20px;
   top: 40px;

@@ -191,6 +191,7 @@ const Auth = () => {
         error={!formElement.isValid}
         label={formElement.placeholder}
         color="primary"
+        variant="outlined"
         value={information[formElement.id].value}
         onChange={(event) => onChangeDataHandler(event, formElement.id)}
         onFocus={() => setLocation(formElement.id)}

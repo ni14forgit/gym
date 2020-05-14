@@ -196,6 +196,7 @@ const Login = () => {
               error={!information.email.valid}
               label={information.email.placeholder}
               color="primary"
+              variant="outlined"
               value={information.email.value}
               onChange={(event) => onChangeDataHandler(event, email)}
               onFocus={() => setLocation(email)}
@@ -209,6 +210,7 @@ const Login = () => {
               key={password}
               className={inputstyle_data.input}
               id={password}
+              variant="outlined"
               error={!information.password.valid}
               label={information.password.placeholder}
               color="primary"
