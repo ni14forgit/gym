@@ -52,7 +52,8 @@ const MainButtons = () => {
         .auth()
         .signOut()
         .then(function () {
-          dispatch("SET_UID_USER", "");
+          // dispatch("SET_UID_USER", "");
+          dispatch("LOG_OUT", "");
         })
         .catch(function (error) {
           //console.log("logout error occurred");
@@ -185,8 +186,6 @@ const MainButtons = () => {
     color: "primary",
     size: "large",
   };
-
-  // <Grid spacing={4} item xs={8}>
 
   return (
     <div>

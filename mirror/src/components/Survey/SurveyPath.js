@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Distribution from "./Surveys/DistributionSurvey";
 import Weight from "./Surveys/WeightSurvey";
 import Buddy from "./Surveys/BuddyForm";
+import ProfilePic from "./Surveys/ProfilePic";
+import BuddyPic from "../../assets/media/people/oldman.jpg";
+
 import { useHistory, Redirect } from "react-router-dom";
 import { useStore } from "../../store/store";
 import firebase from "../../store/firebase";
@@ -9,8 +12,33 @@ const db = firebase.firestore();
 const SignupSurveyPath = (props) => {
   // const history = useHistory();
   const [state, dispatch] = useStore();
+  var storage = firebase.storage();
+  var storageRef = storage.ref();
 
-  const getfriends = (uid) => {
+  async function getImage(uid) {
+    const userRef = storageRef.child(uid + ".jpg");
+    const answer = await userRef
+      .getDownloadURL()
+      .then(function (url) {
+        var xhr = new XMLHttpRequest();
+        xhr.responseType = "blob";
+        xhr.onload = function (event) {
+          var blob = xhr.response;
+        };
+        xhr.open("GET", url);
+        xhr.send();
+        console.log("mafe it!");
+        return url;
+      })
+      .catch(function (error) {
+        console.log("image does not exist!");
+        console.log(error);
+        return BuddyPic;
+      });
+    return answer;
+  }
+
+  async function getfriends(uid) {
     const namecontent = {
       uid: uid,
     };
@@ -23,10 +51,19 @@ const SignupSurveyPath = (props) => {
       body: JSON.stringify(namecontent),
     })
       .then((res) => res.json())
-      .then((res) => {
+      .then(async (res) => {
         // console.log(res);
         // var realdata = res["data"]
-
+        // const ans = getImageMeta(res);
+        console.log(res["data"].length);
+        for (var i = 0; i < res["data"].length; i++) {
+          res["data"][i]["image"] = await getImage(res["data"][i]["uid"]);
+          console.log("for llop lets go");
+        }
+        return res;
+      })
+      .then((res) => {
+        console.log("dispatch new res?");
         dispatch("SAVE_FRIENDS", res["data"]);
       })
       .catch(function (error) {
@@ -37,7 +74,7 @@ const SignupSurveyPath = (props) => {
         //console.log(errorCode);
         //console.log(errorMessage);
       });
-  };
+  }
 
   const [page, setPage] = useState(0);
 
@@ -82,6 +119,13 @@ const SignupSurveyPath = (props) => {
         return (
           <div style={style}>
             <Buddy color="#137cbd" increment={() => setPage(page + 1)}></Buddy>
+          </div>
+        );
+
+      case 3:
+        return (
+          <div>
+            <ProfilePic increment={() => setPage(page + 1)}></ProfilePic>
           </div>
         );
     }

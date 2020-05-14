@@ -14,6 +14,7 @@ import Auth from "./components/Auth/Auth";
 import { Route, useHistory } from "react-router-dom";
 
 import Retrieve from "./actions/retrieve";
+import ProfilePic from "./components/Survey/Surveys/ProfilePic";
 
 import SurveyPath from "./components/Survey/SurveyPath";
 
@@ -41,7 +42,7 @@ const App = () => {
     //history.replace("/buddy");
     //history.replace("/auth");
     //history.push("/signsurveypath");
-    //history.push("/retrieve");
+    // history.push("/retrieve");
   }, []);
 
   // Can implement SWITCH Statements for ROUTES
@@ -61,7 +62,7 @@ const App = () => {
       </Route>
 
       <Route path="/signsurveypath">
-        <SurveyPath counter={3} />
+        <SurveyPath counter={4} />
       </Route>
 
       <Route path="/logsurveypath">
@@ -91,10 +92,6 @@ const App = () => {
       <Route exact path="/">
         <MainScreen />
       </Route>
-
-      {/* <Route path="/distributionsurvey">
-        <DistributionSurvey />
-      </Route> */}
     </div>
   );
 };

@@ -3,7 +3,8 @@ import Person from "./Matches/Person";
 import MatchesData from "./BuddyData";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
-import Grid from "@material-ui/core/Grid";
+import firebase from "../../store/firebase";
+
 import Typography from "@material-ui/core/Typography";
 import FinalStyle from "../../style/styled-css/matches-style";
 import { useStore } from "../../store/store";
@@ -27,25 +28,15 @@ const useStyles = makeStyles((theme) => ({
 const Matches = () => {
   const classes = useStyles();
   const [state, dispatch] = useStore();
+  const [imageData, setImageData] = useState("");
   const VerticalCenter = FinalStyle.verticalCenter;
   console.log("state of friends empty list");
   console.log(state["friends"]);
+  // var user = firebase.auth().currentUser;
+
   return (
     <VerticalCenter>
-      {state["friends"] === [] ? (
-        <GridList className={classes.root} cols={2}>
-          {state["friends"].map((tile, ind) => {
-            return (
-              <Person
-                id={ind}
-                image={MatchesData[ind % 3].profile}
-                title={tile["name"]}
-                description={tile["similarity"]}
-              />
-            );
-          })}
-        </GridList>
-      ) : (
+      {state["friends"].length === 0 ? (
         <Typography
           style={{
             fontWeight: "bold",
@@ -57,6 +48,35 @@ const Matches = () => {
         >
           No matches for you yet! Come by later!
         </Typography>
+      ) : (
+        <div>
+          <div style={{ paddingBottom: "4vh" }}>
+            <Typography
+              style={{
+                fontWeight: "bold",
+                color: "#137cbd",
+                margin: "auto",
+                textAlign: "center",
+              }}
+              variant="h5"
+            >
+              Find out what you share in common with your matches!
+            </Typography>
+          </div>
+          <GridList className={classes.root} cols={2}>
+            {state["friends"].map((tile, ind) => {
+              return (
+                <Person
+                  id={ind}
+                  // image={MatchesData[ind % 3].profile}
+                  image={tile["image"]}
+                  title={tile["name"]}
+                  description={tile["similarity"]}
+                />
+              );
+            })}
+          </GridList>
+        </div>
       )}
     </VerticalCenter>
   );
