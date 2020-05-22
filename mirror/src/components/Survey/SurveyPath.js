@@ -15,7 +15,7 @@ import {
   withinMonth,
 } from "../../actions/actions";
 
-let endpoint = "https://wiiboardapi.herokuapp.com";
+let endpoint = process.env.REACT_APP_API_LINK;
 
 const db = firebase.firestore();
 const SignupSurveyPath = (props) => {
