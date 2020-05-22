@@ -1,19 +1,5 @@
 import styled from "styled-components";
 
-// const Image = styled.div`
-//   width: 27vw;
-//   height: 25vh;
-//   position: relative;
-//   margin: auto;
-//   margin-top: 2vh;
-//   img {
-//     width: 100%;
-//     border-radius: 5%;
-//     height: 100%;
-//     border: 4px solid white;
-//   }
-// `;
-
 const Image = styled.div`
   z-index: 0;
   img {
@@ -24,15 +10,6 @@ const Image = styled.div`
   }
 `;
 
-// const Background = styled.div`
-//   position: relative;
-//   width: 30vw;
-//   height: 60vh;
-//   margin: 0.5vw;
-//   background-color: ${(props) => props.color};
-//   border-radius: 5%;
-// `;
-
 const Background = styled.div`
   width: 30vw;
   height: 30vh;
@@ -41,8 +18,10 @@ const Background = styled.div`
 `;
 
 const ExitButton = styled.div`
-  top: 3%;
-  left: 3%;
+  top: 0%;
+  left: 0%;
+  position: absolute;
+  z-index: 10;
 `;
 
 const Title = styled.div`

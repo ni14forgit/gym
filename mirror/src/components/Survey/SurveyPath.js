@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Distribution from "./Surveys/DistributionSurvey";
 import Weight from "./Surveys/WeightSurvey";
 import Buddy from "./Surveys/BuddyForm";
@@ -15,6 +15,8 @@ import {
   withinMonth,
 } from "../../actions/actions";
 
+let endpoint = "https://wiiboardapi.herokuapp.com";
+
 const db = firebase.firestore();
 const SignupSurveyPath = (props) => {
   // const history = useHistory();
@@ -28,11 +30,11 @@ const SignupSurveyPath = (props) => {
       .get()
       .then(function (doc) {
         if (doc.exists) {
-          console.log("Document data:", doc.data());
+          // console.log("Document data:", doc.data());
           dispatch("FORM_SETTINGS", doc.data());
         } else {
           // doc.data() will be undefined in this case
-          console.log("No such document!");
+          // console.log("No such document!");
         }
       });
   };
@@ -49,12 +51,12 @@ const SignupSurveyPath = (props) => {
         };
         xhr.open("GET", url);
         xhr.send();
-        console.log("mafe it!");
+        // console.log("mafe it!");
         return url;
       })
       .catch(function (error) {
-        console.log("image does not exist!");
-        console.log(error);
+        // console.log("image does not exist!");
+        // console.log(error);
         return BuddyPic;
       });
     return answer;
@@ -64,8 +66,8 @@ const SignupSurveyPath = (props) => {
     const namecontent = {
       uid: uid,
     };
-
-    fetch("http://localhost:5000/friends", {
+    // "http://localhost:5000/friends"
+    fetch(endpoint + "/friends", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -77,24 +79,24 @@ const SignupSurveyPath = (props) => {
         // console.log(res);
         // var realdata = res["data"]
         // const ans = getImageMeta(res);
-        console.log(res["data"].length);
+        // console.log(res["data"].length);
         for (var i = 0; i < res["data"].length; i++) {
           res["data"][i]["image"] = await fetchImageHelper(
             res["data"][i]["uid"]
           );
-          console.log("for llop lets go");
+          // console.log("for llop lets go");
         }
         return res;
       })
       .then((res) => {
-        console.log("dispatch new res?");
+        // console.log("dispatch new res?");
         dispatch("SAVE_FRIENDS", res["data"]);
       })
       .catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log("backend has not updated to contain new user");
+        // console.log("backend has not updated to contain new user");
         //console.log(errorCode);
         //console.log(errorMessage);
       });
@@ -192,6 +194,7 @@ const SignupSurveyPath = (props) => {
   }
 
   const [page, setPage] = useState(0);
+  const [complete, setComplete] = useState(false);
 
   const style = {
     backgroundColor: "#FCD8F4",
@@ -208,41 +211,65 @@ const SignupSurveyPath = (props) => {
   }
 
   const RenderPage = () => {
-    switch (page) {
-      case 0:
-        console.log("hih");
-        return (
-          <div style={style}>
-            <Distribution
-              bgcolor="#FCD8F4"
-              color="#137cbd"
-              increment={() => setPage(page + 1)}
-            ></Distribution>
-          </div>
-        );
-      case 1:
-        return (
-          <div style={style}>
-            <Weight
-              color="#137cbd"
-              increment={() => setPage(page + 1)}
-            ></Weight>
-          </div>
-        );
-
-      case 2:
-        return (
-          <div style={style}>
-            <Buddy color="#137cbd" increment={() => setPage(page + 1)}></Buddy>
-          </div>
-        );
-
-      case 3:
-        return (
-          <div>
-            <ProfilePic increment={() => setPage(page + 1)}></ProfilePic>
-          </div>
-        );
+    if (props.surveytype === "login") {
+      switch (page) {
+        case 0:
+          return (
+            <div style={style}>
+              <Weight
+                color="#137cbd"
+                increment={() => setPage(page + 1)}
+              ></Weight>
+            </div>
+          );
+        case 1:
+          return (
+            <div style={style}>
+              <Distribution
+                bgcolor="#FCD8F4"
+                color="#137cbd"
+                increment={() => setPage(page + 1)}
+              ></Distribution>
+            </div>
+          );
+      }
+    } else {
+      switch (page) {
+        case 0:
+          return (
+            <div>
+              <ProfilePic increment={() => setPage(page + 1)}></ProfilePic>
+            </div>
+          );
+        case 1:
+          return (
+            <div style={style}>
+              <Buddy
+                color="#137cbd"
+                increment={() => setPage(page + 1)}
+              ></Buddy>
+            </div>
+          );
+        case 2:
+          return (
+            <div style={style}>
+              <Weight
+                color="#137cbd"
+                increment={() => setPage(page + 1)}
+              ></Weight>
+            </div>
+          );
+        case 3:
+          return (
+            <div style={style}>
+              <Distribution
+                bgcolor="#FCD8F4"
+                color="#137cbd"
+                increment={() => setPage(page + 1)}
+              ></Distribution>
+            </div>
+          );
+      }
     }
   };
 
@@ -250,10 +277,12 @@ const SignupSurveyPath = (props) => {
     fetchForm(uid_value);
     fetchAttendance(uid_value);
     fetchDistribution(uid_value);
-    if (props.counter == 2) {
-      fetchFriends(uid_value);
-    }
-    console.log("redirect about to happen");
+    fetchFriends(uid_value);
+    // console.log("redirect about to happen");
+    return <Redirect to="/" />;
+  }
+
+  if (shouldRedirect()) {
     return <Redirect to="/" />;
   }
 

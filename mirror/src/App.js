@@ -2,12 +2,10 @@ import React, { useEffect } from "react";
 
 import MainScreen from "./components/MainScreen";
 
-// import Weight from "./components/Metrics/Weight";
-// import Distribution from "./components/Metrics/Distribution";
-// import Attendance from "./components/Metrics/Attendance";
 import Metrics from "./components/Metrics/Metrics";
 import Points from "./components/Points/Points";
 import Events from "./components/Events/Events";
+import Trainers from "./components/TrainersClasses/Trainers";
 import Buddy from "./components/Buddy/Buddy";
 
 import Auth from "./components/Auth/Auth";
@@ -33,17 +31,15 @@ const App = () => {
     //history.replace("/main");
     //history.replace("/stillbackground");
     //history.replace("/distributionsurvey");
-    //history.replace("/attendance");
     //history.replace("/weightsurvey");
     // history.replace("/events");
-    //history.replace("/distribution");
-    //history.replace("/weight");
     //history.replace("/signup");
     //history.replace("/points");
     //history.replace("/buddy");
     //history.replace("/auth");
     //history.push("/signsurveypath");
-    history.push("/metrics");
+    // history.push("/metrics");
+    //history.push("/trainers");
   }, []);
 
   // Can implement SWITCH Statements for ROUTES
@@ -52,6 +48,10 @@ const App = () => {
     <div>
       <Route path="/buddy">
         <Buddy />
+      </Route>
+
+      <Route path="/trainers">
+        <Trainers />
       </Route>
 
       <Route path="/metrics">
@@ -67,11 +67,11 @@ const App = () => {
       </Route>
 
       <Route path="/signsurveypath">
-        <SurveyPath counter={4} />
+        <SurveyPath surveytype="signup" counter={4} />
       </Route>
 
       <Route path="/logsurveypath">
-        <SurveyPath counter={2} />
+        <SurveyPath surveytype="login" counter={2} />
       </Route>
 
       <Route path="/auth">
@@ -81,18 +81,6 @@ const App = () => {
       <Route path="/points">
         <Points />
       </Route>
-
-      {/* <Route path="/weight">
-        <Weight />
-      </Route>
-
-      <Route path="/attendance">
-        <Attendance />
-      </Route>
-
-      <Route path="/distribution">
-        <Distribution></Distribution>
-      </Route> */}
 
       <Route exact path="/">
         <MainScreen />

@@ -17,7 +17,7 @@ const StillBackground = (props) => {
     left: "0",
     background: `${props.color}`,
     zIndex: "0",
-    opacity: "0.65",
+    opacity: "1",
   };
 
   return (

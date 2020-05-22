@@ -17,6 +17,7 @@ import {
   withinSameDay,
   determinePeriodOfDay,
 } from "../../../actions/actions";
+import { grey } from "@material-ui/core/colors";
 
 const KeyBoardContainer = authStyleFinal.keyBoardContainer;
 // const Overlay = authStyleFinal.overlay;
@@ -41,13 +42,6 @@ const Login = () => {
   };
 
   const db = firebase.firestore();
-
-  const temporarySetError = () => {
-    setErrorMessage(true);
-    setTimeout(function () {
-      setErrorMessage(false);
-    }, 4000);
-  };
 
   const addPoint = (pointval, uid) => {
     db.collection("users")
@@ -137,6 +131,13 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState(false);
   const [currentString, setCurrentString] = useState("");
 
+  const temporarySetError = () => {
+    setErrorMessage(true);
+    setTimeout(function () {
+      setErrorMessage(false);
+    }, 4000);
+  };
+
   useEffect(() => {
     const inputText = () => {
       if (!locator) {
@@ -195,7 +196,8 @@ const Login = () => {
               id={email}
               error={!information.email.valid}
               label={information.email.placeholder}
-              color="primary"
+              style={{ color: "#137cbd" }}
+              color="#137cbd"
               variant="outlined"
               value={information.email.value}
               onChange={(event) => onChangeDataHandler(event, email)}

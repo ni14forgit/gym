@@ -8,8 +8,10 @@ const inputStyle = {
     textAlign: "center",
     flexDirection: "column",
     flexWrap: "wrap",
+    color: "#137cbd",
   },
   input: {
+    color: "#137cbd",
     width: "70%",
     margin: "0.75vh",
   },

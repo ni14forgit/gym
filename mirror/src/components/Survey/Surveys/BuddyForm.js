@@ -63,6 +63,7 @@ const Form = (props) => {
   const [characterOptions, setCharacterOptions] = useState(
     convertDataToDict(characteristics)
   );
+  const [optOut, setOptOut] = useState(false);
 
   const Divider = buddyStyleFinal.divider;
   const RowContainer = buddyStyleFinal.rowContainer;
@@ -134,6 +135,7 @@ const Form = (props) => {
         goalStatus: DictToList(goalsOptions),
         profiledate: createDate(),
         filledForm: true,
+        optOutStatus: optOut,
       });
     props.increment();
   }
@@ -233,6 +235,11 @@ const Form = (props) => {
           title="Characteristics That Best Describe Yourself"
           backgroundnot="#FCD8F4"
           textnot="#137cbd"
+        />
+        <Switch
+          setIsProp={setOptOut}
+          isProp={optOut}
+          title="I'm not looking for workout partner(s)"
         />
 
         <HorizontalDivider color="#137cbd" />

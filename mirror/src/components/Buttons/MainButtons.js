@@ -14,9 +14,11 @@ const MainButtons = () => {
   const [boldAuth, setBoldAuth] = useState(false);
   const history = useHistory();
   const [state, dispatch] = useStore();
+
   const Container = mainbuttonsFinalStyle.container;
   const Title = mainbuttonsFinalStyle.title;
   const Copyright = mainbuttonsFinalStyle.copyright;
+  const FlexRow = mainbuttonsFinalStyle.flexrow;
 
   const clickAuth = () => {
     if (!user) {
@@ -57,13 +59,48 @@ const MainButtons = () => {
     //console.log(user.displayName);
   }
 
+  const TrainersAndEvents = () => {
+    return (
+      <div style={{ position: "absolute", top: "3vh", left: "3vh" }}>
+        <FlexRow>
+          <Button
+            onClick={() => history.push("/trainers")}
+            style={{ marginRight: "1vw" }}
+            color="primary"
+            variant="outlined"
+          >
+            <Typography
+              style={{ fontWeight: "bold", color: "white" }}
+              variant="h6"
+            >
+              Wilson Trainers
+            </Typography>
+          </Button>
+          <Button
+            style={{ marginLeft: "1vw" }}
+            color="primary"
+            variant="outlined"
+            onClick={() => history.push("/events")}
+          >
+            <Typography
+              style={{ fontWeight: "bold", color: "white" }}
+              variant="h6"
+            >
+              Upcoming Events!
+            </Typography>
+          </Button>
+        </FlexRow>
+      </div>
+    );
+  };
+
   const AuthButtonFunc = () => {
     return (
       <Button
         className={boldAuth ? buttonstyle_data.authBold : buttonstyle_data.auth}
         color="primary"
         size="medium"
-        style={{ position: "absolute", top: "2vh", left: "88vw" }}
+        style={{ position: "absolute", top: "3vh", left: "88vw" }}
         onClick={clickAuth}
       >
         <Typography style={{ fontWeight: "bold" }} variant="h5">
@@ -117,6 +154,7 @@ const MainButtons = () => {
 
   return (
     <div>
+      <TrainersAndEvents />
       <Container>
         {userName.length > 0 ? (
           <Title>

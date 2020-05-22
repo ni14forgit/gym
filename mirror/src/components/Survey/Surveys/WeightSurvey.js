@@ -11,7 +11,8 @@ import { Redirect } from "react-router-dom";
 import { buttonStyle } from "../../../style/material-styles/totalStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import io from "socket.io-client";
-let endpoint = "http://localhost:5000";
+// let endpoint = "http://localhost:5000";
+let endpoint = "https://wiiboardapi.herokuapp.com";
 let socket = io.connect(`${endpoint}`);
 const MARGIN_OF_ERROR = 9;
 
@@ -63,14 +64,14 @@ const WeightSurvey = (props) => {
 
   const title = () => {
     const lengthTrack = Object.keys(weights).length;
-    console.log("sdfhasdkfjasfkla" + " " + lengthTrack);
+    // console.log("sdfhasdkfjasfkla" + " " + lengthTrack);
 
     if (lengthTrack >= 3) {
-      console.log("3 man");
+      // console.log("3 man");
       setMyTitle("Submit");
     } else if (lengthTrack > 0) {
       setMyTitle("Detected and Measuring...");
-      console.log("2 man");
+      // console.log("2 man");
     } else {
       setMyTitle("Step on weight scale!");
     }
@@ -94,11 +95,11 @@ const WeightSurvey = (props) => {
   );
 
   const wiiDetected = (personWeight) => {
-    console.log("flask is cool");
+    // console.log("flask is cool");
     const length = Object.keys(weights).length + 1;
     const newWeights = { ...weights };
     newWeights[length] = personWeight;
-    console.log(newWeights);
+    // console.log(newWeights);
     setWeights(newWeights);
   };
 
@@ -112,9 +113,9 @@ const WeightSurvey = (props) => {
     setFinalWeight(weights[3] + MARGIN_OF_ERROR);
   }, [weights, myTitle]);
 
-  // if (shouldRedirect()) {
-  //   return <Redirect to="/" />;
-  // }
+  if (shouldRedirect()) {
+    return <Redirect to="/" />;
+  }
 
   return (
     //Some timed event to trigger the call of submit weight

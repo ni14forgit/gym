@@ -1,3 +1,4 @@
+import { grey } from "@material-ui/core/colors";
 const buttonStyle = {
   mainoption: {
     width: "22vw",
@@ -11,13 +12,11 @@ const buttonStyle = {
   mainlabel: {
     flexDirection: "column",
     justifyContent: "spaceBetween",
-    // alignItems: "center",
-    // textAlign: "center",
   },
   authpage: {
     width: "10vw",
     // height: "8vh",
-    color: "#137cbd",
+    color: "#9c9a9a",
     fontWeight: "bold",
     top: "20px",
   },
@@ -28,8 +27,8 @@ const buttonStyle = {
   },
   auth: {
     width: "10vw",
-    height: "8vh",
-    fontSize: "30px",
+    // height: "8vh",
+    // fontSize: "30px",
     textAlign: "center",
     color: "white",
   },
@@ -64,6 +63,34 @@ const buttonStyle = {
       border: "2px solid #137cbd",
       color: "#137cbd",
       backgroundColor: "#FCD8F4",
+    },
+  },
+  trainer: {
+    height: "5vh",
+    backgroundColor: "white",
+    border: "1px solid #137cbd",
+    color: "#137cbd",
+    "&:hover": {
+      color: "white",
+      backgroundColor: "#137cbd",
+    },
+  },
+  yestrainer: {
+    height: "5vh",
+    backgroundColor: "#137cbd",
+    color: "white",
+    "&:hover": {
+      color: "white",
+      backgroundColor: "#137cbd",
+    },
+  },
+  notrainer: {
+    height: "5vh",
+    backgroundColor: "red",
+    color: "white",
+    "&:hover": {
+      color: "white",
+      backgroundColor: "red",
     },
   },
 };

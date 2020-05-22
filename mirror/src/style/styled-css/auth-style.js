@@ -2,9 +2,8 @@ import styled from "styled-components";
 
 const Error = styled.div`
   color: white;
-  font-size: 12px;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 40px;
 `;
 
 const Container = styled.div`

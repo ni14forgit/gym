@@ -30,13 +30,30 @@ const Matches = () => {
   const [state, dispatch] = useStore();
   const [imageData, setImageData] = useState("");
   const VerticalCenter = FinalStyle.verticalCenter;
-  console.log("state of friends empty list");
-  console.log(state["friends"]);
+  // console.log("state of friends empty list");
+  // console.log(state["friends"]);
   // var user = firebase.auth().currentUser;
+
+  // console.log("this is opt out status");
+  // console.log(state.profile.optOutStatus);
 
   return (
     <VerticalCenter>
-      {state["friends"].length === 0 ? (
+      {state.profile.optOutStatus ? (
+        <Typography
+          style={{
+            fontWeight: "bold",
+            color: "#137cbd",
+            margin: "auto",
+            textAlign: "center",
+          }}
+          variant="h4"
+        >
+          Please opt in on your buddy form to be matched with others!
+        </Typography>
+      ) : null}
+
+      {state["friends"].length === 0 && !state.profile.optOutStatus ? (
         <Typography
           style={{
             fontWeight: "bold",
@@ -48,7 +65,9 @@ const Matches = () => {
         >
           No matches for you yet! Come by later!
         </Typography>
-      ) : (
+      ) : null}
+
+      {!(state["friends"].length === 0 || state.profile.optOutStatus) ? (
         <div>
           <div style={{ paddingBottom: "4vh" }}>
             <Typography
@@ -77,7 +96,7 @@ const Matches = () => {
             })}
           </GridList>
         </div>
-      )}
+      ) : null}
     </VerticalCenter>
   );
 };

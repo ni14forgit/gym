@@ -16,8 +16,8 @@ const configureStore = () => {
       return { profile: { ...info } };
     },
     SAVE_FRIENDS: (curState, info) => {
-      console.log("SAVE FRIENDS");
-      console.log(info);
+      // console.log("SAVE FRIENDS");
+      // console.log(info);
       return { friends: info };
     },
     LOG_OUT: (curState, info) => {
@@ -31,13 +31,13 @@ const configureStore = () => {
       };
     },
     SAVE_DISTRIBUTION: (curState, info) => {
-      console.log("SAVE Distribution");
-      console.log(info);
+      // console.log("SAVE Distribution");
+      // console.log(info);
       return { distribution: info };
     },
     SAVE_ATTENDANCE: (curState, info) => {
-      console.log("SAVE Attendance");
-      console.log(info);
+      // console.log("SAVE Attendance");
+      // console.log(info);
       return { attendance: info };
     },
   };

@@ -8,6 +8,7 @@ import { Button, Typography } from "@material-ui/core";
 import { CancelButton } from "../Buttons/MaterialButton";
 import { Redirect } from "react-router-dom";
 import { useStore } from "../../store/store";
+import { shouldRedirect } from "../../actions/actions";
 
 const Metrics = () => {
   const [state, dispatch] = useStore();
@@ -23,6 +24,10 @@ const Metrics = () => {
 
   const FlexBottom = displayFinalStyle.flexbottom;
   const ExitButton = displayFinalStyle.exitButton;
+
+  if (shouldRedirect()) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div
@@ -67,20 +72,35 @@ const Metrics = () => {
             width: "50vw",
           }}
         >
-          <div style={{ height: "55vh" }}>
-            <Typography
+          {WeightData.length > 0 ? (
+            <div style={{ height: "55vh" }}>
+              <Typography
+                style={{
+                  paddingTop: "1vh",
+                  fontWeight: "bold",
+                  color: "#137cbd",
+                  textAlign: "center",
+                }}
+                variant="h5"
+              >
+                Weight Tracker Past 30 Days
+              </Typography>
+              <LineGraph data={WeightData} />
+            </div>
+          ) : (
+            <div
               style={{
-                paddingTop: "1vh",
-                fontWeight: "bold",
-                color: "#137cbd",
+                margin: "auto",
+                marginTop: "30vh",
+                position: "relative",
                 textAlign: "center",
               }}
-              variant="h5"
             >
-              Weight Tracker Past 30 Days
-            </Typography>
-            <LineGraph data={WeightData} />
-          </div>
+              <Typography variant="h5" style={{ color: "#137cbd" }}>
+                No Recorded Weight Data!
+              </Typography>
+            </div>
+          )}
         </div>
         <div
           style={{
@@ -90,20 +110,35 @@ const Metrics = () => {
             width: "50vw",
           }}
         >
-          <div style={{ height: "55vh" }}>
-            <Typography
+          {DistributionData.length > 0 ? (
+            <div style={{ height: "55vh" }}>
+              <Typography
+                style={{
+                  paddingTop: "1vh",
+                  fontWeight: "bold",
+                  color: "#137cbd",
+                  textAlign: "center",
+                }}
+                variant="h5"
+              >
+                Workout Distribution Past 30 Days
+              </Typography>
+              <PieGraph data={DistributionData} />
+            </div>
+          ) : (
+            <div
               style={{
-                paddingTop: "1vh",
-                fontWeight: "bold",
-                color: "#137cbd",
+                margin: "auto",
+                marginTop: "30vh",
+                position: "relative",
                 textAlign: "center",
               }}
-              variant="h5"
             >
-              Workout Distribution Past 30 Days
-            </Typography>
-            <PieGraph data={DistributionData} />
-          </div>
+              <Typography variant="h5" style={{ color: "#137cbd" }}>
+                No Recorded Workout Data!
+              </Typography>
+            </div>
+          )}
         </div>
       </FlexBottom>
     </div>

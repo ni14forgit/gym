@@ -127,9 +127,9 @@ const Points = () => {
 
   const classes = useStyles();
 
-  if (shouldRedirect()) {
-    return <Redirect to="/" />;
-  }
+  // if (shouldRedirect()) {
+  //   return <Redirect to="/" />;
+  // }
 
   const Container = displayFinalStyle.containerweight;
   const ExitButton = displayFinalStyle.exitButton;
@@ -173,17 +173,50 @@ const Points = () => {
 
   return (
     <Container>
-      <StillBackground image={points} color="#8bc979" />
-      <div>
-        <Instruction>
-          <h1>Collect Prizes at Desk</h1>
-        </Instruction>
-        <ExitButton>
-          <CancelButton color="white"></CancelButton>
-        </ExitButton>
-        {/* //{scoreTitle} */}
-        <Title>{scorepoints}</Title>
-      </div>
+      <ExitButton>
+        <CancelButton color="#137cbd"></CancelButton>
+      </ExitButton>
+      <StillBackground color="#FCD8F4" />
+      {/* <Instruction> */}
+      <Typography
+        style={{ textAlign: "center", color: "#137cbd" }}
+        variant="h3"
+      >
+        Rewards!
+      </Typography>
+      {/* </Instruction> */}
+      <Title>
+        <Typography style={{ color: "#137cbd" }} variant="h3">
+          {scorepoints}
+        </Typography>
+      </Title>
+      <Typography
+        style={{
+          position: "relative",
+          color: "#137cbd",
+          // textAlign: "center",
+          paddingTop: "5%",
+          paddingRight: "10%",
+          paddingLeft: "10%",
+        }}
+        variant="h5"
+      >
+        Every day you go to the gym, you get a point!
+      </Typography>
+      <Typography
+        style={{
+          position: "relative",
+          color: "#137cbd",
+          // textAlign: "center",
+
+          paddingRight: "10%",
+          paddingLeft: "10%",
+        }}
+        variant="h5"
+      >
+        You can use points to buy items here and collect them at the desk on
+        your way out!
+      </Typography>
 
       <Selection>
         <div className={classes.root}>
@@ -198,7 +231,7 @@ const Points = () => {
                 >
                   {selection[myTitle] === 1 ? (
                     <div style={styles}>
-                      <BGImage bg={tile.img} tint="#2cb205" />
+                      <BGImage bg={tile.img} tint="#137cbd" />
                     </div>
                   ) : (
                     <div style={styles}>
@@ -221,18 +254,10 @@ const Points = () => {
       </Selection>
       <DoneButtonStyle>
         <Button onClick={purchase}>
-          <Typography
-            variant="h4"
-            style={{ fontWeight: "bold", color: "white" }}
-          >
+          <Typography variant="h4" style={{ color: "#137cbd" }}>
             submit
           </Typography>
         </Button>
-        {/* <DoneButton
-          submitContinue={purchase}
-          selection={selection}
-          score={scorepoints}
-        /> */}
       </DoneButtonStyle>
     </Container>
   );

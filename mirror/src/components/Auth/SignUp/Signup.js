@@ -24,6 +24,7 @@ const Overlay = authStyleFinal.overlay;
 const ParentContainer = authStyleFinal.parentContainer;
 const Container = authStyleFinal.container;
 const ExitButton = authStyleFinal.exitButton;
+const Error = authStyleFinal.error;
 
 const Auth = () => {
   const myInformation = {
@@ -70,6 +71,7 @@ const Auth = () => {
   const [information, setInformation] = useState(myInformation);
   const [locator, setLocator] = useState(null);
   const [currentString, setCurrentString] = useState("");
+  const [errorMessage, setErrorMessage] = useState(false);
   const keyboard = useRef();
 
   const buttonstyle = makeStyles(buttonStyle);
@@ -80,6 +82,13 @@ const Auth = () => {
 
   const onKeyChange = (input) => {
     setCurrentString(input);
+  };
+
+  const temporarySetError = () => {
+    setErrorMessage(true);
+    setTimeout(function () {
+      setErrorMessage(false);
+    }, 4000);
   };
 
   useEffect(() => {
@@ -273,10 +282,6 @@ const Auth = () => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .catch(function (error, data) {
-        //console.log(error);
-        //console.log(data);
-      })
       .then((cred) => {
         //console.log("sucessfully signed up user");
         //console.log(cred);
@@ -305,6 +310,12 @@ const Auth = () => {
       .then((something) => {
         history.push("/signsurveypath");
         //history.push("/distributionsurvey");
+      })
+      .catch(function (error, data) {
+        setInformation(myInformation);
+        temporarySetError();
+        console.log(error);
+        console.log(data);
       });
   };
 
@@ -329,6 +340,13 @@ const Auth = () => {
                 <Typography variant="h5">continue</Typography>
               </Button>
             </form>
+            {errorMessage ? (
+              <Error>
+                <h1>
+                  Email already used, or some other error, please try again
+                </h1>
+              </Error>
+            ) : null}
           </Container>
           <KeyBoardContainer>
             <Keyboard

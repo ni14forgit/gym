@@ -80,6 +80,17 @@ const Events = () => {
 
   return (
     <div style={{ height: "100vh", backgroundColor: "#137cbd" }}>
+      <Typography
+        style={{
+          paddingTop: "2vh",
+          position: "relative",
+          textAlign: "center",
+          color: "white",
+        }}
+        variant="h4"
+      >
+        Upcoming Events!
+      </Typography>
       <ExitButton>
         <CancelButton color="white"></CancelButton>
       </ExitButton>

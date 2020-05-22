@@ -14,6 +14,7 @@ import buddyStyleFinal from "../../style/styled-css/buddy-style";
 import { buttonStyle } from "../../style/material-styles/totalStyles";
 import firebase from "../../store/firebase";
 import { useStore } from "../../store/store";
+import { Redirect } from "react-router-dom";
 
 const db = firebase.firestore();
 
@@ -69,6 +70,7 @@ const Form = (props) => {
     convertDataToDict(characteristics)
   );
   const [mistake, setMistake] = useState(false);
+  const [optOut, setOptOut] = useState(false);
 
   const Divider = buddyStyleFinal.divider;
   const RowContainer = buddyStyleFinal.rowContainer;
@@ -118,6 +120,9 @@ const Form = (props) => {
     const convertFireBaseToDict = (input, firedata) => {
       const len = input.length;
       const dict = {};
+      // if (firedata === undefined) {
+      //   return <Redirect to="/" />;
+      // }
       for (var i = 0; i < firedata.length; i++) {
         dict[firedata[i]] = true;
       }
@@ -139,6 +144,7 @@ const Form = (props) => {
     );
     setGoalsOptions(convertFireBaseToDict(goals, profile.goalStatus));
     setDate(profile.profiledate);
+    setOptOut(profile.optOutStatus);
   }, []);
 
   const DictToList = (input) => {
@@ -197,6 +203,7 @@ const Form = (props) => {
           goalStatus: DictToList(goalsOptions),
           profiledate: createDate(),
           filledForm: true,
+          optOutStatus: optOut,
         });
       props.sendToMain();
     } else {
@@ -306,6 +313,12 @@ const Form = (props) => {
           title="Characteristics That Best Describe Yourself"
           backgroundnot="#FCD8F4"
           textnot="#137cbd"
+        />
+
+        <Switch
+          setIsProp={setOptOut}
+          isProp={optOut}
+          title="I'm not looking for workout partner(s)"
         />
 
         <HorizontalDivider color="#137cbd" />
